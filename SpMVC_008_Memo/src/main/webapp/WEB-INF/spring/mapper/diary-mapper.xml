@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.callor.memo.persistance.DiaryDao">
+
+	<select id="findById" resultType="DiaryVO">
+		SELECT * FROM tbl_diary
+		WHERE d_day = #{d_day}	
+	</select>
+
+	<select id="selectAll" resultType="DiaryVO">
+		SELECT * FROM tbl_diary
+	</select>
+	
+	<insert id="insert" parameterType="DiaryVO">
+		INSERT INTO tbl_diary
+		(
+			d_day,
+			d_mor,
+			d_aft,
+			d_din,
+			d_mwrite,
+			d_awrite,
+			d_dwrite,
+			d_tom,
+			d_happy,
+			d_today
+
+		) VALUES (
+			#{d_day},
+			#{d_mor},
+			#{d_aft},
+			#{d_din},
+			#{d_mwrite},
+			#{d_awrite},
+			#{d_dwrite},
+			#{d_tom},
+			#{d_happy},
+			#{d_today}
+		)
+	</insert>
+	
+ 
+	<update id="update" parameterType="DiaryVO">
+		UPDATE tbl_diary SET
+			d_day = #{d_mor},
+			d_aft =	#{d_aft},
+			d_din =	#{d_din},
+			d_mwrite =	#{d_mwrite},
+			d_awrite = #{d_awrite},
+			d_dwrite = #{d_dwrite},
+			d_tom = #{d_tom},
+			d_happy = #{d_happy},
+			d_today = #{d_today}
+		WHERE  d_day = #{d_day}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM tbl_diary WHERE d_day = #{d_day}
+	</delete>
+
+	<select id="create_diary_table">
+		CREATE TABLE IF NOT EXISTS tbl_diary (
+			d_day		VARCHAR(25)	Primary key,
+			d_mor		VARCHAR(10),	
+			d_aft		VARCHAR(10),		
+			d_din		VARCHAR(10),		
+			d_mwrite	VARCHAR(500),		
+			d_awrite	VARCHAR(500),		
+			d_dwrite	VARCHAR(500),		
+			d_tom		VARCHAR(500),		
+			d_happy		VARCHAR(500),		
+			d_today		VARCHAR(10)		
+)
+	</select>
+</mapper>

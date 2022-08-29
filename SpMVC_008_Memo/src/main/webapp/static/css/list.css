@@ -1,0 +1,62 @@
+
+#z_log {
+	margin-left: auto;
+	margin-right: 20px;
+}
+
+#z_logout a {
+	text-decoration: none;
+	border-radius: 50px;
+	padding: 8.5px;
+	color: #858484d9;
+	box-shadow: -6px -6px 14px rgba(255, 255, 255, 0.7), -6px -6px 10px
+		rgba(255, 255, 255, 0.5), 6px 6px 8px rgba(255, 255, 255, 0.075), 6px
+		6px 10px rgba(0, 0, 0, 0.15);
+}
+
+#z_logout {
+	margin-left: auto;
+	margin-right: 20px;
+}
+
+#z_log a {
+	background-color: #838282a1;
+	text-decoration: none;
+	border-radius: 50px;
+	padding: 7px;
+	color: #fff9e5;
+	box-shadow: -6px -6px 14px rgba(255, 255, 255, 0.7), -6px -6px 10px
+		rgba(255, 255, 255, 0.5), 6px 6px 8px rgb(255 229 229/ 14%), 6px 6px
+		10px rgba(0, 0, 0, 0.15);
+}
+
+div h2 {
+	color: #291515;
+	font-weight: 200;
+	margin-left: 10px;
+}
+
+table {
+	border: 1px solid black;
+	border-collapse: collapse;
+	margin-bottom: 10px;
+}
+
+table tr td, table tr th {
+	border-collapse: collapse;
+	padding: 4px;
+}
+
+table tr th {
+	background-color: #8d8d8d;
+	border: 1px solid #f2eddc;
+	border-radius: 4px;
+}
+
+table tr td {
+	cursor: pointer;
+	padding: 12px;
+	border-bottom: 2.25px solid #908a8a82;
+	border-left: 1px solid #f2eddc;
+	border-right: 1px solid #f2eddc;
+}

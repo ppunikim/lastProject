@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.callor.memo.persistance.UserDao">
+<!-- mapper는 GenericDao를 상속받기 위해 사용하는 것이다. -->
+	<select id="selectAll" resultType="UserVO">
+		SELECT * FROM tbl_users
+	</select>
+	
+	<select id="findById" resultType="UserVO">
+		SELECT * FROM tbl_users
+		WHERE username= #{username}
+	</select>
+	
+	<select id="findByName" resultType="UserVO">
+		SELECT * FROM tbl_users
+		WHERE realname= #{realname}
+	</select>
+	
+	<select id="findByNickName" resultType="UserVO">
+		SELECT * FROM tbl_users
+		WHERE nickname= #{nickname}
+	</select>
+	
+	<select id="findByEmail" resultType="UserVO">
+		SELECT * FROM tbl_users
+		WHERE email = #{email}
+	</select>
+	
+	<insert id="insert" parameterType="UserVO">
+		INSERT INTO tbl_users (
+			username,
+			password,
+			email,
+			realname,	
+			nickname,
+			role
+		)	VALUES (
+			#{username},
+			#{password},
+			#{email},
+			#{realname},	
+			#{nickname},
+			#{role}
+		)		
+	</insert>
+	<update id="update" parameterType="UserVO">
+		 UPDATE tbl_users SET
+			password = #{password},
+			email =    #{email},
+			realname =     #{realname},	
+			nickname = #{nickname},
+			role =     #{role}
+		 WHERE username = #{username}
+	</update>
+	<delete id="delete">
+		DELETE FROM tbl_users WHERE username = #{username}
+	</delete>
+	 	<select id="select_role" resultType="AuthorityVO">
+ 		SELECT * FROM tbl_authorities
+ 		WHERE username = #{username}
+ 	</select>
+ 	
+ 	<insert id="role_insert" parameterType="AuthorityVO">
+ 		INSERT INTO tbl_authorities (username, authority)
+ 		VALUES
+ 		<foreach collection="list" item="vo" separator=",">
+ 			(#{vo.username},#{vo.authority})
+ 		</foreach>
+ 	</insert>
+	
+	 <select id="create_user_table">
+	 	CREATE TABLE IF NOT EXISTS tbl_users (
+			username	VARCHAR(20)	PRIMARY KEY,
+			password	VARCHAR(125)	NOT NULL,
+			email		VARCHAR(125)	NOT NULL UNIQUE,
+			realname	VARCHAR(125),	
+			nickname	VARCHAR(125),
+			role		VARCHAR(5)		
+	 	)
+	 </select>
+	 
+	  	<select id="create_auth_table">
+ 	create table IF NOT EXISTS tbl_authorities (
+		seq 		BIGINT AUTO_INCREMENT PRIMARY KEY,
+	    username	VARCHAR(20),
+	    authority 	VARCHAR(20)
+	)
+ 	</select>
+	 
+	 
+</mapper>
