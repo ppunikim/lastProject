@@ -43,13 +43,25 @@ tr{
 header {
 	background-color: #eee;
 }
+.hs_adbtn{
+	border: 1px solid transparent;
+	border-radius: 40px;
+	background-color: #919191c7;
+	margin-left: 30px;
+	padding: 10px;
+	height: 50px;
+	margin-top: 25px;
+}
+.hs_add {
+	line-height: 30px;
+	color: #fffdfd;
+}
 </style>
 <link rel="stylesheet" href="${rootPath}/static/css/api.css?ver=003" />
-<link rel="stylesheet" href="${rootPath}/static/css/modal.css?ver=002" />
 <script>
 	const rootPath = '${rootPath}'
 </script>
-<script src="${rootPath}/static/js/api.js?ver=010"></script>
+<script src="${rootPath}/static/js/api.js?ver=012"></script>
 </head>
 <body>
 	<!-- 최종 구현하고자 하는 것 
@@ -66,6 +78,9 @@ header {
 			<input name="search" placeholder="검색어를 입력하세요." />
 			<button>검색</button>
 		</form:form>
+		<div class="hs_adbtn">
+			<a class="hs_add">추가</a>
+		</div>
 	</header>
 	<nav>
 		<div class="hs_width">

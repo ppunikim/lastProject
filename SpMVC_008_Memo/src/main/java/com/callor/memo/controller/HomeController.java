@@ -87,7 +87,7 @@ public class HomeController {
 				model.addAttribute("VO",apiDTO);
 			}
 		}
-		return "api/api-look";
+		return "api/api-food-detail";
 	}
 
 	
