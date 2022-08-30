@@ -180,9 +180,9 @@ public class HomeController {
 			return "redirect:/";
 		}
 		
-		//세션에 담은 전체 리스트를 get 하기(불러오기)
 		ArrayList<ApiPlaceDTO> placeList = (ArrayList<ApiPlaceDTO>)session.getAttribute("AllPlace");
-
+		//세션에 담은 전체 리스트를 get 하기(불러오기)
+		log.debug("여기{}", placeList);
 /*: 다음부터는 굳이 2중 빈 공간 만들지 말자.
   		//빈 List 만들기
 		List<ApiPlaceDTO> apiPlaceList = new ArrayList<>();
