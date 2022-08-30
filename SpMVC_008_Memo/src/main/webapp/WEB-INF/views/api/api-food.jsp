@@ -89,7 +89,7 @@ header {
 				<c:forEach items="${RANDOM}" var="random">
 					<label for="this"></label>
 					<div data-seq="${random.UC_SEQ}"><a
-						href="${rootPath}/api/${random.UC_SEQ}/api-look">
+						href="${rootPath}/api/${random.UC_SEQ}/api-detail">
 						<img src="${random.MAIN_IMG_THUMB}" id="this" class="img" /></a>
 					</div>
 				</c:forEach>
@@ -125,7 +125,7 @@ header {
 				</c:if>
 				<c:forEach items="${FOOD}" var='food'>
 					<tr>
-						<td><a href="${rootPath}/api/${food.main_title}/my-look">${food.main_title}</a></td>
+						<td><a href="${rootPath}/api/${food.main_title}/my-detail">${food.main_title}</a></td>
 						<td>${food.gugun_nm}</td>
 						<td>${food.addr1}</td>
 						<td>${food.cntct_tel}</td>

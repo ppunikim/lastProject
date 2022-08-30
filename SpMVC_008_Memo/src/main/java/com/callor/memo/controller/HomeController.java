@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.callor.memo.model.ApiDTO;
+import com.callor.memo.model.ApiFoodDTO;
 import com.callor.memo.model.ApiPlaceDTO;
-import com.callor.memo.model.ApiVO;
+import com.callor.memo.model.UserFoodVO;
 import com.callor.memo.service.ApiPlaceService;
 import com.callor.memo.service.ApiService;
 import com.callor.memo.service.FoodService;
@@ -61,8 +61,8 @@ public class HomeController {
 		}
 		String queryString = apiServiceQuery.queryString();
 		
-		List<ApiDTO> foods = apiServiceQuery.getFoodItems(queryString);
-		List<ApiVO> myfoods = foodService.selectAll();
+		List<ApiFoodDTO> foods = apiServiceQuery.getFoodItems(queryString);
+		List<UserFoodVO> myfoods = foodService.selectAll();
 		session.setAttribute("fullApi", foods);
 		model.addAttribute("api",foods);
 		model.addAttribute("FOOD",myfoods);
@@ -74,20 +74,20 @@ public class HomeController {
 	
 
 	@RequestMapping(value="/api/food", method=RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	public String api(Model model, List<ApiDTO> apiList,String search, String cat, HttpSession session) {
-		ArrayList<ApiDTO> allList = (ArrayList<ApiDTO>)session.getAttribute("fullApi"); 
-		List<ApiDTO> apiLists = apiServiceQuery.findByCat(allList,search,cat);
+	public String api(Model model, String search, String cat, HttpSession session) {
+		ArrayList<ApiFoodDTO> allList = (ArrayList<ApiFoodDTO>)session.getAttribute("fullApi"); 
+		List<ApiFoodDTO> apiLists = apiServiceQuery.findByCat(allList,search,cat);
 		model.addAttribute("api",apiLists);
 		
 		model.addAttribute("RANDOM", apiServiceQuery.random(allList));
-		return "api/api-detail";
+		return "api/api-food";
 	}
 
-	@RequestMapping(value = "/api/{UC_SEQ}/api-look", method=RequestMethod.GET, produces = "application/json;charset=UTF-8")
-	public String api_look(Model model,@PathVariable("UC_SEQ") String seq, HttpSession session) {
+	@RequestMapping(value = "/api/{UC_SEQ}/api-detail", method=RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	public String api_look(Model model,@PathVariable("UC_SEQ") Long seq, HttpSession session) {
 
-		ArrayList<ApiDTO> allList = (ArrayList<ApiDTO>) session.getAttribute("fullApi");
-		for(ApiDTO apiDTO : allList) {
+		ArrayList<ApiFoodDTO> allList = (ArrayList<ApiFoodDTO>) session.getAttribute("fullApi");
+		for(ApiFoodDTO apiDTO : allList) {
 			if(apiDTO.getUC_SEQ().equals(seq)) {
 				model.addAttribute("VO",apiDTO);
 			}
@@ -95,10 +95,11 @@ public class HomeController {
 		return "api/api-food-detail";
 	}
 
-	@RequestMapping(value="/api/{main_title}/my-look", method=RequestMethod.GET)
+	/*
+	@RequestMapping(value="/api/{main_title}/my-detail", method=RequestMethod.GET)
 	public String look(Model model, @PathVariable("main_title") String title) {
-		List<ApiVO> voList = foodService.selectAll();
-		for(ApiVO apiVO : voList) {
+		List<UserFoodVO> voList = foodService.selectAll();
+		for(UserFoodVO apiVO : voList) {
 			if(apiVO.getMain_title().equals(title)) {
 				model.addAttribute("ONE", apiVO);
 			}
@@ -106,6 +107,8 @@ public class HomeController {
 		
 		return "api/my-food-detail";
 	}
+*/
+	
 	
 	
 //	@ResponseBody
@@ -168,7 +171,7 @@ public class HomeController {
 	
 	
 	@RequestMapping(value="/api/{UC_SEQ}/place-detail", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-	public String placeDetail(@PathVariable("UC_SEQ") String seq,HttpSession session, 
+	public String placeDetail(@PathVariable("UC_SEQ") Long seq,HttpSession session, 
 								Model model, Principal principal) {
 
 		//로그인 정보 풀리면 데이터가 null값 들어와서 해주는 것

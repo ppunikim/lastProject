@@ -13,7 +13,7 @@ public class GetFoodKr {
 	public Header header;
 	
 	@JsonProperty("item")
-	public List<ApiDTO> item;
+	public List<ApiFoodDTO> item;
 	
 	@ToString
 	public class Header {

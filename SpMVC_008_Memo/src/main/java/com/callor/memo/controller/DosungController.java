@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.callor.memo.model.ApiDTO;
+import com.callor.memo.model.ApiFoodDTO;
 import com.callor.memo.service.ApiPlaceService;
 import com.callor.memo.service.ApiService;
 
@@ -33,7 +33,7 @@ public class DosungController {
 	public String home(HttpSession session) {
 String queryString = apiServiceQuery.queryString();
 		
-		List<ApiDTO> foods = apiServiceQuery.getFoodItems(queryString);
+		List<ApiFoodDTO> foods = apiServiceQuery.getFoodItems(queryString);
 		session.setAttribute("fullApi", foods);
 		
 		return "dosung/home";
@@ -42,8 +42,8 @@ String queryString = apiServiceQuery.queryString();
 	
 	@RequestMapping(value="/{title}/result", method=RequestMethod.GET)
 	public String result(@PathVariable("title") String title, HttpSession session, Model model) {
-		ArrayList<ApiDTO> allList = (ArrayList<ApiDTO>)session.getAttribute("fullApi"); 
-		List<ApiDTO> apiLists = apiServiceQuery.findByCat(allList,title,"Place");
+		ArrayList<ApiFoodDTO> allList = (ArrayList<ApiFoodDTO>)session.getAttribute("fullApi"); 
+		List<ApiFoodDTO> apiLists = apiServiceQuery.findByCat(allList,title,"Place");
 		model.addAttribute("api",apiLists);
 		
 		model.addAttribute("RANDOM", apiServiceQuery.random(allList));
