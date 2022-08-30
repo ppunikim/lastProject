@@ -47,7 +47,6 @@ public class ApiFoodServiceImplV1 implements ApiFoodService {
 			return null;
 		}
 		queryString += String.format("?serviceKey=%s", encodeSearch);
-		log.debug("Query : " + queryString);
 		return queryString;
 	}// end queryService
 
@@ -69,7 +68,6 @@ public class ApiFoodServiceImplV1 implements ApiFoodService {
 
 		fooddata = resTemp.exchange(uri, HttpMethod.GET, entity, GetFoodKr.class);
 
-		log.debug("{}", fooddata);
 
 //		return fooddata.getBody().getFoodKr.item;
 		return null;
@@ -164,7 +162,6 @@ public class ApiFoodServiceImplV1 implements ApiFoodService {
 		restTemp.getInterceptors().add(new HttpRequestIntercepterV1());
 
 		resFoodObject = restTemp.exchange(foodRestURI, HttpMethod.GET, headerEntity, FoodRoot.class);
-		log.debug("수신된 데이터 {} ", resFoodObject.getBody().getFoodKr.item);
 		return resFoodObject.getBody().getFoodKr.item;
 	}
 
