@@ -67,7 +67,7 @@ public class HomeController {
 	}
 	
 
-	@RequestMapping(value="/api/api-food", method=RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value="/api/food", method=RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public String api(Model model, String queryString,String search, String cat, HttpSession session) {
 		
 		List<ApiDTO> apiList = apiServiceQuery.findByCat(queryString,search,cat);
