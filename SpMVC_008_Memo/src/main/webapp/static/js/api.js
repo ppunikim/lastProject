@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const seq = tr?.dataset.seq;
 
     if (seq) {
-      document.location.href = `${rootPath}/api/${seq}/api-look`;
+      document.location.href = `${rootPath}/api/${seq}/api-detail`;
     }
   });
 
@@ -16,6 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const target = e.target;
     const div = target?.closest("DIV");
     const seq = div?.dataset.seq;
-    document.location.href = `${rootPath}/api/${seq}/api-look`;
+    document.location.href = `${rootPath}/api/${seq}/api-detail`;
   });
 });

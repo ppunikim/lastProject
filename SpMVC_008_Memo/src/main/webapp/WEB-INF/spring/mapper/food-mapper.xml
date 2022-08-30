@@ -3,87 +3,76 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
- <mapper namespace="com.callor.memo.persistance.ApiDao">
+ <mapper namespace="com.callor.memo.persistance.FoodDao">
  <!-- 대문자를 소문자로 : ctrl + shift + y -->
- 	<select id="selectAll" resultType="ApiVO">
+ <!-- 소문자를 대문자로 : ctrl + shift + x -->
+ 	<select id="selectAll" resultType="UserFoodVO">
  		SELECT * FROM tbl_food
  	</select>
- 	<select id="findById" resultType="ApiVO">
+ 	<select id="findById" resultType="UserFoodVO">
 		 SELECT * FROM tbl_food
-		 WHERE main_title = #{main_title}
+		 WHERE UC_SEQ = #{UC_SEQ}
  	</select>
-  	<select id="findByGugun" resultType="ApiVO">
+  	<select id="findByGugun" resultType="UserFoodVO">
  		SELECT * FROM tbl_food
- 		WHERE gugun_nm = #{gugun_nm}
+ 		WHERE GUGUN_NM = #{GUGUN_NM}
  	</select>
- 	<insert id="insert" parameterType="ApiVO">
+ 	<insert id="insert" parameterType="UserFoodVO">
  		INSERT INTO tbl_book (
-			main_title 
-			gugun_nm
-			place
-			cntct_tel 
-			title
-			subtitle 
-			addr1
-			homepage_url
-			usage_day_week_and_time
-			rprsntv_menu
-			main_img_normal
-			main_img_thumb
-			itemcntnts
+			UC_SEQ
+			MAIN_TITLE 
+			GUGUN_NM
+			CNTCT_TEL 
+			TITLE
+			ADDR1
+			USAGE_DAY_WEEK_AND_TIME
+			RPRSNTV_MENU
+			MAIN_IMG_THUMB
+			ITEMCNTNTS
  		) VALUES (
-			#{main_title}, 
-			#{gugun_nm},
-			#{place},
-			#{cntct_tel}, 
-			#{title},
-			#{subtitle}, 
-			#{addr1},
-			#{homepage_url},
-			#{usage_day_week_and_time},
-			#{rprsntv_menu},
-			#{main_img_normal},
-			#{main_img_thumb},
-			#{itemcntnts}
+			#{UC_SEQ}, 
+			#{MAIN_TITLE}, 
+			#{GUGUN_NM},
+			#{CNTCT_TEL}, 
+			#{TITLE},
+			#{ADDR1},
+			#{USAGE_DAY_WEEK_AND_TIME},
+			#{RPRSNTV_MENU},
+			#{MAIN_IMG_THUMB},
+			#{ITEMCNTNTS}
  		)
  		
  	</insert>
- 	<update id="update" parameterType="ApiVO">
+ 	<update id="update" parameterType="UserFoodVO">
 	 	UPDATE tbl_food SET
-			gugun_nm=				#{gugun_nm},
-			place=					#{place},
-			cntct_tel =				#{cntct_tel},
-			title=					#{title},
-			subtitle =				#{subtitle},
-			addr1=					#{addr1},
-			homepage_url=			#{homepage_url},
-			usage_day_week_and_time=#{usage_day_week_and_time},
-			rprsntv_menu=			#{rprsntv_menu},
-			main_img_normal=		#{main_img_normal},
-			main_img_thumb=			#{main_img_thumb},
-			itemcntnts=				#{itemcntnts}
-	 	WHERE main_title= 	#{main_title} 	
+	 		MAIN_TITLE= 			#{MAIN_TITLE}, 	
+			GUGUN_NM=				#{GUGUN_NM},
+			ADDR1=					#{ADDR1},
+			CNTCT_TEL =				#{CNTCT_TEL},
+			TITLE=					#{TITLE},
+			USAGE_DAY_WEEK_AND_TIME=#{USAGE_DAY_WEEK_AND_TIME},
+			RPRSNTV_MENU=			#{RPRSNTV_MENU},
+			MAIN_IMG_THUMB=			#{MAIN_IMG_THUMB},
+			ITEMCNTNTS=				#{ITEMCNTNTS}
+	 	WHERE UC_SEQ= 	#{UC_SEQ} 	
  	</update>
  	<delete id="delete" >
  		DELETE FROM tbl_food
- 		WHERE main_title= #{main_title}
+ 		WHERE UC_SEQ= #{UC_SEQ}
  	</delete>
  
- 	<select id="create_api_table">
+ 	<select id="create_food_table">
  		CREATE TABLE IF NOT EXISTS tbl_food ( 
-			main_title 					VARCHAR(100) PRIMARY KEY,
-			gugun_nm					VARCHAR(4),
-			place						VARCHAR(100),
-			cntct_tel 					VARCHAR(12),
-			title						VARCHAR(100),
-			subtitle 					VARCHAR(200),
-			addr1						VARCHAR(300),
-			homepage_url				VARCHAR(400),
-			usage_day_week_and_time		VARCHAR(200),
-			rprsntv_menu				VARCHAR(200),
-			main_img_normal				VARCHAR(400),
-			main_img_thumb				VARCHAR(400),
-			itemcntnts					VARCHAR(1000)
+			UC_SEQ						BIGINT			PRIMARY KEY,
+			MAIN_TITLE 					VARCHAR(100),
+			GUGUN_NM					VARCHAR(4),
+			ADDR1						VARCHAR(300),
+			CNTCT_TEL 					VARCHAR(12),
+			TITLE						VARCHAR(100),
+			USAGE_DAY_WEEK_AND_TIME		VARCHAR(200),
+			RPRSNTV_MENU				VARCHAR(200),
+			MAIN_IMG_THUMB				VARCHAR(400),
+			ITEMCNTNTS					VARCHAR(1000)
   		)
  	</select>
  

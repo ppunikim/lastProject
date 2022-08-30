@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -22,19 +23,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.callor.memo.config.ApiConfig;
-import com.callor.memo.model.ApiDTO;
+import com.callor.memo.config.QualifierConfig;
+import com.callor.memo.model.ApiFoodDTO;
 import com.callor.memo.model.FoodRoot;
 import com.callor.memo.model.GetFoodKr;
-import com.callor.memo.service.ApiService;
+import com.callor.memo.service.ApiFoodService;
 import com.callor.memo.utils.HttpRequestIntercepterV1;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Service
-public class ApiServiceQuery implements ApiService {
-
-
+@Service(QualifierConfig.SERVICE.API_FOOD1)
+public class ApiFoodServiceImplV1 implements ApiFoodService {
 
 	public String queryService(String hs, String search) {
 
@@ -47,11 +47,10 @@ public class ApiServiceQuery implements ApiService {
 			return null;
 		}
 		queryString += String.format("?serviceKey=%s", encodeSearch);
-		log.debug("Query : " + queryString);
 		return queryString;
 	}// end queryService
 
-	public List<ApiDTO> apiList() {
+	public List<ApiFoodDTO> apiList() {
 		URI uri = null;
 		try {
 			uri = new URI(ApiConfig.API_FULL_URL);
@@ -69,7 +68,6 @@ public class ApiServiceQuery implements ApiService {
 
 		fooddata = resTemp.exchange(uri, HttpMethod.GET, entity, GetFoodKr.class);
 
-		log.debug("{}", fooddata);
 
 //		return fooddata.getBody().getFoodKr.item;
 		return null;
@@ -108,7 +106,7 @@ public class ApiServiceQuery implements ApiService {
 	
 	
 	@Override
-	public List<ApiDTO> getFoodItems(String queryString) {
+	public List<ApiFoodDTO> getFoodItems(String queryString) {
 		URI foodRestURI = null;
 
 		try {
@@ -164,7 +162,6 @@ public class ApiServiceQuery implements ApiService {
 		restTemp.getInterceptors().add(new HttpRequestIntercepterV1());
 
 		resFoodObject = restTemp.exchange(foodRestURI, HttpMethod.GET, headerEntity, FoodRoot.class);
-		log.debug("수신된 데이터 {} ", resFoodObject.getBody().getFoodKr.item);
 		return resFoodObject.getBody().getFoodKr.item;
 	}
 
@@ -181,18 +178,18 @@ public class ApiServiceQuery implements ApiService {
 //		return resultList;
 //	}
 
-	public List<ApiDTO> findByCat(List<ApiDTO> foods, String search, String cat) {
+	public List<ApiFoodDTO> findByCat(List<ApiFoodDTO> foods, String search, String cat) {
 
-		List<ApiDTO> resultList = new ArrayList<>();
+		List<ApiFoodDTO> resultList = new ArrayList<>();
 		if(cat.equals("Place")) {
-			for (ApiDTO vo : foods) {
+			for (ApiFoodDTO vo : foods) {
 				if (vo.getGUGUN_NM().contains(search)) {
 					resultList.add(vo);
 				}
 			}
 			
 		} else if(cat.equals("Food")) {
-			for (ApiDTO vo : foods) {
+			for (ApiFoodDTO vo : foods) {
 				if (vo.getITEMCNTNTS().contains(search)) {
 					resultList.add(vo);
 				} else if (vo.getMAIN_TITLE().contains(search)) {
@@ -205,10 +202,10 @@ public class ApiServiceQuery implements ApiService {
 	}
 	
 	// 검색한 값이 없다면 예외처리를 해줘야 한다.
-	public List<ApiDTO> random(List<ApiDTO> foods) {
+	public List<ApiFoodDTO> random(List<ApiFoodDTO> foods) {
 		
 		//랜덤값을 담을 빈 공간의 리스트 만들기
-		List<ApiDTO> ranList = new ArrayList<>();
+		List<ApiFoodDTO> ranList = new ArrayList<>();
 		
 		//2개의 랜덤값 번호를 intRan 에 담기
 		int intRan1 = (int)(Math.random() * foods.size());

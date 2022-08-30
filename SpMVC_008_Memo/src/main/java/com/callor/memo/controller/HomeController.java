@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,11 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.callor.memo.model.ApiDTO;
+import com.callor.memo.config.QualifierConfig;
+import com.callor.memo.model.ApiFoodDTO;
 import com.callor.memo.model.ApiPlaceDTO;
-import com.callor.memo.model.ApiVO;
+import com.callor.memo.model.UserFoodVO;
 import com.callor.memo.service.ApiPlaceService;
-import com.callor.memo.service.ApiService;
+import com.callor.memo.service.ApiFoodService;
 import com.callor.memo.service.FoodService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -27,11 +29,13 @@ import lombok.extern.slf4j.Slf4j;
 public class HomeController {
 
 
-	private final ApiService apiServiceQuery;
+	private final ApiFoodService apiFoodService;
 	private final ApiPlaceService apiPlaceService;
 	private final FoodService foodService;
-	public HomeController(ApiService apiServiceQuery, ApiPlaceService apiPlaceService, FoodService foodService) {
-		this.apiServiceQuery = apiServiceQuery;
+	public HomeController(@Qualifier(QualifierConfig.SERVICE.API_FOOD1) ApiFoodService apiFoodService,
+				@Qualifier(QualifierConfig.SERVICE.API_PLACE1) ApiPlaceService apiPlaceService,
+				@Qualifier(QualifierConfig.SERVICE.USER_FOOD1) FoodService foodService) {
+		this.apiFoodService = apiFoodService;
 		this.apiPlaceService = apiPlaceService;
 		this.foodService = foodService;
 	}
@@ -59,35 +63,36 @@ public class HomeController {
 		if(principal == null) {
 			return "redirect:/";
 		}
-		String queryString = apiServiceQuery.queryString();
+		String queryString = apiFoodService.queryString();
 		
-		List<ApiDTO> foods = apiServiceQuery.getFoodItems(queryString);
-		List<ApiVO> myfoods = foodService.selectAll();
+		List<ApiFoodDTO> foods = apiFoodService.getFoodItems(queryString);
+		List<UserFoodVO> myfoods = foodService.selectAll();
 		session.setAttribute("fullApi", foods);
 		model.addAttribute("api",foods);
 		model.addAttribute("FOOD",myfoods);
 		
 		
-		model.addAttribute("RANDOM",apiServiceQuery.random(foods));
+		model.addAttribute("RANDOM",apiFoodService.random(foods));
 		return "api/api-food";
 	}
 	
 
 	@RequestMapping(value="/api/food", method=RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public String api(Model model, String search, String cat, HttpSession session) {
-		ArrayList<ApiDTO> allList = (ArrayList<ApiDTO>)session.getAttribute("fullApi"); 
-		List<ApiDTO> apiLists = apiServiceQuery.findByCat(allList,search,cat);
+
+		ArrayList<ApiFoodDTO> allList = (ArrayList<ApiFoodDTO>)session.getAttribute("fullApi"); 
+		List<ApiFoodDTO> apiLists = apiFoodService.findByCat(allList,search,cat);
 		model.addAttribute("api",apiLists);
 		
-		model.addAttribute("RANDOM", apiServiceQuery.random(allList));
-		return "api/api-detail";
+		model.addAttribute("RANDOM", apiFoodService.random(allList));
+		return "api/api-food";
 	}
 
-	@RequestMapping(value = "/api/{UC_SEQ}/api-look", method=RequestMethod.GET, produces = "application/json;charset=UTF-8")
-	public String api_look(Model model,@PathVariable("UC_SEQ") String seq, HttpSession session) {
+	@RequestMapping(value = "/api/{UC_SEQ}/api-detail", method=RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	public String api_look(Model model,@PathVariable("UC_SEQ") Long seq, HttpSession session) {
 
-		ArrayList<ApiDTO> allList = (ArrayList<ApiDTO>) session.getAttribute("fullApi");
-		for(ApiDTO apiDTO : allList) {
+		ArrayList<ApiFoodDTO> allList = (ArrayList<ApiFoodDTO>) session.getAttribute("fullApi");
+		for(ApiFoodDTO apiDTO : allList) {
 			if(apiDTO.getUC_SEQ().equals(seq)) {
 				model.addAttribute("VO",apiDTO);
 			}
@@ -95,10 +100,11 @@ public class HomeController {
 		return "api/api-food-detail";
 	}
 
-	@RequestMapping(value="/api/{main_title}/my-look", method=RequestMethod.GET)
+	/*
+	@RequestMapping(value="/api/{main_title}/my-detail", method=RequestMethod.GET)
 	public String look(Model model, @PathVariable("main_title") String title) {
-		List<ApiVO> voList = foodService.selectAll();
-		for(ApiVO apiVO : voList) {
+		List<UserFoodVO> voList = foodService.selectAll();
+		for(UserFoodVO apiVO : voList) {
 			if(apiVO.getMain_title().equals(title)) {
 				model.addAttribute("ONE", apiVO);
 			}
@@ -106,6 +112,8 @@ public class HomeController {
 		
 		return "api/my-food-detail";
 	}
+*/
+	
 	
 	
 //	@ResponseBody
@@ -132,7 +140,6 @@ public class HomeController {
 		
 		//json type 의 데이터를 쓰기 편하게 List 에 담기
 		List<ApiPlaceDTO> placeList = apiPlaceService.getPlaceItems();
-		log.debug("전체리스트 크기 진짜  " + placeList.size());
 		
 		//랜덤값을 담을 리스트 만들기
 		List<ApiPlaceDTO> ranList = new ArrayList<>();
@@ -150,8 +157,6 @@ public class HomeController {
 			ranList.add(placeList.get(intRan));
 		}
 //		log.debug("랜덤값 {}", ranList);
-		log.debug("랜덤리스트 크기" + ranList.size());
-		log.debug("전체리스트 크기 듀ㅜ번쨰 " + ((List<ApiPlaceDTO>) session.getAttribute("AllPlace")).size());
 		//가져온 데이터를 랜덤으로 가져오기
 /*		for(ApiPlaceDTO placeDTO : placeList) {
 			
@@ -168,7 +173,7 @@ public class HomeController {
 	
 	
 	@RequestMapping(value="/api/{UC_SEQ}/place-detail", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-	public String placeDetail(@PathVariable("UC_SEQ") String seq,HttpSession session, 
+	public String placeDetail(@PathVariable("UC_SEQ") Long seq,HttpSession session, 
 								Model model, Principal principal) {
 
 		//로그인 정보 풀리면 데이터가 null값 들어와서 해주는 것
@@ -178,7 +183,6 @@ public class HomeController {
 		
 		//세션에 담은 전체 리스트를 get 하기(불러오기)
 		ArrayList<ApiPlaceDTO> placeList = (ArrayList<ApiPlaceDTO>)session.getAttribute("AllPlace");
-		log.debug("세션데이터{}",placeList);
 
 /*: 다음부터는 굳이 2중 빈 공간 만들지 말자.
   		//빈 List 만들기
