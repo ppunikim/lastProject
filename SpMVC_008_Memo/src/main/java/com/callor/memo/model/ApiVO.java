@@ -15,7 +15,6 @@ import lombok.ToString;
 @Builder
 public class ApiVO {
 
-	private int uc_seq;	//1300 부터 하나씩 세면 된다.
 	private String main_title;
 	private String gugun_nm; 		//구군
 	private String place;

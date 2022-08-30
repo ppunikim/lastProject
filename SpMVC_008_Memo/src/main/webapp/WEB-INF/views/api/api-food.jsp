@@ -93,31 +93,25 @@ header {
 						<img src="${random.MAIN_IMG_THUMB}" id="this" class="img" /></a>
 					</div>
 				</c:forEach>
-				<div id="">
-					<p>${FOOD.uc_seq}</p>
-					<p>${FOOD.main_title}</p>
-				</div>
 			</div>
 		</div>
 		<div class="hs_hs">
-			<div style="width:5%">시퀀스</div>
 			<div style="width:15%">음식점이름</div>
 			<div style="width:10%">구 위치</div>
 			<div style="width:15%">음식점위치</div>
 			<div style="width:15%">전화번호</div>
 			<div style="width:20%">운영시간</div>
-			<div style="width:25%">이미지</div>
+			<div style="width:30%">이미지</div>
 		</div>
 		<div class="hs_scroll">
 			<table class="hs_detail">
 				<colgroup>
-					<col width="5%">
 					<col width="15%">
 					<col width="10%">
 					<col width="15%">
 					<col width="15%">
 					<col width="20%">
-					<col width="25%">
+					<col width="30%">
 				</colgroup>
 				<c:if test="${empty api}">
 					<tr>
@@ -129,10 +123,9 @@ header {
 						<td></td>
 					</tr>
 				</c:if>
-				<c:forEach items="${FOOD}" var='food' begin="1300" varStatus="INDEX">
-					<tr data-seq="${food.uc_seq}">
-						<td>${INDEX.count}</td>
-						<td>${food.main_title}</td>
+				<c:forEach items="${FOOD}" var='food'>
+					<tr>
+						<td><a href="${rootPath}/api/${food.main_title}/my-look">${food.main_title}</a></td>
 						<td>${food.gugun_nm}</td>
 						<td>${food.addr1}</td>
 						<td>${food.cntct_tel}</td>
@@ -143,7 +136,6 @@ header {
 				<c:forEach items="${api}" var="aapi">
 					<input type="hidden" />
 					<tr data-seq="${aapi.UC_SEQ}">
-						<td>${aapi.UC_SEQ}</td>
 						<td>${aapi.MAIN_TITLE}</td>
 						<td>${aapi.GUGUN_NM}</td>
 						<td>${aapi.ADDR1}</td>

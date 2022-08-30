@@ -10,7 +10,7 @@
  	</select>
  	<select id="findById" resultType="ApiVO">
 		 SELECT * FROM tbl_food
-		 WHERE uc_seq = #{uc_seq}
+		 WHERE main_title = #{main_title}
  	</select>
   	<select id="findByGugun" resultType="ApiVO">
  		SELECT * FROM tbl_food
@@ -18,7 +18,6 @@
  	</select>
  	<insert id="insert" parameterType="ApiVO">
  		INSERT INTO tbl_book (
-			uc_seq
 			main_title 
 			gugun_nm
 			place
@@ -33,7 +32,6 @@
 			main_img_thumb
 			itemcntnts
  		) VALUES (
-			#{uc_seq},
 			#{main_title}, 
 			#{gugun_nm},
 			#{place},
@@ -52,7 +50,6 @@
  	</insert>
  	<update id="update" parameterType="ApiVO">
 	 	UPDATE tbl_food SET
-			main_title =			#{main_title},
 			gugun_nm=				#{gugun_nm},
 			place=					#{place},
 			cntct_tel =				#{cntct_tel},
@@ -65,17 +62,16 @@
 			main_img_normal=		#{main_img_normal},
 			main_img_thumb=			#{main_img_thumb},
 			itemcntnts=				#{itemcntnts}
-	 	WHERE uc_seq= 	#{uc_seq} 	
+	 	WHERE main_title= 	#{main_title} 	
  	</update>
  	<delete id="delete" >
  		DELETE FROM tbl_food
- 		WHERE uc_seq= #{uc_seq}
+ 		WHERE main_title= #{main_title}
  	</delete>
  
  	<select id="create_api_table">
  		CREATE TABLE IF NOT EXISTS tbl_food ( 
-			uc_seq						BIGINT		PRIMARY KEY AUTO_INCREMENT,
-			main_title 					VARCHAR(100),
+			main_title 					VARCHAR(100) PRIMARY KEY,
 			gugun_nm					VARCHAR(4),
 			place						VARCHAR(100),
 			cntct_tel 					VARCHAR(12),

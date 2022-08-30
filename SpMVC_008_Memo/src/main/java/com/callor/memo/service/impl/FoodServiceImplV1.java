@@ -2,10 +2,13 @@ package com.callor.memo.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.callor.memo.model.ApiVO;
 import com.callor.memo.persistance.ApiDao;
 import com.callor.memo.service.FoodService;
 
+@Service
 public class FoodServiceImplV1 implements FoodService{
 
 	
@@ -32,8 +35,8 @@ public class FoodServiceImplV1 implements FoodService{
 
 
 	@Override
-	public ApiVO findById(Long id) {
-		return apiDao.findById(id);
+	public ApiVO findById(String uc_seq) {
+		return apiDao.findById(uc_seq);
 	}
 
 	@Override
@@ -49,8 +52,8 @@ public class FoodServiceImplV1 implements FoodService{
 	}
 
 	@Override
-	public int delete(Long id) {
-		apiDao.delete(id);
+	public int delete(String uc_seq) {
+		apiDao.delete(uc_seq);
 		return 0;
 	}
 

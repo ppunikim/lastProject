@@ -181,16 +181,16 @@ public class ApiServiceQuery implements ApiService {
 //		return resultList;
 //	}
 
-	public List<ApiDTO> findByCat(String queryString, String search, String cat) {
+	public List<ApiDTO> findByCat(List<ApiDTO> apiList, String search, String cat) {
 
-		List<ApiDTO> apiList = getFoodItems(queryString());
 		List<ApiDTO> resultList = new ArrayList<>();
 		if(cat.equals("Place")) {
 			for (ApiDTO vo : apiList) {
 				if (vo.getGUGUN_NM().contains(search)) {
 					resultList.add(vo);
 				}
-			}	
+			}
+			
 		} else if(cat.equals("Food")) {
 			for (ApiDTO vo : apiList) {
 				if (vo.getITEMCNTNTS().contains(search)) {
