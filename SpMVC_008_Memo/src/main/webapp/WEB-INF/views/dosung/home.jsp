@@ -12,18 +12,23 @@
 <style>
 	div.d-main {
 	margin-top : 100px;
-	display: flex;
+	
 	width: 100%;
-	justify-content: space-around;
+	position: relative;
 	}
+	div.d-map {
+	position: absolute;
+	left : 0;}
+	div.d-content {
+	position: absolute;
+	left : 950px;
+	border: 1px solid yellow;
+	width: 850px;
+	height: 800px}
 	div.d-map img {
 	width: 1200px;
 	border:1px solid green;}
 	
-	div.d-content {
-	border: 1px solid yellow;
-	width: 500px;
-	height: 800px}
 </style>
 </head>
 <%@ include file="/WEB-INF/views/dosung/head.jsp"%>
