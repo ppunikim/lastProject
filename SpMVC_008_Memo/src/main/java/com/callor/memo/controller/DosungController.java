@@ -41,12 +41,11 @@ String queryString = apiServiceQuery.queryString();
 	
 	
 	@RequestMapping(value="/{title}/result", method=RequestMethod.GET)
-	public String result(@PathVariable("title") String title, HttpSession session, Model model, List<ApiDTO> apiList) {
-		List<ApiDTO> apiLists = apiServiceQuery.findByCat(apiList,title,"Place");
-		model.addAttribute("api",apiLists);
-		log.debug("도성쓰" + title);
-		
+	public String result(@PathVariable("title") String title, HttpSession session, Model model) {
 		ArrayList<ApiDTO> allList = (ArrayList<ApiDTO>)session.getAttribute("fullApi"); 
+		List<ApiDTO> apiLists = apiServiceQuery.findByCat(allList,title,"Place");
+		model.addAttribute("api",apiLists);
+		
 		model.addAttribute("RANDOM", apiServiceQuery.random(allList));
 		return "api/api-food";
 	}
