@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.callor.memo.model.ApiFoodDTO;
 import com.callor.memo.service.ApiPlaceService;
-import com.callor.memo.service.ApiService;
+import com.callor.memo.service.ApiFoodService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,13 +22,13 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping(value="/dosung")
 @Slf4j
 public class DosungController {
-	private final ApiService apiServiceQuery;
-	private final ApiPlaceService apiPlaceService;
-	public DosungController(ApiService apiServiceQuery, ApiPlaceService apiPlaceService) {
-		this.apiServiceQuery = apiServiceQuery;
-		this.apiPlaceService = apiPlaceService;
-	}
 	
+	private final ApiFoodService apiServiceQuery;
+	public DosungController(ApiFoodService apiServiceQuery) {
+		this.apiServiceQuery = apiServiceQuery;
+	}
+
+
 	@RequestMapping(value= {"/",""}, method=RequestMethod.GET)
 	public String home(HttpSession session) {
 String queryString = apiServiceQuery.queryString();

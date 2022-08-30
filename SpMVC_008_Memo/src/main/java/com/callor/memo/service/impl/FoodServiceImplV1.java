@@ -5,11 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.callor.memo.config.QualifierConfig;
 import com.callor.memo.model.UserFoodVO;
 import com.callor.memo.persistance.FoodDao;
 import com.callor.memo.service.FoodService;
 
-@Service
+@Service(QualifierConfig.SERVICE.USER_FOOD1)
 public class FoodServiceImplV1 implements FoodService{
 
 	

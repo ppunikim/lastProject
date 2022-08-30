@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -22,19 +23,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.callor.memo.config.ApiConfig;
+import com.callor.memo.config.QualifierConfig;
 import com.callor.memo.model.ApiFoodDTO;
 import com.callor.memo.model.FoodRoot;
 import com.callor.memo.model.GetFoodKr;
-import com.callor.memo.service.ApiService;
+import com.callor.memo.service.ApiFoodService;
 import com.callor.memo.utils.HttpRequestIntercepterV1;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Service
-public class ApiServiceQuery implements ApiService {
-
-
+@Service(QualifierConfig.SERVICE.API_FOOD1)
+public class ApiFoodServiceImplV1 implements ApiFoodService {
 
 	public String queryService(String hs, String search) {
 

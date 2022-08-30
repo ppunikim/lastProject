@@ -61,7 +61,7 @@ header {
 <script>
 	const rootPath = '${rootPath}'
 </script>
-<script src="${rootPath}/static/js/api.js?ver=012"></script>
+<script src="${rootPath}/static/js/api.js?ver=013"></script>
 </head>
 <body>
 	<!-- 최종 구현하고자 하는 것 

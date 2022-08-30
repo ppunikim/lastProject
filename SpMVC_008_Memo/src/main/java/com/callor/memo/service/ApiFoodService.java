@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.callor.memo.model.ApiFoodDTO;
 
-public interface ApiService{
+public interface ApiFoodService{
 
 	public String queryService(String hs, String search);
 	public List<ApiFoodDTO> apiList();
