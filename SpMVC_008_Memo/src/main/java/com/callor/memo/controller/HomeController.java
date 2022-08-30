@@ -75,11 +75,10 @@ public class HomeController {
 
 	@RequestMapping(value="/api/food", method=RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public String api(Model model, List<ApiDTO> apiList,String search, String cat, HttpSession session) {
-		apiList = ((ArrayList<ApiDTO>) session.getAttribute("fullApi"));
-		List<ApiDTO> apiLists = apiServiceQuery.findByCat(apiList,search,cat);
+		ArrayList<ApiDTO> allList = (ArrayList<ApiDTO>)session.getAttribute("fullApi"); 
+		List<ApiDTO> apiLists = apiServiceQuery.findByCat(allList,search,cat);
 		model.addAttribute("api",apiLists);
 		
-		ArrayList<ApiDTO> allList = (ArrayList<ApiDTO>)session.getAttribute("fullApi"); 
 		model.addAttribute("RANDOM", apiServiceQuery.random(allList));
 		return "api/api-detail";
 	}
