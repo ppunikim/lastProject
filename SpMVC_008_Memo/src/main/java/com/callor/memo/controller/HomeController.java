@@ -100,19 +100,28 @@ public class HomeController {
 		return "api/api-food-detail";
 	}
 
-	/*
-	@RequestMapping(value="/api/{main_title}/my-detail", method=RequestMethod.GET)
-	public String look(Model model, @PathVariable("main_title") String title) {
+	@RequestMapping(value="/api/my-food-add" , method=RequestMethod.GET)
+	public String add() {
+		return "api/my-food-detail";
+	}
+	@RequestMapping(value="/api/my-food-add", method=RequestMethod.POST)
+	public String add(UserFoodVO foodVO) {
+		
+		foodService.insert(foodVO);
+		return "redirect:/api/api-food";
+	}
+	
+	@RequestMapping(value="/api/{UC_SEQ}/my-detail", method=RequestMethod.GET)
+	public String look(Model model, @PathVariable("UC_SEQ") String seq) {
 		List<UserFoodVO> voList = foodService.selectAll();
 		for(UserFoodVO apiVO : voList) {
-			if(apiVO.getMain_title().equals(title)) {
-				model.addAttribute("ONE", apiVO);
+			if(apiVO.getUC_SEQ().equals(seq)) {
+				model.addAttribute("VO", apiVO);
 			}
 		}
 		
 		return "api/my-food-detail";
 	}
-*/
 	
 	
 	
@@ -183,7 +192,6 @@ public class HomeController {
 		
 		ArrayList<ApiPlaceDTO> placeList = (ArrayList<ApiPlaceDTO>)session.getAttribute("AllPlace");
 		//세션에 담은 전체 리스트를 get 하기(불러오기)
-		log.debug("여기{}", placeList);
 /*: 다음부터는 굳이 2중 빈 공간 만들지 말자.
   		//빈 List 만들기
 		List<ApiPlaceDTO> apiPlaceList = new ArrayList<>();
@@ -207,7 +215,6 @@ public class HomeController {
 			}
 		}
 		// 이렇게 코드 짜는 이유는, 짜피 UC_SEQ 값은 1개일 것이기 때문에 굳이 List를 안만들어도 된다.
-
 		
 		return "api/api-place-detail";
 	}//end placeDetail

@@ -79,7 +79,7 @@ header {
 			<button>검색</button>
 		</form:form>
 		<div class="hs_adbtn">
-			<a class="hs_add">추가</a>
+			<a href="${rootPath}/api/my-food-add" class="hs_add">추가</a>
 		</div>
 	</header>
 	<nav>
@@ -123,14 +123,14 @@ header {
 						<td></td>
 					</tr>
 				</c:if>
-				<c:forEach items="${FOOD}" var='food'>
+				<c:forEach items="${FOOD}" var='food' varStatus="INDEX">
 					<tr>
-						<td><a href="${rootPath}/api/${food.main_title}/my-detail">${food.main_title}</a></td>
-						<td>${food.gugun_nm}</td>
-						<td>${food.addr1}</td>
-						<td>${food.cntct_tel}</td>
-						<td>${food.usage_day_week_and_time}</td>
-						<td><img src="${food.main_img_thumb}" /></td>
+						<td><a href="${rootPath}/api/${food.MAIN_TITLE}/my-detail">${food.main_title}</a></td>
+						<td>${food.GUGUN_NM}</td>
+						<td>${food.ADDR1}</td>
+						<td>${food.CNTCT_TEL}</td>
+						<td>${food.USAGE_DAY_WEEK_AND_TIME}</td>
+						<td><img src="${food.MAIN_IMG_THUMB}" /></td>
 					</tr>
 				</c:forEach>
 				<c:forEach items="${api}" var="aapi">

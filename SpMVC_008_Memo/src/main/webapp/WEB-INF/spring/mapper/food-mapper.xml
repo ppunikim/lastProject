@@ -63,7 +63,7 @@
  
  	<select id="create_food_table">
  		CREATE TABLE IF NOT EXISTS tbl_food ( 
-			UC_SEQ						BIGINT			PRIMARY KEY,
+			UC_SEQ						BIGINT			PRIMARY KEY 	AUTO_INCREMENT,
 			MAIN_TITLE 					VARCHAR(100),
 			GUGUN_NM					VARCHAR(4),
 			ADDR1						VARCHAR(300),
