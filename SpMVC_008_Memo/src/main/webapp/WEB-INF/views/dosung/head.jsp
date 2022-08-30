@@ -55,5 +55,5 @@ tr {
 	const rootPath = '${rootPath}'
 </script>
 <script src="${rootPath}/static/js/api.js?ver=010"></script>
-<script src="${rootPath}/static/js/dosung/ajax.js?ver=10"></script> 
+<script src="${rootPath}/static/js/dosung/ajax.js?ver=12"></script> 
 </head>

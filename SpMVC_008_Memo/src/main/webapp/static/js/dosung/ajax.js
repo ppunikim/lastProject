@@ -7,6 +7,7 @@ function dosungPower(event) {
   fetch(`${rootPath}/dosung/${title}/result`)
   .then((res) => res.text())
   .then((result) => {
+    result_box.innerHTML = "";
 	  result_box.style.display = "block";
 	  result_box.innerHTML = result;
   });
