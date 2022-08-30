@@ -50,8 +50,10 @@ tr {
 </style>
 <link rel="stylesheet" href="${rootPath}/static/css/api.css?ver=003" />
 <link rel="stylesheet" href="${rootPath}/static/css/modal.css?ver=002" />
+
 <script>
 	const rootPath = '${rootPath}'
 </script>
 <script src="${rootPath}/static/js/api.js?ver=010"></script>
+<script src="${rootPath}/static/js/dosung/ajax.js?ver=10"></script> 
 </head>
