@@ -7,4 +7,5 @@ import com.callor.memo.model.ApiPlaceDTO;
 public interface ApiPlaceService {
 
 	public List<ApiPlaceDTO> getPlaceItems();
+	public List<ApiPlaceDTO> searchPlaces(List<ApiPlaceDTO> placeList, String search) ;
 }

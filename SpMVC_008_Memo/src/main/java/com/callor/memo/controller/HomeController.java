@@ -49,8 +49,14 @@ public class HomeController {
 	
 	//지도 API
 	@RequestMapping(value="/api/home", method=RequestMethod.GET)
-	public String api_home() {
-		return "api/api-home";
+	public String api_home(HttpSession session) {
+		String queryString = apiFoodService.queryString();
+		List<ApiFoodDTO> foods = apiFoodService.getFoodItems(queryString);
+		session.setAttribute("fullApi", foods);
+		
+		List<ApiPlaceDTO> placeList = apiPlaceService.getPlaceItems();
+		session.setAttribute("fullPlace", placeList);
+		return "dosung/home";
 	}
 	
 	

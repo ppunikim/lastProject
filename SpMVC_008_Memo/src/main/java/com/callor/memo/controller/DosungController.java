@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.callor.memo.config.QualifierConfig;
 import com.callor.memo.model.ApiFoodDTO;
+import com.callor.memo.model.ApiPlaceDTO;
 import com.callor.memo.service.ApiFoodService;
 import com.callor.memo.service.ApiPlaceService;
 import com.callor.memo.service.FoodService;
@@ -53,13 +54,26 @@ String queryString = apiFoodService.queryString();
 	@RequestMapping(value="/{title}/result", method=RequestMethod.GET)
 	public String result(@PathVariable("title") String title, HttpSession session, Model model) {
 		ArrayList<ApiFoodDTO> allList = (ArrayList<ApiFoodDTO>)session.getAttribute("fullApi"); 
+		ArrayList<ApiPlaceDTO> allPlaceList = (ArrayList<ApiPlaceDTO>)session.getAttribute("fullPlace"); 
 		List<ApiFoodDTO> resultList = apiFoodService.findByCat(allList,title,"Place");
+		List<ApiPlaceDTO> resultPlaceList = apiPlaceService.searchPlaces(allPlaceList, title);
 		model.addAttribute("api",resultList);
+		model.addAttribute("apiPlace",resultPlaceList);
 		
 		return "dosung/result";
 	}
-	@RequestMapping(value="/{title}/gotohs", method=RequestMethod.GET)
-	public String gotohs(@PathVariable("title") String title, HttpSession session, Model model) {
+	@RequestMapping(value="/{title}/gotofoods", method=RequestMethod.GET)
+	public String gotofoods(@PathVariable("title") String title, HttpSession session, Model model) {
+		ArrayList<ApiFoodDTO> allList = (ArrayList<ApiFoodDTO>)session.getAttribute("fullApi"); 
+		List<ApiFoodDTO> resultList = apiFoodService.findByCat(allList,title,"Place");
+		model.addAttribute("api",resultList);
+		
+		model.addAttribute("RANDOM", apiFoodService.random(allList));
+		return "api/api-food";
+	}
+	
+	@RequestMapping(value="/{title}/gotoplaces", method=RequestMethod.GET)
+	public String gotoplaces(@PathVariable("title") String title, HttpSession session, Model model) {
 		ArrayList<ApiFoodDTO> allList = (ArrayList<ApiFoodDTO>)session.getAttribute("fullApi"); 
 		List<ApiFoodDTO> resultList = apiFoodService.findByCat(allList,title,"Place");
 		model.addAttribute("api",resultList);
