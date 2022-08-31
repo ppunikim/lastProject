@@ -12,7 +12,7 @@
 <style>
 div.d-result-main {
 	display: flex;
-	margin: 20px 0 100px 10px;
+	margin: 20px 0 50px 10px;
 }
 
 div.d-result-title {
@@ -55,9 +55,9 @@ div.d-result-box-img img {
 <%@ include file="/WEB-INF/views/dosung/head.jsp"%>
 <body>
 	<div class="d-result-title">
-		<h2>${title}맛집 결과</h2>
+		<h2>${title} 맛집 결과</h2>
 		<div class="d-btn">
-			<a href="${rootPath}/dosung/${title}/gotohs">자세히 보기</a>
+			<a href="${rootPath}/dosung/${title}/gotofoods">자세히 보기</a>
 		</div>
 	</div>
 	<div class="d-result-main">
@@ -65,23 +65,28 @@ div.d-result-box-img img {
 			<div class="d-result-box">
 				<div class="d-result-box-title">${api.MAIN_TITLE}</div>
 				<div class="d-result-box-img">
-					<a href="${rootPath}/api/${api.UC_SEQ}/api-detail">
-					<img src='${api.MAIN_IMG_THUMB}'>
-				</a>
+					<a href="${rootPath}/api/${api.UC_SEQ}/api-detail"> <img
+						src='${api.MAIN_IMG_THUMB}'>
+					</a>
 				</div>
 			</div>
 
 		</c:forEach>
 	</div>
-	<h2>${title}의관광 명소는..?</h2>
+	<div class="d-result-title">
+		<h2>${title}의 관광 명소는..?</h2>
+		<div class="d-btn">
+			<a href="${rootPath}/dosung/${title}/gotoplaces">자세히 보기</a>
+		</div>
+	</div>
 	<div class="d-result-main">
-		<c:forEach items="${api}" var="api">
+		<c:forEach items="${apiPlace}" var="api">
 			<div class="d-result-box">
-				<div>${api.MAIN_TITLE}</div>
-				<div>
-				<a href="${rootPath}/api/${api.UC_SEQ}/api-detail">
-					<img src='${api.MAIN_IMG_THUMB}'>
-				</a>
+				<div class="d-result-box-title">${api.MAIN_TITLE}</div>
+				<div class="d-result-box-img">
+					<a href="${rootPath}/api/${api.UC_SEQ}/api-detail"> <img
+						src='${api.MAIN_IMG_THUMB}'>
+					</a>
 				</div>
 			</div>
 
