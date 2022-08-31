@@ -9,17 +9,17 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.callor.memo.config.QualifierConfig;
 import com.callor.memo.model.ApiFoodDTO;
 import com.callor.memo.model.ApiPlaceDTO;
 import com.callor.memo.model.UserFoodVO;
-import com.callor.memo.service.ApiPlaceService;
 import com.callor.memo.service.ApiFoodService;
+import com.callor.memo.service.ApiPlaceService;
 import com.callor.memo.service.FoodService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -54,7 +54,14 @@ public class HomeController {
 	}
 	
 	
-	
+// json 타입으로 받아오는 방법
+//	@ResponseBody
+//	@RequestMapping(value="/api/json", method=RequestMethod.GET, produces = "application/json;charset=UTF-8")
+//	public List<ApiDTO> json() {
+//		String queryString = apiServiceQuery.queryString();
+//		List<ApiDTO> foods = apiServiceQuery.getFoodItems(queryString);
+//		return foods;
+//	}
 	
 	
 	// 맛집 페이지
@@ -99,14 +106,18 @@ public class HomeController {
 		}
 		return "api/api-food-detail";
 	}
-
+	
+	
+	// CRUD 구현하기
+	
+	//추가화면 보여주기
 	@RequestMapping(value="/api/my-food-add" , method=RequestMethod.GET)
 	public String add() {
 		return "api/my-food-detail";
 	}
+	//추가 button 누를 때
 	@RequestMapping(value="/api/my-food-add", method=RequestMethod.POST)
-	public String add(UserFoodVO foodVO) {
-		
+	public String add(@ModelAttribute("foodVO") UserFoodVO foodVO) {
 		foodService.insert(foodVO);
 		return "redirect:/api/api-food";
 	}
@@ -125,13 +136,7 @@ public class HomeController {
 	
 	
 	
-//	@ResponseBody
-//	@RequestMapping(value="/api/json", method=RequestMethod.GET, produces = "application/json;charset=UTF-8")
-//	public List<ApiDTO> json() {
-//		String queryString = apiServiceQuery.queryString();
-//		List<ApiDTO> foods = apiServiceQuery.getFoodItems(queryString);
-//		return foods;
-//	}
+	
 	
 
 	

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <c:set value="${pageContext.request.contextPath}" var="rootPath" />
 <!DOCTYPE html>
 <html>
@@ -7,7 +8,7 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>api-look</title>
+<title>my-look</title>
 <style>
 * {
 	box-sizing: border-box;
@@ -36,7 +37,7 @@ a {
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
-<form method="POST">
+ <form:form method="POST" modelAttribute="FOOD">
 	<div style="display:flex">
 		<div class="w3-ul w3-card-4 w3-margin w3-padding-large hs_div">
 		<div>
@@ -71,6 +72,6 @@ a {
 		</div>
 		<a href="${rootPath}/api/food" class="w3-button w3-indigo">이전</a>
 	</div>
-</form>
+</form:form>
 </body>
 </html>

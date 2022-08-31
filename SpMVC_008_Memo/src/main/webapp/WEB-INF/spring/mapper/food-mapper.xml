@@ -18,8 +18,7 @@
  		WHERE GUGUN_NM = #{GUGUN_NM}
  	</select>
  	<insert id="insert" parameterType="UserFoodVO">
- 		INSERT INTO tbl_book (
-			UC_SEQ
+ 		INSERT INTO tbl_food (
 			MAIN_TITLE 
 			GUGUN_NM
 			CNTCT_TEL 
@@ -30,7 +29,6 @@
 			MAIN_IMG_THUMB
 			ITEMCNTNTS
  		) VALUES (
-			#{UC_SEQ}, 
 			#{MAIN_TITLE}, 
 			#{GUGUN_NM},
 			#{CNTCT_TEL}, 
