@@ -126,14 +126,14 @@ header {
 						<td></td>
 					</tr>
 				</c:if>
-				<c:forEach items="${FOOD}" var='food' varStatus="INDEX">
-					<tr data-myseq="${food.UC_SEQ}">
-						<td>${food.MAIN_TITLE}</td>
-						<td>${food.GUGUN_NM}</td>
-						<td>${food.ADDR1}</td>
-						<td>${food.CNTCT_TEL}</td>
-						<td>${food.USAGE_DAY_WEEK_AND_TIME}</td>
-						<td><img src="${food.MAIN_IMG_THUMB}" /></td>
+				<c:forEach items="${food}" var='foods' varStatus="INDEX">
+					<tr data-myseq="${foods.UC_SEQ}">
+						<td>${foods.MAIN_TITLE}</td>
+						<td>${foods.GUGUN_NM}</td>
+						<td>${foods.ADDR1}</td>
+						<td>${foods.CNTCT_TEL}</td>
+						<td>${foods.USAGE_DAY_WEEK_AND_TIME}</td>
+						<td><img src="${foods.MAIN_IMG_THUMB}" /></td>
 					</tr>
 				</c:forEach>
 				<c:forEach items="${api}" var="aapi">

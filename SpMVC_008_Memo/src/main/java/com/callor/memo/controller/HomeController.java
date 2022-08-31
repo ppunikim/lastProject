@@ -90,7 +90,7 @@ public class HomeController {
 		List<UserFoodVO> myfoods = foodService.selectAll();
 		session.setAttribute("fullApi", foods);
 		model.addAttribute("api",foods);
-		model.addAttribute("FOOD",myfoods);
+		model.addAttribute("food",myfoods);
 		
 		
 		model.addAttribute("RANDOM",apiFoodService.random(foods));
@@ -105,7 +105,7 @@ public class HomeController {
 		List<ApiFoodDTO> apiLists = apiFoodService.findByCat(allList,search,cat);
 		model.addAttribute("api",apiLists);
 		List<UserFoodVO> myLists = apiFoodService.findByMyCat(search, cat);
-		model.addAttribute("api",myLists);
+		model.addAttribute("food",myLists);
 		
 		model.addAttribute("RANDOM", apiFoodService.random(allList));
 		return "api/api-food";
