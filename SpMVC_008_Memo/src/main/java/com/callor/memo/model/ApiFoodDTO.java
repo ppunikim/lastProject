@@ -36,14 +36,8 @@ public class ApiFoodDTO {
 	@JsonProperty("CNTCT_TEL")
 	private String CNTCT_TEL;
 	
-	@JsonProperty("TITLE")
-	private String TITLE; 
-
 	@JsonProperty("USAGE_DAY_WEEK_AND_TIME")
 	private String USAGE_DAY_WEEK_AND_TIME;	//운영시간 및 시간
-	
-	@JsonProperty("RPRSNTV_MENU")
-	private String RPRSNTV_MENU;	//대표메뉴
 	
 	@JsonProperty("MAIN_IMG_THUMB")
 	private String MAIN_IMG_THUMB;

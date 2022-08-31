@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>또가자</title>
 <style>
 div.d-main {
 	margin-top: 100px;

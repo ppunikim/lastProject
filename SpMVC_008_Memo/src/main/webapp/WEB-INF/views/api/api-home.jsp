@@ -10,7 +10,7 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>부산광역시 맛집리스트</title>
+<title>또가자</title>
 <style>
 .hs_width {
 	background-color: #f5f5f5;

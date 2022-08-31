@@ -116,16 +116,6 @@ header {
 					<col width="20%">
 					<col width="30%">
 				</colgroup>
-				<c:if test="${empty api}">
-					<tr>
-						<td></td>
-						<td>검색</td>
-						<td>결과가</td>
-						<td>없습니다</td>
-						<td></td>
-						<td></td>
-					</tr>
-				</c:if>
 				<c:forEach items="${food}" var='foods' varStatus="INDEX">
 					<tr data-myseq="${foods.UC_SEQ}">
 						<td>${foods.MAIN_TITLE}</td>

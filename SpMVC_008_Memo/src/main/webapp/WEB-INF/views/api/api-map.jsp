@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>api-map</title>
+<title>api를 이용한 지도</title>
 <link rel="stylesheet" href="${rootPath}/static/css/api.css?ver=003" />
 <style>
 .hs_place {
