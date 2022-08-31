@@ -59,10 +59,6 @@ tr {
  -->
 	<header>
 		<a href="${rootPath}/api/map" class="hs_place">지도</a>
-		<form:form>
-			<input name="search" placeholder="검색어를 입력하세요." />
-			<button>검색</button>
-		</form:form>
 		<a href="${rootPath}/api/place" class="hs_place">명소</a> <a
 			href="${rootPath}/api/food" class="hs_place">맛집</a>
 	</header>

@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <c:set value="${pageContext.request.contextPath}" var="rootPath" />
 <!DOCTYPE html>
 <html>
@@ -27,51 +28,72 @@ body {
 	display: flex;
 	flex-direction: column;
 }
+
 a {
 	text-decoration: none;
 	margin-top: 20px;
-	width: 250px;
+	width: 170px;
 	height: 40px;
+}
+
+.hs_div_middle {
+	margin: 10px 0;
+	width: 600px;
+}
+input {
+	width: 500px;
 }
 </style>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
- <form:form method="POST" modelAttribute="FOOD">
-	<div style="display:flex">
-		<div class="w3-ul w3-card-4 w3-margin w3-padding-large hs_div">
-		<div>
-			<input name="UC_SEQ" type="hidden" />
-		</div>
-			<div>
+	<form:form method="POST" modelAttribute="FOOD">
+		<div style="display: flex">
+			<div class="w3-ul w3-card-4 w3-margin w3-padding-large hs_div">
+				<div>
+					<input name="UC_SEQ" type="hidden" />
+				</div>
 				<label class="w3-text-pink w3-margin">음식점이름</label>
-				<input name="MAIN_TITLE" class="w3-large w3-border-bottom w3-padding" value="${VO.MAIN_TITLE}"/>
-			</div>
-			<div>
+				<div class="hs_div_middle">
+					<input name="MAIN_TITLE"
+						class="w3-large w3-border-bottom w3-padding"
+						value="${VO.MAIN_TITLE}" />
+				</div>
 				<label class="w3-text-pink w3-margin">구 위치</label>
-				<input name="GUGUN_NM" class="w3-large w3-border-bottom w3-padding" value="${VO.GUGUN_NM}"/>
-			</div>
-			<div>
+				<div class="hs_div_middle">
+					<input name="GUGUN_NM" class="w3-large w3-border-bottom w3-padding"
+						value="${VO.GUGUN_NM}" />
+				</div>
 				<label class="w3-text-pink w3-margin">음식점위치</label>
-				<input name="ADDR1" class="w3-large w3-border-bottom w3-padding" value="${VO.ADDR1}" />
-			</div>
-			<div>
+				<div class="hs_div_middle">
+					<input name="ADDR1" class="w3-large w3-border-bottom w3-padding"
+						value="${VO.ADDR1}" />
+				</div>
 				<label class="w3-text-pink w3-margin">전화번호</label>
-				<input name="CNTCT_TEL" class="w3-large w3-border-bottom w3-padding" value="${VO.CNTCT_TEL}" />
-			</div>
-			<div>
+				<div class="hs_div_middle">
+					<input name="CNTCT_TEL"
+						class="w3-large w3-border-bottom w3-padding"
+						value="${VO.CNTCT_TEL}" />
+				</div>
 				<label class="w3-text-pink w3-margin">운영시간</label>
-				<input name="USAGE_DAY_WEEK_AND_TIME" class="w3-large w3-border-bottom w3-padding" value="${VO.USAGE_DAY_WEEK_AND_TIME}" />
-			</div>
-			<div>
+				<div class="hs_div_middle">
+					<input name="USAGE_DAY_WEEK_AND_TIME"
+						class="w3-large w3-border-bottom w3-padding"
+						value="${VO.USAGE_DAY_WEEK_AND_TIME}" />
+				</div>
 				<label class="w3-text-pink w3-margin">설명</label>
-				<input name="ITEMCNTNTS" class="w3-large w3-border-bottom w3-padding" value="${VO.ITEMCNTNTS}" />
+				<div class="hs_div_middle">
+					<input name="ITEMCNTNTS"
+						class="w3-large w3-border-bottom w3-padding"
+						value="${VO.ITEMCNTNTS}" />
+				</div>
+				<div>
+					<img src="${VO.MAIN_IMG_THUMB}" class="w3-padding">
+				</div>
+				<button class=" w3-button w3-pale-red">전송</button>
 			</div>
-			<div><img src ="${VO.MAIN_IMG_THUMB}" class="w3-padding"></div> 
-			<button>전송</button>
+			<a href="${rootPath}/api/food" class="w3-button w3-dark-gray">이전</a>
 		</div>
-		<a href="${rootPath}/api/food" class="w3-button w3-indigo">이전</a>
-	</div>
-</form:form>
+	</form:form>
 </body>
 </html>
