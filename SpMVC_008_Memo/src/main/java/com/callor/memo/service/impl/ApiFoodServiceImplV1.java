@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -27,7 +28,9 @@ import com.callor.memo.config.QualifierConfig;
 import com.callor.memo.model.ApiFoodDTO;
 import com.callor.memo.model.FoodRoot;
 import com.callor.memo.model.GetFoodKr;
+import com.callor.memo.model.UserFoodVO;
 import com.callor.memo.service.ApiFoodService;
+import com.callor.memo.service.FoodService;
 import com.callor.memo.utils.HttpRequestIntercepterV1;
 
 import lombok.extern.slf4j.Slf4j;
@@ -36,6 +39,9 @@ import lombok.extern.slf4j.Slf4j;
 @Service(QualifierConfig.SERVICE.API_FOOD1)
 public class ApiFoodServiceImplV1 implements ApiFoodService {
 
+	@Autowired
+	private FoodService foodService;
+	
 	public String queryService(String hs, String search) {
 
 		String queryString = ApiConfig.API_URL;
@@ -196,9 +202,31 @@ public class ApiFoodServiceImplV1 implements ApiFoodService {
 				}
 			}
 		}
-		
 		return resultList;
 	}
+	
+	@Override
+	public List<UserFoodVO> findByMyCat(String search, String cat) {
+		List<UserFoodVO> foodList = foodService.selectAll();
+		List<UserFoodVO> blankList = new ArrayList<>();
+		if(cat.equals("Place")) {
+			for(UserFoodVO userVO : foodList) {
+				if(userVO.getGUGUN_NM().contains(search)) {
+					blankList.add(userVO);
+				}
+			}
+		} else if(cat.equals("Food")) {
+			for(UserFoodVO userVO : foodList) {
+				if(userVO.getITEMCNTNTS().contains(search)) {
+					blankList.add(userVO);
+				} else if(userVO.getMAIN_TITLE().contains(search)) {
+					blankList.add(userVO);
+				}
+			}
+		}
+		return blankList;
+	}
+	
 	
 	// 검색한 값이 없다면 예외처리를 해줘야 한다.
 	public List<ApiFoodDTO> random(List<ApiFoodDTO> foods) {
@@ -215,6 +243,8 @@ public class ApiFoodServiceImplV1 implements ApiFoodService {
 		ranList.add(foods.get(intRan2));
 		return ranList;
 	}
+
+	
 
 
 

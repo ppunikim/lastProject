@@ -104,6 +104,8 @@ public class HomeController {
 		ArrayList<ApiFoodDTO> allList = (ArrayList<ApiFoodDTO>)session.getAttribute("fullApi"); 
 		List<ApiFoodDTO> apiLists = apiFoodService.findByCat(allList,search,cat);
 		model.addAttribute("api",apiLists);
+		List<UserFoodVO> myLists = apiFoodService.findByMyCat(search, cat);
+		model.addAttribute("api",myLists);
 		
 		model.addAttribute("RANDOM", apiFoodService.random(allList));
 		return "api/api-food";
