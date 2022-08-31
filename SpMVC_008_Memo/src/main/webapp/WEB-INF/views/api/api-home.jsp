@@ -42,11 +42,7 @@ tr {
 	overflow: hidden;
 	transition-duration: 300ms;
 }
-#map {
-	margin-top: 200px;
-	width: 50%;
-	height: 50%;
-}
+
 </style>
 <link rel="stylesheet" href="${rootPath}/static/css/api.css?ver=003" />
 <link rel="stylesheet" href="${rootPath}/static/css/modal.css?ver=002" />
@@ -62,6 +58,7 @@ tr {
  	3. 랜덤 이미지 클릭했을 때 음식 상세 페이지로 이동하기
  -->
 	<header>
+		<a href="${rootPath}/api/map" class="hs_place">지도</a>
 		<form:form>
 			<input name="search" placeholder="검색어를 입력하세요." />
 			<button>검색</button>
@@ -69,35 +66,5 @@ tr {
 		<a href="${rootPath}/api/place" class="hs_place">명소</a> <a
 			href="${rootPath}/api/food" class="hs_place">맛집</a>
 	</header>
-	<div id="map"></div>
-
-	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6c973ccb369a6eba6a4c014a814dc007"></script>
-	<script>
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-		mapOption = {
-			center : new kakao.maps.LatLng(35.1402,129.1064), // 지도의 중심좌표
-			level : 3
-		// 지도의 확대 레벨
-		};
-
-		// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-		var map = new kakao.maps.Map(mapContainer, mapOption);
-		
-		// 마커가 표시될 위치입니다 
-		var markerPosition  = new kakao.maps.LatLng(35.1402,129.1064); 
-
-		// 마커를 생성합니다
-		var marker = new kakao.maps.Marker({
-		    position: markerPosition
-		});
-
-		// 마커가 지도 위에 표시되도록 설정합니다
-		marker.setMap(map);
-
-		// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
-		// marker.setMap(null);    
-
-	</script>
 </body>
 </html>

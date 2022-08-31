@@ -63,6 +63,11 @@ public class HomeController {
 //		return foods;
 //	}
 	
+	//지도 페이지
+	@RequestMapping(value="/api/map", method=RequestMethod.GET)
+	public String map() {
+		return "api/api-map";
+	}
 	
 	// 맛집 페이지
 	@RequestMapping(value="/api/food", method=RequestMethod.GET)
