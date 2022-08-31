@@ -51,7 +51,7 @@ input {
 		<div style="display: flex">
 			<div class="w3-ul w3-card-4 w3-margin w3-padding-large hs_div">
 				<div>
-					<input name="UC_SEQ" type="hidden" />
+					<input name="UC_SEQ" type="hidden" value="${VO.UC_SEQ}"/>
 				</div>
 				<label class="w3-text-pink w3-margin">음식점이름</label>
 				<div class="hs_div_middle">
@@ -90,7 +90,15 @@ input {
 				<div>
 					<img src="${VO.MAIN_IMG_THUMB}" class="w3-padding">
 				</div>
-				<button class=" w3-button w3-pale-red">전송</button>
+				<c:choose>
+					<c:when test="${not empty  UC_SEQ}">
+						<button class=" w3-button w3-pale-red">수정</button>
+						<a href="${rootPath}/api/${VO.UC_SEQ}/my-delete"  class=" w3-button w3-pale-yellow">삭제</a>
+					</c:when>
+					<c:otherwise>
+						<button class=" w3-button w3-pale-red">추가</button>
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<a href="${rootPath}/api/food" class="w3-button w3-dark-gray">이전</a>
 		</div>

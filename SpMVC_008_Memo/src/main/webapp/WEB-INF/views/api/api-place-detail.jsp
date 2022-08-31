@@ -74,7 +74,7 @@ a {
 				<img src="${DETAIL.MAIN_IMG_THUMB}" class="w3-padding">
 			</div>
 		</div>
-		<a href="${rootPath}/api/place" class="w3-button w3-indigo">이전</a>
+		<a href="${rootPath}/api/place" class="w3-button w3-dark-gray">이전</a>
 	</div>
 </body>
 </html>

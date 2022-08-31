@@ -56,12 +56,15 @@ header {
 	line-height: 30px;
 	color: #fffdfd;
 }
+.hs_adbtn a {
+	text-decoration: none;
+}
 </style>
 <link rel="stylesheet" href="${rootPath}/static/css/api.css?ver=003" />
 <script>
 	const rootPath = '${rootPath}'
 </script>
-<script src="${rootPath}/static/js/api.js?ver=013"></script>
+<script src="${rootPath}/static/js/api.js?ver=015"></script>
 </head>
 <body>
 	<!-- 최종 구현하고자 하는 것 
@@ -79,7 +82,7 @@ header {
 			<button>검색</button>
 		</form:form>
 		<div class="hs_adbtn">
-			<a href="${rootPath}/api/my-food-add" class="hs_add">추가</a>
+			<a href="${rootPath}/api/my-food-add" class="hs_add">등록</a>
 		</div>
 	</header>
 	<nav>
@@ -124,8 +127,8 @@ header {
 					</tr>
 				</c:if>
 				<c:forEach items="${FOOD}" var='food' varStatus="INDEX">
-					<tr>
-						<td><a href="${rootPath}/api/${food.MAIN_TITLE}/my-detail">${food.main_title}</a></td>
+					<tr data-myseq="${food.UC_SEQ}">
+						<td>${food.MAIN_TITLE}</td>
 						<td>${food.GUGUN_NM}</td>
 						<td>${food.ADDR1}</td>
 						<td>${food.CNTCT_TEL}</td>

@@ -19,14 +19,14 @@
  	</select>
  	<insert id="insert" parameterType="UserFoodVO">
  		INSERT INTO tbl_food (
-			MAIN_TITLE 
-			GUGUN_NM
-			CNTCT_TEL 
-			TITLE
-			ADDR1
-			USAGE_DAY_WEEK_AND_TIME
-			RPRSNTV_MENU
-			MAIN_IMG_THUMB
+			MAIN_TITLE,
+			GUGUN_NM,
+			CNTCT_TEL,
+			TITLE,
+			ADDR1,
+			USAGE_DAY_WEEK_AND_TIME,
+			RPRSNTV_MENU,
+			MAIN_IMG_THUMB,
 			ITEMCNTNTS
  		) VALUES (
 			#{MAIN_TITLE}, 

@@ -69,7 +69,10 @@ public class HomeController {
 		return "api/api-map";
 	}
 	
-	// 맛집 페이지
+	/* 
+	 * 맛집 페이지
+	 */
+	//home 화면 보여주기
 	@RequestMapping(value="/api/food", method=RequestMethod.GET)
 	public String api(Model model, HttpSession session, Principal principal ) {
 		if(principal == null) {
@@ -88,7 +91,7 @@ public class HomeController {
 		return "api/api-food";
 	}
 	
-
+	//검색창을 위한 코드
 	@RequestMapping(value="/api/food", method=RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public String api(Model model, String search, String cat, HttpSession session) {
 
@@ -100,6 +103,7 @@ public class HomeController {
 		return "api/api-food";
 	}
 
+	//자세히 보기 코드
 	@RequestMapping(value = "/api/{UC_SEQ}/api-detail", method=RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	public String api_look(Model model,@PathVariable("UC_SEQ") Long seq, HttpSession session) {
 
@@ -115,28 +119,35 @@ public class HomeController {
 	
 	// CRUD 구현하기
 	
-	//추가화면 보여주기
+	//추가화면 home 보여주기
 	@RequestMapping(value="/api/my-food-add" , method=RequestMethod.GET)
 	public String add() {
 		return "api/my-food-detail";
 	}
-	//추가 button 누를 때
+	//전송 button 누를 때
 	@RequestMapping(value="/api/my-food-add", method=RequestMethod.POST)
 	public String add(@ModelAttribute("foodVO") UserFoodVO foodVO) {
 		foodService.insert(foodVO);
-		return "redirect:/api/api-food";
+		return "redirect:/api/food";
 	}
-	
-	@RequestMapping(value="/api/{UC_SEQ}/my-detail", method=RequestMethod.GET)
-	public String look(Model model, @PathVariable("UC_SEQ") String seq) {
-		List<UserFoodVO> voList = foodService.selectAll();
-		for(UserFoodVO apiVO : voList) {
-			if(apiVO.getUC_SEQ().equals(seq)) {
-				model.addAttribute("VO", apiVO);
-			}
-		}
-		
+	//내가 추가한 것의 detail 보기
+	@RequestMapping(value="/api/{UC_SEQ}/my-update", method=RequestMethod.GET)
+	public String look(Model model, @PathVariable("UC_SEQ") Long seq) {
+		UserFoodVO foodVO = foodService.findById(seq);	
+		model.addAttribute("VO", foodVO);
 		return "api/my-food-detail";
+	}
+	//수정하기
+	@RequestMapping(value="/api/{UC_SEQ}/my-update", method=RequestMethod.POST)
+	public String update(UserFoodVO foodVO) {
+		foodService.update(foodVO);
+		return "redirect:/api/food";
+	}
+	//삭제하기
+	@RequestMapping(value="/api/{UC_SEQ}/my-delete", method=RequestMethod.GET)
+	public String delete(@PathVariable("UC_SEQ") Long seq) {
+		foodService.delete(seq);
+		return "redirect:/api/food";
 	}
 	
 	

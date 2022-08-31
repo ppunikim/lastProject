@@ -78,7 +78,6 @@ public class WriteController {
 	@RequestMapping(value="/{d_day}/d-detail", method = RequestMethod.GET)
 	public String view(Model model, @PathVariable("d_day") String d_day) {
 		DiaryVO diaryVO = diaryService.findById(d_day);
-		log.debug(" VO확인" + diaryVO.toString());
 		model.addAttribute("D_DIARY",diaryVO);
 		return "write/d-add";
 	}

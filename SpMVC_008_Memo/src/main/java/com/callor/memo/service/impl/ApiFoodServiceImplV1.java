@@ -98,7 +98,6 @@ public class ApiFoodServiceImplV1 implements ApiFoodService {
 		}
 
 		queryString += encodeParams;
-		log.debug("쿼리 문자열 {}", queryString);
 		return queryString;
 	}
 
