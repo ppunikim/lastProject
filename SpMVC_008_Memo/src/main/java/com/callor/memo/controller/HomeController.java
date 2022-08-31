@@ -182,7 +182,7 @@ public class HomeController {
 	
 	
 	@RequestMapping(value="/api/{UC_SEQ}/place-detail", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-	public String placeDetail(@PathVariable("UC_SEQ") Long seq,HttpSession session, 
+	public String placeDetail(@PathVariable("UC_SEQ") String seq,HttpSession session, 
 								Model model, Principal principal) {
 
 		//로그인 정보 풀리면 데이터가 null값 들어와서 해주는 것
