@@ -2,10 +2,10 @@ package com.callor.memo.service.impl;
 
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -62,5 +62,15 @@ public class ApiPlaceServiceImplV1 implements ApiPlaceService{
 		
 	}//end GetPlaceItems
 
+	@Override
+	public List<ApiPlaceDTO> searchPlaces(List<ApiPlaceDTO> placeList, String search) {
+		List<ApiPlaceDTO> resultList = new ArrayList<ApiPlaceDTO>();
+		for(ApiPlaceDTO dto : placeList) {
+			if(dto.getADDR1().contains(search)) {
+				resultList.add(dto);
+			}
+		}
+		return resultList;
+	}
 
 }
