@@ -5,15 +5,18 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.callor.memo.config.QualifierConfig;
 import com.callor.memo.model.ApiFoodDTO;
-import com.callor.memo.service.ApiPlaceService;
 import com.callor.memo.service.ApiFoodService;
+import com.callor.memo.service.ApiPlaceService;
+import com.callor.memo.service.FoodService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,17 +26,24 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DosungController {
 	
-	private final ApiFoodService apiServiceQuery;
-	public DosungController(ApiFoodService apiServiceQuery) {
-		this.apiServiceQuery = apiServiceQuery;
+	private final ApiFoodService apiFoodService;
+	private final ApiPlaceService apiPlaceService;
+	private final FoodService foodService;
+	public DosungController(@Qualifier(QualifierConfig.SERVICE.API_FOOD1) ApiFoodService apiFoodService,
+				@Qualifier(QualifierConfig.SERVICE.API_PLACE1) ApiPlaceService apiPlaceService,
+				@Qualifier(QualifierConfig.SERVICE.USER_FOOD1) FoodService foodService) {
+		this.apiFoodService = apiFoodService;
+		this.apiPlaceService = apiPlaceService;
+		this.foodService = foodService;
 	}
+
 
 
 	@RequestMapping(value= {"/",""}, method=RequestMethod.GET)
 	public String home(HttpSession session) {
-String queryString = apiServiceQuery.queryString();
+String queryString = apiFoodService.queryString();
 		
-		List<ApiFoodDTO> foods = apiServiceQuery.getFoodItems(queryString);
+		List<ApiFoodDTO> foods = apiFoodService.getFoodItems(queryString);
 		session.setAttribute("fullApi", foods);
 		
 		return "dosung/home";
@@ -43,10 +53,18 @@ String queryString = apiServiceQuery.queryString();
 	@RequestMapping(value="/{title}/result", method=RequestMethod.GET)
 	public String result(@PathVariable("title") String title, HttpSession session, Model model) {
 		ArrayList<ApiFoodDTO> allList = (ArrayList<ApiFoodDTO>)session.getAttribute("fullApi"); 
-		List<ApiFoodDTO> apiLists = apiServiceQuery.findByCat(allList,title,"Place");
-		model.addAttribute("api",apiLists);
+		List<ApiFoodDTO> resultList = apiFoodService.findByCat(allList,title,"Place");
+		model.addAttribute("api",resultList);
 		
-		model.addAttribute("RANDOM", apiServiceQuery.random(allList));
+		return "dosung/result";
+	}
+	@RequestMapping(value="/{title}/gotohs", method=RequestMethod.GET)
+	public String gotohs(@PathVariable("title") String title, HttpSession session, Model model) {
+		ArrayList<ApiFoodDTO> allList = (ArrayList<ApiFoodDTO>)session.getAttribute("fullApi"); 
+		List<ApiFoodDTO> resultList = apiFoodService.findByCat(allList,title,"Place");
+		model.addAttribute("api",resultList);
+		
+		model.addAttribute("RANDOM", apiFoodService.random(allList));
 		return "api/api-food";
 	}
 
