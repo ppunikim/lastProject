@@ -52,7 +52,6 @@ div.d-result-box-img img {
 }
 </style>
 </head>
-<%@ include file="/WEB-INF/views/dosung/head.jsp"%>
 <body>
 	<div class="d-result-title">
 		<h2>${title} 맛집 결과</h2>

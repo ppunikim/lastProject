@@ -74,12 +74,18 @@ String queryString = apiFoodService.queryString();
 	
 	@RequestMapping(value="/{title}/gotoplaces", method=RequestMethod.GET)
 	public String gotoplaces(@PathVariable("title") String title, HttpSession session, Model model) {
-		ArrayList<ApiFoodDTO> allList = (ArrayList<ApiFoodDTO>)session.getAttribute("fullApi"); 
-		List<ApiFoodDTO> resultList = apiFoodService.findByCat(allList,title,"Place");
-		model.addAttribute("api",resultList);
+		ArrayList<ApiPlaceDTO> allList = (ArrayList<ApiPlaceDTO>)session.getAttribute("fullPlace"); 
+		List<ApiPlaceDTO> resultList = apiPlaceService.searchPlaces(allList, title);
+		model.addAttribute("fullPlace",resultList);
 		
-		model.addAttribute("RANDOM", apiFoodService.random(allList));
-		return "api/api-food";
+		List<ApiPlaceDTO> ranList = new ArrayList<ApiPlaceDTO>(); 
+		for (int i = 0; i < 2; i++) {
+			int intRan = (int) (Math.random() * allList.size());
+			ranList.add(allList.get(intRan));
+		}
+
+		model.addAttribute("PLACE", ranList);
+		return "dosung/api-place";
 	}
 
 }

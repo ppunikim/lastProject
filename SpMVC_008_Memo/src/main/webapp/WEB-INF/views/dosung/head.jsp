@@ -48,9 +48,7 @@ tr {
 	height: 50%;
 }
 </style>
-<link rel="stylesheet" href="${rootPath}/static/css/api.css?ver=003" />
-<link rel="stylesheet" href="${rootPath}/static/css/modal.css?ver=002" />
-
+<link rel="stylesheet" href="${rootPath}/static/css/dosung/reset.css" />
 <script>
 	const rootPath = '${rootPath}'
 </script>
