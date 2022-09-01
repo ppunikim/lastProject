@@ -11,7 +11,6 @@
 <title>또가자</title>
 <style>
 div.d-main {
-	margin-top: 100px;
 	width: 100%;
 	position: relative;
 }
