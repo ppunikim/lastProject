@@ -14,7 +14,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>하루를 간직하자</title>
 
-<link rel="stylesheet" href="${rootPath}/static/css/home.css?ver=1" />
+<link rel="stylesheet" href="${rootPath}/static/css/home.css?ver=2" />
 </head>
 <body>
 	<header class="hs_flex hs_sa hs_fix">

@@ -46,6 +46,7 @@ div.d-hslogo img {
   flex: 1;
 }
 .hs_drop {
+	z-index: 1;
   min-height: 0;
   visibility: hidden;
   opacity: 0;
