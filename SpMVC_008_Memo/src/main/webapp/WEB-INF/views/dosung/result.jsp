@@ -22,6 +22,12 @@ div.d-result-title {
 	align-items: center;
 }
 
+div.d-result-title h2 {
+font-size: 24px;
+font-weight: 500;
+	
+}
+
 div.d-btn {
 	padding: 5px 12px;
 	margin: 5px;
@@ -46,11 +52,11 @@ div.d-result-box-img {
 }
 
 div.d-result-box-img img {
-	width: 250px;
-	height: 250px;
+	width: 230px;
+	height: 230px;
 }
 .d-btn a {
-	font-size: 50px;
+	
 }
 </style>
 </head>
@@ -58,7 +64,7 @@ div.d-result-box-img img {
 	<div class="d-result-title">
 		<h2>${title} 맛집 결과</h2>
 		<div class="d-btn">
-			<a href="${rootPath}/dosung/${title}/gotofoods">+</a>
+			<a href="${rootPath}/dosung/${title}/gotofoods">&#43; 더보기</a>
 		</div>
 	</div>
 	<div class="d-result-main">
@@ -77,7 +83,7 @@ div.d-result-box-img img {
 	<div class="d-result-title">
 		<h2>${title}의 관광 명소는..?</h2>
 		<div class="d-btn">
-			<a href="${rootPath}/dosung/${title}/gotoplaces">+</a>
+			<a href="${rootPath}/dosung/${title}/gotoplaces">&#43; 더보기</a>
 		</div>
 	</div>
 	<div class="d-result-main">
@@ -87,6 +93,7 @@ div.d-result-box-img img {
 				<div class="d-result-box-img">
 					<a href="${rootPath}/api/${api.UC_SEQ}/place-detail"> <img
 						src='${api.MAIN_IMG_THUMB}'>
+					
 					</a>
 				</div>
 			</div>
