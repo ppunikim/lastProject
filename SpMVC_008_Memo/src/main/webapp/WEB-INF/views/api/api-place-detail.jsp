@@ -10,23 +10,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>부산명소 자세히 보기</title>
 <style>
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
-
-html {
-	width: 100vw;
-	height: 100vh;
-}
-
-body {
-	width: 80%;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-}
 
 a {
 	text-decoration: none;
@@ -76,7 +59,6 @@ a {
 				<img src="${DETAIL.MAIN_IMG_THUMB}" class="w3-padding">
 			</div>
 		</div>
-		<a href="${rootPath}/api/place" class="w3-button w3-dark-gray">이전</a>
 	</div>
 </body>
 </html>

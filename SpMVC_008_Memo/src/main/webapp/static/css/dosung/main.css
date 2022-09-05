@@ -1,0 +1,35 @@
+body {
+	background-color: #fffff7;
+}
+
+.hs_place {
+	text-decoration: none;
+	border: 1px solid transparent;
+	border-radius: 50px;
+	height: 40px;
+	width: 45px;
+	text-align: center;
+	margin: 30px 0 0 20px;
+	background-color: #3f3e3e9e;
+	color: white;
+	line-height: 32px;
+	font-size: small;
+}
+
+
+tr:hover {
+	transform: scale(1.01, 1.01);
+}
+
+tr {
+	overflow: hidden;
+	transition-duration: 300ms;
+}
+#map {
+	margin-top: 200px;
+	width: 50%;
+	height: 50%;
+}
+input.hs_input {
+	font: caption !important;
+}

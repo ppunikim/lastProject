@@ -11,60 +11,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>부산광역시 맛집리스트</title>
-<style>
-.hs_width {
-	background-color:#f5f5f5;
-}
-.hs_place {
-	text-decoration: none;
-	border: 1px solid transparent;
-	border-radius: 50px;
-	height: 40px;
-    width: 45px;
-    text-align: center;
-    margin: 30px 0 0 20px;
-    background-color:#3f3e3e9e;
-    color: white;
-    line-height: 32px;
-    font-size: small;
-    
-}
-img {
-	border: 1px solid #aaa;
-}
-tr:hover{
-	transform: scale(1.01,1.01);
-	
-}
-tr{
-	overflow: hidden;
-	transition-duration: 300ms;
-}
-header {
-	background-color: #eee;
-}
-.hs_adbtn{
-	border: 1px solid transparent;
-	border-radius: 40px;
-	background-color: #919191c7;
-	margin-left: 30px;
-	padding: 10px;
-	height: 50px;
-	margin-top: 25px;
-}
-.hs_add {
-	line-height: 30px;
-	color: #fffdfd;
-}
-.hs_adbtn a {
-	text-decoration: none;
-}
-</style>
-<link rel="stylesheet" href="${rootPath}/static/css/api.css?ver=003" />
-<script>
-	const rootPath = '${rootPath}'
-</script>
-<script src="${rootPath}/static/js/api.js?ver=015"></script>
 </head>
 <%@ include file="/WEB-INF/views/dosung/head.jsp"%>
 <body>
@@ -76,24 +22,23 @@ header {
 	<%@ include file="/WEB-INF/views/dosung/header.jsp"%>
 	<nav>
 		<div class="hs_hs">
-			<div style="width:15%">음식점이름</div>
+			<div style="width:15%">음식점 이름</div>
 			<div style="width:10%">구 위치</div>
-			<div style="width:15%">음식점위치</div>
+			<div style="width:15%">음식점 위치</div>
 			<div style="width:15%">전화번호</div>
-			<div style="width:20%">운영시간</div>
-			<div style="width:30%">이미지</div>
+			<div style="width:20%">운영 시간</div>
+			<div style="width:30%">대표 사진</div>
 		</div>
-		<div class="hs_scroll">
 			<table class="hs_detail">
 				<colgroup>
-					<col width="15%">
-					<col width="10%">
-					<col width="15%">
-					<col width="15%">
-					<col width="20%">
-					<col width="30%">
+					<col width="300px">
+					<col width="240px">
+					<col width="300px">
+					<col width="300px">
+					<col width="400px">
+					<col width="600px">
 				</colgroup>
-				<c:forEach items="${food}" var='foods' varStatus="INDEX">
+			<%-- 	<c:forEach items="${food}" var='foods' varStatus="INDEX">
 					<tr data-myseq="${foods.UC_SEQ}">
 						<td>${foods.MAIN_TITLE}</td>
 						<td>${foods.GUGUN_NM}</td>
@@ -102,7 +47,7 @@ header {
 						<td>${foods.USAGE_DAY_WEEK_AND_TIME}</td>
 						<td><img src="${foods.MAIN_IMG_THUMB}" /></td>
 					</tr>
-				</c:forEach>
+				</c:forEach> --%>
 				<c:forEach items="${apiFood}" var="aapi">
 					<input type="hidden" />
 					<tr data-seq="${aapi.UC_SEQ}">
@@ -115,10 +60,10 @@ header {
 					</tr>
 				</c:forEach>
 			</table>
-		</div>
 	</nav>
 	<div class="hs_div">
 		<a href="${rootPath}" class="hs_home">홈으로</a>
+		<a href="${rootPath}/api/my-food-add" class="hs_home">추가</a>
 	</div>
 	<section class="modal" id="modal_box"></section>
 </body>

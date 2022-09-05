@@ -65,7 +65,7 @@ public class ApiPlaceServiceImplV1 implements ApiPlaceService {
 	public List<ApiPlaceDTO> searchPlaces(List<ApiPlaceDTO> placeList, String search) {
 		List<ApiPlaceDTO> resultList = new ArrayList<ApiPlaceDTO>();
 		for (ApiPlaceDTO dto : placeList) {
-			if (dto.getADDR1().contains(search)) {
+			if (dto.getGUGUN_NM().contains(search)) {
 				resultList.add(dto);
 			}
 		}

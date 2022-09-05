@@ -199,24 +199,17 @@ public class ApiFoodServiceImplV1 implements ApiFoodService {
 	}
 	
 	@Override
-	public List<UserFoodVO> findByMyCat(String search, String cat) {
+	public List<UserFoodVO> findByMyCat(String search) {
 		List<UserFoodVO> foodList = foodService.selectAll();
 		List<UserFoodVO> blankList = new ArrayList<>();
-		if(cat.equals("Place")) {
 			for(UserFoodVO userVO : foodList) {
 				if(userVO.getGUGUN_NM().contains(search)) {
 					blankList.add(userVO);
-				}
-			}
-		} else if(cat.equals("Food")) {
-			for(UserFoodVO userVO : foodList) {
-				if(userVO.getITEMCNTNTS().contains(search)) {
-					blankList.add(userVO);
+					continue;
 				} else if(userVO.getMAIN_TITLE().contains(search)) {
 					blankList.add(userVO);
-				}
-			}
 		}
+	}
 		return blankList;
 	}
 	

@@ -79,10 +79,14 @@ public class HomeController {
 			return "dosung/api-place";
 		} else if(cat.equals("Food")) {
 			ArrayList<ApiFoodDTO> foodallList = (ArrayList<ApiFoodDTO>) session.getAttribute("fullApi");
-			List<ApiFoodDTO> apiFoodLists = apiFoodService.findByCat(foodallList, search);
+			List<ApiFoodDTO> apiFoodLists = apiFoodService.findByCat(foodallList, search); // api 중에서 검색한 결과 리스트
+			
+			List<UserFoodVO> myLists = apiFoodService.findByMyCat(search); // db 에서 검색한 결과 리스트
+			
+			apiFoodLists.addAll(0,myLists);
+			
 			model.addAttribute("apiFood", apiFoodLists);
-			List<UserFoodVO> myLists = apiFoodService.findByMyCat(search, cat);
-			model.addAttribute("food", myLists);
+//			model.addAttribute("food", myLists);
 			return "api/api-food";
 		}
 		return "redirect:/api/api-home";
@@ -105,16 +109,17 @@ public class HomeController {
 		if (principal == null) {
 			return "redirect:/";
 		}
-		String queryString = apiFoodService.queryString();
 		
 		ArrayList<ApiFoodDTO> foods = (ArrayList<ApiFoodDTO>) session.getAttribute("fullApi");
 		//List<ApiFoodDTO> foods = apiFoodService.getFoodItems(queryString);
 		List<UserFoodVO> myfoods = foodService.selectAll();
+		log.debug("여기입니다" + myfoods.toString());
 		//session.setAttribute("fullApi", foods);
-		model.addAttribute("api", foods);
-		model.addAttribute("food", myfoods);
+		
+		foods.addAll(0,myfoods);
+		model.addAttribute("apiFood", foods);
+		log.debug("여기입니다2" + foods.toString());
 
-		model.addAttribute("RANDOM", apiFoodService.random(foods));
 		return "api/api-food";
 	}
 

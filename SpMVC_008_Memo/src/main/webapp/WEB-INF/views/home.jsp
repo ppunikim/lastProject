@@ -19,7 +19,7 @@
 <body>
 	<header class="hs_flex hs_sa hs_fix">
 		<img src="static/images/sign.png" width="50vw">
-		<div class="hs_fix">
+		<div class="hs_fix hs_border">
 			<div class="hs_flex">
 				<div class="z_log hs_menu">
 					<div class="z_log hs_top hs_head">about</div>

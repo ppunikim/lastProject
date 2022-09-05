@@ -102,7 +102,6 @@ input {
 					</c:otherwise>
 				</c:choose>
 			</div>
-			<a href="${rootPath}/api/food" class="w3-button w3-dark-gray">이전</a>
 		</div>
 	</form:form>
 </body>
