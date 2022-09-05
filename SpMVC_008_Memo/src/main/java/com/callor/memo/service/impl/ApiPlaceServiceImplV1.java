@@ -29,13 +29,13 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service(QualifierConfig.SERVICE.API_PLACE1)
-public class ApiPlaceServiceImplV1 implements ApiPlaceService{
+public class ApiPlaceServiceImplV1 implements ApiPlaceService {
 
 	@Override
 	public List<ApiPlaceDTO> getPlaceItems() {
 		URI placeURI = null;
 		try {
-			placeURI= new URI(ApiConfig.PLACE_ALL_URL);
+			placeURI = new URI(ApiConfig.PLACE_ALL_URL);
 		} catch (Exception e) {
 			log.debug("placeURI 불러오기 실패");
 		}
@@ -47,30 +47,42 @@ public class ApiPlaceServiceImplV1 implements ApiPlaceService{
 		resString = restTemp.exchange(placeURI, HttpMethod.GET, headerEntity, String.class);
 		ResponseEntity<PlaceRoot> resPlaceObject = null;
 		ClientHttpRequestInterceptor httpIntercept = new ClientHttpRequestInterceptor() {
-		@Override
-		public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution)
-			throws IOException {
+			@Override
+			public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution)
+					throws IOException {
 				return null;
 			}
 		};
 		restTemp.getInterceptors().add(new HttpRequestIntercepterV1());
 		resPlaceObject = restTemp.exchange(placeURI, HttpMethod.GET, headerEntity, PlaceRoot.class);
 		return resPlaceObject.getBody().getAttractionKr.item;
-		
-		//리스트로 보여줄 때, 랜덤으로 들어올 수 있도록 처리해주기
-		
-		
-	}//end GetPlaceItems
+
+		// 리스트로 보여줄 때, 랜덤으로 들어올 수 있도록 처리해주기
+
+	}// end GetPlaceItems
 
 	@Override
 	public List<ApiPlaceDTO> searchPlaces(List<ApiPlaceDTO> placeList, String search) {
 		List<ApiPlaceDTO> resultList = new ArrayList<ApiPlaceDTO>();
-		for(ApiPlaceDTO dto : placeList) {
-			if(dto.getADDR1().contains(search)) {
+		for (ApiPlaceDTO dto : placeList) {
+			if (dto.getADDR1().contains(search)) {
 				resultList.add(dto);
 			}
 		}
 		return resultList;
+	}
+
+	@Override
+	public List<ApiPlaceDTO> findByCat(ArrayList<ApiPlaceDTO> placeallList, String search) {
+		List<ApiPlaceDTO> placeList = new ArrayList<>();
+			for (ApiPlaceDTO place : placeallList) {
+				if (place.getGUGUN_NM().contains(search)) {
+					placeList.add(place);
+				} else if (place.getITEMCNTNTS().contains(search)) {
+					placeList.add(place);
+				} 
+			}
+		return placeList;
 	}
 
 }

@@ -183,25 +183,18 @@ public class ApiFoodServiceImplV1 implements ApiFoodService {
 //		return resultList;
 //	}
 
-	public List<ApiFoodDTO> findByCat(List<ApiFoodDTO> foods, String search, String cat) {
+	public List<ApiFoodDTO> findByCat(List<ApiFoodDTO> foods, String search) {
 
 		List<ApiFoodDTO> resultList = new ArrayList<>();
-		if(cat.equals("Place")) {
 			for (ApiFoodDTO vo : foods) {
 				if (vo.getGUGUN_NM().contains(search)) {
 					resultList.add(vo);
-				}
-			}
-			
-		} else if(cat.equals("Food")) {
-			for (ApiFoodDTO vo : foods) {
-				if (vo.getITEMCNTNTS().contains(search)) {
+				} else if (vo.getITEMCNTNTS().contains(search)) {
 					resultList.add(vo);
 				} else if (vo.getMAIN_TITLE().contains(search)) {
 					resultList.add(vo);
 				}
 			}
-		}
 		return resultList;
 	}
 	

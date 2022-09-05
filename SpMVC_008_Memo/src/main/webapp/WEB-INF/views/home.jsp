@@ -54,17 +54,17 @@
 		</section>
 	</sec:authorize>
 	<sec:authorize access="isAuthenticated()">
-	
-			<section>
-				<h1>
-					"
-					<sec:authentication property="principal.username" />
-					"_cherish the day
 
-				</h1>
-				<h3>diary, memo, books.. etc</h3>
-			</section>
-		</sec:authorize>
+		<section>
+			<h1>
+				"
+				<sec:authentication property="principal.username" />
+				"_cherish the day
+
+			</h1>
+			<h3>diary, memo, books.. etc</h3>
+		</section>
+	</sec:authorize>
 
 	<footer>
 		<div>

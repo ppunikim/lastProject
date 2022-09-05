@@ -13,18 +13,6 @@ margin-top : 100px;}
 <%@ include file="/WEB-INF/views/dosung/header.jsp"%>
 	여긴 명소 페이지
 	<nav>
-		<div class="hs_width">
-			<h4>오늘의 추천 장소 (◕ᴗ◕✿)</h4>
-			<div class="hs_how">
-				<c:forEach items="${PLACE}" var="random">
-					<label for="this"></label>
-					<div data-seq="${random.UC_SEQ}"><a
-						href="${rootPath}/api/${random.UC_SEQ}/api-detail">
-						<img src="${random.MAIN_IMG_THUMB}" id="this" class="img" /></a>
-					</div>
-				</c:forEach>
-			</div>
-		</div>
 		<div class="hs_hs">
 			<div style="width:15%">관광지 이름</div>
 			<div style="width:10%">구 위치</div>

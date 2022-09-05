@@ -40,8 +40,10 @@ a {
 }
 </style>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<%@include file="/WEB-INF/views/dosung/head.jsp"%>
 </head>
 <body>
+<%@include file="/WEB-INF/views/dosung/header.jsp"%>
 	<div class="">
 		<div class="w3-ul w3-card-4 w3-margin w3-padding-large">
 			<label class="w3-text-pink w3-margin">명소 이름</label>

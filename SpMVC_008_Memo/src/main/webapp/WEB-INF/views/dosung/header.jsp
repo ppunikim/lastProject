@@ -7,13 +7,16 @@
 <c:set value="${pageContext.request.contextPath}" var="rootPath" />
 <style>
 header {
-	background-image: url(${rootPath}/static/images/paper2.PNG);
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	height: 100px;
-	align-content: center;
-	align-items: center;
+    background-color: #fcfcef;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 116px;
+    align-content: center;
+    align-items: center;
+    min-width: 1500px;
+    border-bottom: 2px solid #383838;
+    border-radius: 15px;
 }
 
 header>div {
@@ -84,7 +87,14 @@ div.d-hslogo img {
 		</a>
 	</div>
 	<div>
-		임시 박스 (검색창, 버튼 등)
+		<form:form action="${rootPath}/api/search">
+			<select name="cat">
+				<option value="Place">명소검색</option>
+				<option value="Food">맛집검색</option>
+			</select>
+			<input name="search" placeholder="검색어를 입력하세요"/>
+			<button>검색</button>
+		</form:form>
 		<a href="${rootPath}/api/map" class="hs_place">지도</a>
 		<a href="${rootPath}/api/place" class="hs_place">명소</a> 
 		<a href="${rootPath}/api/food" class="hs_place">맛집</a>

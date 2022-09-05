@@ -68,6 +68,28 @@ public class HomeController {
 //		return foods;
 //	}
 
+	// 검색창을 위한 코드
+	@RequestMapping(value = "/api/search", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public String api(Model model, String search, String cat, HttpSession session) {
+
+		if(cat.equals("Place")) {
+			ArrayList<ApiPlaceDTO> placeallList = (ArrayList<ApiPlaceDTO>) session.getAttribute("fullPlace");
+			List<ApiPlaceDTO> apiPlaceLists = apiPlaceService.findByCat(placeallList, search);
+			model.addAttribute("apiPlace", apiPlaceLists);
+			return "dosung/api-place";
+		} else if(cat.equals("Food")) {
+			ArrayList<ApiFoodDTO> foodallList = (ArrayList<ApiFoodDTO>) session.getAttribute("fullApi");
+			List<ApiFoodDTO> apiFoodLists = apiFoodService.findByCat(foodallList, search);
+			model.addAttribute("apiFood", apiFoodLists);
+			List<UserFoodVO> myLists = apiFoodService.findByMyCat(search, cat);
+			model.addAttribute("food", myLists);
+			return "api/api-food";
+		}
+		return "redirect:/api/api-home";
+	}
+
+	
+	
 	// 지도 페이지
 	@RequestMapping(value = "/api/map", method = RequestMethod.GET)
 	public String map() {
@@ -84,10 +106,11 @@ public class HomeController {
 			return "redirect:/";
 		}
 		String queryString = apiFoodService.queryString();
-
-		List<ApiFoodDTO> foods = apiFoodService.getFoodItems(queryString);
+		
+		ArrayList<ApiFoodDTO> foods = (ArrayList<ApiFoodDTO>) session.getAttribute("fullApi");
+		//List<ApiFoodDTO> foods = apiFoodService.getFoodItems(queryString);
 		List<UserFoodVO> myfoods = foodService.selectAll();
-		session.setAttribute("fullApi", foods);
+		//session.setAttribute("fullApi", foods);
 		model.addAttribute("api", foods);
 		model.addAttribute("food", myfoods);
 
@@ -95,19 +118,6 @@ public class HomeController {
 		return "api/api-food";
 	}
 
-	// 검색창을 위한 코드
-	@RequestMapping(value = "/api/food", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	public String api(Model model, String search, String cat, HttpSession session) {
-
-		ArrayList<ApiFoodDTO> allList = (ArrayList<ApiFoodDTO>) session.getAttribute("fullApi");
-		List<ApiFoodDTO> apiLists = apiFoodService.findByCat(allList, search, cat);
-		model.addAttribute("api", apiLists);
-		List<UserFoodVO> myLists = apiFoodService.findByMyCat(search, cat);
-		model.addAttribute("food", myLists);
-
-		model.addAttribute("RANDOM", apiFoodService.random(allList));
-		return "api/api-food";
-	}
 
 	// 자세히 보기 코드
 	@RequestMapping(value = "/api/{UC_SEQ}/api-detail", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
@@ -223,7 +233,7 @@ public class HomeController {
 			return "redirect:/";
 		}
 
-		ArrayList<ApiPlaceDTO> placeList = (ArrayList<ApiPlaceDTO>) session.getAttribute("AllPlace");
+		ArrayList<ApiPlaceDTO> placeList = (ArrayList<ApiPlaceDTO>) session.getAttribute("fullPlace");
 		// 세션에 담은 전체 리스트를 get 하기(불러오기)
 		/*
 		 * : 다음부터는 굳이 2중 빈 공간 만들지 말자. //빈 List 만들기 List<ApiPlaceDTO> apiPlaceList = new

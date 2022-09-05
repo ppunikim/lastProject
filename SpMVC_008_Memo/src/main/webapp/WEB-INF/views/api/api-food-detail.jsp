@@ -35,7 +35,9 @@ a {
 </style>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
+<%@ include file="/WEB-INF/views/dosung/head.jsp"%>
 <body>
+<%@include file="/WEB-INF/views/dosung/header.jsp"%>
 <div style="display:flex">
 	<div class="w3-ul w3-card-4 w3-margin w3-padding-large hs_div">
 		<label class="w3-text-pink w3-margin">음식점이름</label>

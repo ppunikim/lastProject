@@ -7,6 +7,11 @@
 <title>api를 이용한 지도</title>
 <link rel="stylesheet" href="${rootPath}/static/css/api.css?ver=003" />
 <style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
 .hs_place {
 	text-decoration: none;
 	border: 1px solid transparent;
@@ -21,8 +26,9 @@
 	font-size: small;
 }
 #map {
-	width: 100%;
-	height: 350px;
+	width: 80%;
+	height: 450px;
+	margin: 150px auto;
 }
 </style>
 <script>
@@ -31,7 +37,7 @@
 </head>
 
 <body>
-<h1>지도페이지</h1>
+<%@include file="/WEB-INF/views/dosung/header.jsp"%>
 <div id="map" ></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6c973ccb369a6eba6a4c014a814dc007"></script>

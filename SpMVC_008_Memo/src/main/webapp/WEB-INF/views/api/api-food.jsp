@@ -66,38 +66,15 @@ header {
 </script>
 <script src="${rootPath}/static/js/api.js?ver=015"></script>
 </head>
+<%@ include file="/WEB-INF/views/dosung/head.jsp"%>
 <body>
 	<!-- 최종 구현하고자 하는 것 
  	1. 한줄 클릭하면 modal box 로 그 라인만 크게 보이게 하는 것, (detail)설명란 추가
  	2. pageNation 구현하기
  	3. 랜덤 이미지 클릭했을 때 음식 상세 페이지로 이동하기
  -->
-	<header>
-		<form:form>
-			<select name="cat">
-				<option value="Place">장소검색</option>
-				<option value="Food">음식검색</option>
-			</select>
-			<input name="search" placeholder="검색어를 입력하세요." />
-			<button>검색</button>
-		</form:form>
-		<div class="hs_adbtn">
-			<a href="${rootPath}/api/my-food-add" class="hs_add">등록</a>
-		</div>
-	</header>
+	<%@ include file="/WEB-INF/views/dosung/header.jsp"%>
 	<nav>
-		<div class="hs_width">
-			<h4>오늘의 추천 메뉴 (◕ᴗ◕✿)</h4>
-			<div class="hs_how">
-				<c:forEach items="${RANDOM}" var="random">
-					<label for="this"></label>
-					<div data-seq="${random.UC_SEQ}"><a
-						href="${rootPath}/api/${random.UC_SEQ}/api-detail">
-						<img src="${random.MAIN_IMG_THUMB}" id="this" class="img" /></a>
-					</div>
-				</c:forEach>
-			</div>
-		</div>
 		<div class="hs_hs">
 			<div style="width:15%">음식점이름</div>
 			<div style="width:10%">구 위치</div>
@@ -126,7 +103,7 @@ header {
 						<td><img src="${foods.MAIN_IMG_THUMB}" /></td>
 					</tr>
 				</c:forEach>
-				<c:forEach items="${api}" var="aapi">
+				<c:forEach items="${apiFood}" var="aapi">
 					<input type="hidden" />
 					<tr data-seq="${aapi.UC_SEQ}">
 						<td>${aapi.MAIN_TITLE}</td>
