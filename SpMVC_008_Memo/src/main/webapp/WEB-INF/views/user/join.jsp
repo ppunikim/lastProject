@@ -50,7 +50,7 @@
 	button {
 		border: 1px solid transparent;
 		background-color: #aeadad7d;
-		padding: 3px;
+		padding: 5px 10px;
 	}
 </style>
 </head>
