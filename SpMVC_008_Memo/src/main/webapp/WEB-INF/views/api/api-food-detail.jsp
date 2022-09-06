@@ -13,7 +13,7 @@
 <%@ include file="/WEB-INF/views/dosung/head.jsp"%>
 <body>
 <%@include file="/WEB-INF/views/dosung/header.jsp"%>
-<div style="display:flex">
+<div class="hs-container">
 	<div class="w3-ul w3-card-4 w3-margin w3-padding-large hs_div">
 		<label class="w3-text-pink w3-margin">음식점이름</label>
 		<div class="w3-large w3-border-bottom w3-padding">${VO.MAIN_TITLE}</div>
@@ -27,7 +27,7 @@
 		<div class="w3-large w3-border-bottom w3-padding">${VO.USAGE_DAY_WEEK_AND_TIME}</div>
 		<label class="w3-text-pink w3-margin">설명</label>
 		<div class="w3-large w3-border-bottom w3-padding">${VO.ITEMCNTNTS}</div>
-		<div><img src ="${VO.MAIN_IMG_THUMB}" class="w3-padding"></div> 
+		<div class="hs-img-div"><img src ="${VO.MAIN_IMG_THUMB}" class="w3-padding"></div> 
 	</div>
 </div>
 </body>

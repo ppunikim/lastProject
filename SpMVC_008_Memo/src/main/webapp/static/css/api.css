@@ -55,11 +55,16 @@ table tr td, table tr th {
 	padding: 5px;
 }
 
+
+
 table tr td {
 	text-align: center;
 	vertical-align: middle !important;
 }
-
+div.hs-container{
+	display: flex;
+	justify-content: center;
+}
 
 
 nav {
@@ -72,9 +77,6 @@ table tr td {
 }
 
 
-label {
-	display: none;
-}
 
 .hs_width {
 	min-width: 800px;
@@ -105,4 +107,11 @@ nav h4 {
 	text-align: center;
 	margin: 15px 0;
 	font-weight: bolder;
+}
+
+div.hs-img-div {
+	margin: 0 auto;
+}
+label {
+	display: none;
 }

@@ -27,7 +27,7 @@ a {
 </head>
 <body>
 <%@include file="/WEB-INF/views/dosung/header.jsp"%>
-	<div class="">
+	<div class="hs-container">
 		<div class="w3-ul w3-card-4 w3-margin w3-padding-large">
 			<label class="w3-text-pink w3-margin">명소 이름</label>
 			<div class="w3-large w3-border-bottom w3-padding">${DETAIL.MAIN_TITLE}</div>
