@@ -25,7 +25,8 @@
 			ADDR1,
 			USAGE_DAY_WEEK_AND_TIME,
 			MAIN_IMG_THUMB,
-			ITEMCNTNTS
+			ITEMCNTNTS,
+			usercheck
  		) VALUES (
 			#{MAIN_TITLE}, 
 			#{GUGUN_NM},
@@ -33,7 +34,8 @@
 			#{ADDR1},
 			#{USAGE_DAY_WEEK_AND_TIME},
 			#{MAIN_IMG_THUMB},
-			#{ITEMCNTNTS}
+			#{ITEMCNTNTS},
+			#{usercheck}
  		)
  		
  	</insert>
@@ -45,7 +47,8 @@
 			CNTCT_TEL =				#{CNTCT_TEL},
 			USAGE_DAY_WEEK_AND_TIME=#{USAGE_DAY_WEEK_AND_TIME},
 			MAIN_IMG_THUMB=			#{MAIN_IMG_THUMB},
-			ITEMCNTNTS=				#{ITEMCNTNTS}
+			ITEMCNTNTS=				#{ITEMCNTNTS},
+			usercheck = #{usercheck}
 	 	WHERE UC_SEQ= 	#{UC_SEQ} 	
  	</update>
  	<delete id="delete" >
@@ -62,7 +65,8 @@
 			CNTCT_TEL 					VARCHAR(12),
 			USAGE_DAY_WEEK_AND_TIME		VARCHAR(200),
 			MAIN_IMG_THUMB				VARCHAR(400),
-			ITEMCNTNTS					VARCHAR(1000)
+			ITEMCNTNTS					VARCHAR(1000),
+			usercheck  						VARCHAR(5)
   		)
  	</select>
  

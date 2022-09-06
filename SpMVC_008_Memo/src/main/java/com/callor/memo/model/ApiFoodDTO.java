@@ -44,5 +44,7 @@ public class ApiFoodDTO {
 	
 	@JsonProperty("ITEMCNTNTS")
 	private String ITEMCNTNTS;		//상세내용
+	
+	private String usercheck;
 
 }

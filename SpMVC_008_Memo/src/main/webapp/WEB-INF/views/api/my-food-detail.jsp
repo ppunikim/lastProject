@@ -30,7 +30,7 @@ input {
 .hs_div label {
 	display: inline !important;
 }
-div.hs_div button {
+div.hs_div button,div.hs_div a {
 	width: 500px;
 	background-color:#fff7aee0;
 }
@@ -61,7 +61,6 @@ div.hs_middle {
 				<c:choose>
 					<c:when test="${not empty  UC_SEQ}">
 						<h2>맛집 수정하기</h2>
-						<a href="${rootPath}/api/${VO.UC_SEQ}/my-delete"  class=" w3-button w3-pale-yellow">삭제</a>
 					</c:when>
 					<c:otherwise>
 						<h2>맛집 추가하기</h2>

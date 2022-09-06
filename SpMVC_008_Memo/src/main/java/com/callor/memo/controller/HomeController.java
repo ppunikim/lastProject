@@ -82,14 +82,11 @@ public class HomeController {
 			List<ApiFoodDTO> apiFoodLists = apiFoodService.findByCat(foodallList, search); // api 중에서 검색한 결과 리스트
 			
 			List<UserFoodVO> myLists = apiFoodService.findByMyCat(search); // db 에서 검색한 결과 리스트
-			
 			apiFoodLists.addAll(0,myLists);
 			
 			model.addAttribute("apiFood", apiFoodLists);
 //			model.addAttribute("food", myLists);
 			return "api/api-food";
-		} else if(cat == null) {
-			return "redirect:/api/food";
 		}
  		
 		return "redirect:/api/api-home";
@@ -116,12 +113,10 @@ public class HomeController {
 		ArrayList<ApiFoodDTO> foods = (ArrayList<ApiFoodDTO>) session.getAttribute("fullApi");
 		//List<ApiFoodDTO> foods = apiFoodService.getFoodItems(queryString);
 		List<UserFoodVO> myfoods = foodService.selectAll();
-		log.debug("여기입니다" + myfoods.toString());
 		//session.setAttribute("fullApi", foods);
 		
 		foods.addAll(0,myfoods);
 		model.addAttribute("apiFood", foods);
-		log.debug("여기입니다2" + foods.toString());
 
 		return "api/api-food";
 	}
@@ -163,7 +158,6 @@ public class HomeController {
 	@RequestMapping(value = "/api/my-food-add", method = RequestMethod.POST)
 	public String add(@ModelAttribute("foodVO") UserFoodVO foodVO) {
 		foodService.insert(foodVO);
-		String gugun = foodVO.getGUGUN_NM();
 		return "redirect:/api/food";
 	}
 
@@ -245,7 +239,7 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/api/{UC_SEQ}/place-detail", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-	public String placeDetail(@PathVariable("UC_SEQ") String seq, HttpSession session, Model model,
+	public String placeDetail(@PathVariable("UC_SEQ") Long seq, HttpSession session, Model model,
 			Principal principal) {
 
 		// 로그인 정보 풀리면 데이터가 null값 들어와서 해주는 것
@@ -266,7 +260,7 @@ public class HomeController {
 		 */
 		for (ApiPlaceDTO apiPlace : placeList) {
 			if (apiPlace.getUC_SEQ().equals(seq)) {
-				model.addAttribute("DETAIL", apiPlace);
+				model.addAttribute("apiPlace", apiPlace);
 			}
 		}
 		// 이렇게 코드 짜는 이유는, 짜피 UC_SEQ 값은 1개일 것이기 때문에 굳이 List를 안만들어도 된다.

@@ -1,5 +1,11 @@
 package com.callor.memo.model;
 
-public class UserFoodVO extends ApiFoodDTO{
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+public class UserFoodVO extends ApiFoodDTO{
+	
 }

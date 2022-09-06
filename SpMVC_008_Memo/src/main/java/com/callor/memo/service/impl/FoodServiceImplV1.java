@@ -43,6 +43,7 @@ public class FoodServiceImplV1 implements FoodService{
 
 	@Override
 	public int insert(UserFoodVO vo) {
+		vo.setUsercheck("1");
 		apiDao.insert(vo);
 		return 0;
 	}

@@ -207,7 +207,7 @@ public class ApiFoodServiceImplV1 implements ApiFoodService {
 			for(UserFoodVO userVO : foodList) {
 				if(userVO.getGUGUN_NM().contains(search)) {
 					blankList.add(userVO);
-					continue;
+					
 				} else if(userVO.getMAIN_TITLE().contains(search)) {
 					blankList.add(userVO);
 		}

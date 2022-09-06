@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (seq) {
       document.location.href = `${rootPath}/api/${seq}/api-detail`;
     } else if (seqplace) {
-      document.location.href = `${rootPath}/api/${seqplace}/api-place-detail`;
+      document.location.href = `${rootPath}/api/${seqplace}/place-detail`;
     } else if (myseq) {
       document.location.href = `${rootPath}/api/${myseq}/my-update`;
     }
