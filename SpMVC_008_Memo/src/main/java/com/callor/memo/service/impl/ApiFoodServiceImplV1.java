@@ -41,7 +41,7 @@ public class ApiFoodServiceImplV1 implements ApiFoodService {
 
 	@Autowired
 	private FoodService foodService;
-	
+
 	public String queryService(String hs, String search) {
 
 		String queryString = ApiConfig.API_URL;
@@ -74,12 +74,10 @@ public class ApiFoodServiceImplV1 implements ApiFoodService {
 
 		fooddata = resTemp.exchange(uri, HttpMethod.GET, entity, GetFoodKr.class);
 
-
 //		return fooddata.getBody().getFoodKr.item;
 		return null;
 	}
 
-	
 	@Override
 	public String queryString() {
 
@@ -107,15 +105,12 @@ public class ApiFoodServiceImplV1 implements ApiFoodService {
 		return queryString;
 	}
 
-
-	
-	
 	@Override
-	public List<ApiFoodDTO> getFoodItems(String queryString) {
+	public List<ApiFoodDTO> getFoodItems() {
 		URI foodRestURI = null;
 
 		try {
-			foodRestURI = new URI(queryString);
+			foodRestURI = new URI(queryString());
 		} catch (URISyntaxException e) {
 			log.debug("foodURI 불러오기 실패");
 		}
@@ -186,54 +181,49 @@ public class ApiFoodServiceImplV1 implements ApiFoodService {
 	public List<ApiFoodDTO> findByCat(List<ApiFoodDTO> foods, String search) {
 
 		List<ApiFoodDTO> resultList = new ArrayList<>();
-			for (ApiFoodDTO vo : foods) {
-				if (vo.getGUGUN_NM().contains(search)) {
-					resultList.add(vo);
-					continue;
-				} else if (vo.getITEMCNTNTS().contains(search)) {
-					resultList.add(vo);
-					continue;
-				} else if (vo.getMAIN_TITLE().contains(search)) {
-					resultList.add(vo);
-				}
+		for (ApiFoodDTO vo : foods) {
+			if (vo.getGUGUN_NM().contains(search)) {
+				resultList.add(vo);
+				continue;
+			} else if (vo.getITEMCNTNTS().contains(search)) {
+				resultList.add(vo);
+				continue;
+			} else if (vo.getMAIN_TITLE().contains(search)) {
+				resultList.add(vo);
 			}
+		}
 		return resultList;
 	}
-	
+
 	@Override
 	public List<UserFoodVO> findByMyCat(String search) {
 		List<UserFoodVO> foodList = foodService.selectAll();
 		List<UserFoodVO> blankList = new ArrayList<>();
-			for(UserFoodVO userVO : foodList) {
-				if(userVO.getGUGUN_NM().contains(search)) {
-					blankList.add(userVO);
-					
-				} else if(userVO.getMAIN_TITLE().contains(search)) {
-					blankList.add(userVO);
+		for (UserFoodVO userVO : foodList) {
+			if (userVO.getGUGUN_NM().contains(search)) {
+				blankList.add(userVO);
+
+			} else if (userVO.getMAIN_TITLE().contains(search)) {
+				blankList.add(userVO);
+			}
 		}
-	}
 		return blankList;
 	}
-	
-	
+
 	// 검색한 값이 없다면 예외처리를 해줘야 한다.
 	public List<ApiFoodDTO> random(List<ApiFoodDTO> foods) {
-		
-		//랜덤값을 담을 빈 공간의 리스트 만들기
+
+		// 랜덤값을 담을 빈 공간의 리스트 만들기
 		List<ApiFoodDTO> ranList = new ArrayList<>();
-		
-		//2개의 랜덤값 번호를 intRan 에 담기
-		int intRan1 = (int)(Math.random() * foods.size());
-		int intRan2 = (int)(Math.random() * foods.size());
-		
-		//빈 공간에 추가하는데, 기존 데이터에서 랜덤값을 가져온다.
+
+		// 2개의 랜덤값 번호를 intRan 에 담기
+		int intRan1 = (int) (Math.random() * foods.size());
+		int intRan2 = (int) (Math.random() * foods.size());
+
+		// 빈 공간에 추가하는데, 기존 데이터에서 랜덤값을 가져온다.
 		ranList.add(foods.get(intRan1));
 		ranList.add(foods.get(intRan2));
 		return ranList;
 	}
-
-	
-
-
 
 }// end class

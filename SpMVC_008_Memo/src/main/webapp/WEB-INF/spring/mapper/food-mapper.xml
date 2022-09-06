@@ -48,7 +48,7 @@
 			USAGE_DAY_WEEK_AND_TIME=#{USAGE_DAY_WEEK_AND_TIME},
 			MAIN_IMG_THUMB=			#{MAIN_IMG_THUMB},
 			ITEMCNTNTS=				#{ITEMCNTNTS},
-			usercheck = #{usercheck}
+			usercheck = 1
 	 	WHERE UC_SEQ= 	#{UC_SEQ} 	
  	</update>
  	<delete id="delete" >

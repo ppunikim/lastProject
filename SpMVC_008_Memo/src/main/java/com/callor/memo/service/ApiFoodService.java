@@ -11,7 +11,7 @@ public interface ApiFoodService{
 	public List<ApiFoodDTO> apiList();
 	
 	public String queryString();
-	public List<ApiFoodDTO> getFoodItems(String queryString);
+	public List<ApiFoodDTO> getFoodItems();
 //	public List<ApiDTO> findByLocation(String queryString, String search);
 	public List<ApiFoodDTO> findByCat(List<ApiFoodDTO> apiList, String search);
 	public List<ApiFoodDTO> random(List<ApiFoodDTO> foods);

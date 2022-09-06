@@ -49,8 +49,7 @@ public class HomeController {
 	@RequestMapping(value = "/api/home", method = RequestMethod.GET)
 	public String api_home(HttpSession session) {
 
-		String queryString = apiFoodService.queryString();
-		List<ApiFoodDTO> foods = apiFoodService.getFoodItems(queryString);
+		List<ApiFoodDTO> foods = apiFoodService.getFoodItems();
 		session.setAttribute("fullApi", foods);
 
 		List<ApiPlaceDTO> placeList = apiPlaceService.getPlaceItems();
@@ -78,8 +77,9 @@ public class HomeController {
 			model.addAttribute("apiPlace", apiPlaceLists);
 			return "dosung/api-place";
 		} else if(cat.equals("Food")) {
-			ArrayList<ApiFoodDTO> foodallList = (ArrayList<ApiFoodDTO>) session.getAttribute("fullApi");
-			List<ApiFoodDTO> apiFoodLists = apiFoodService.findByCat(foodallList, search); // api 중에서 검색한 결과 리스트
+			List<ApiFoodDTO> foods = apiFoodService.getFoodItems();
+			
+			List<ApiFoodDTO> apiFoodLists = apiFoodService.findByCat(foods, search); // api 중에서 검색한 결과 리스트
 			
 			List<UserFoodVO> myLists = apiFoodService.findByMyCat(search); // db 에서 검색한 결과 리스트
 			apiFoodLists.addAll(0,myLists);
@@ -110,7 +110,8 @@ public class HomeController {
 			return "redirect:/";
 		}
 		
-		ArrayList<ApiFoodDTO> foods = (ArrayList<ApiFoodDTO>) session.getAttribute("fullApi");
+		List<ApiFoodDTO> foods = apiFoodService.getFoodItems();
+
 		//List<ApiFoodDTO> foods = apiFoodService.getFoodItems(queryString);
 		List<UserFoodVO> myfoods = foodService.selectAll();
 		//session.setAttribute("fullApi", foods);
