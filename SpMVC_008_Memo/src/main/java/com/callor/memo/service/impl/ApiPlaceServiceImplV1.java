@@ -78,6 +78,7 @@ public class ApiPlaceServiceImplV1 implements ApiPlaceService {
 			for (ApiPlaceDTO place : placeallList) {
 				if (place.getGUGUN_NM().contains(search)) {
 					placeList.add(place);
+					continue;
 				} else if (place.getITEMCNTNTS().contains(search)) {
 					placeList.add(place);
 				} 

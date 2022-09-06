@@ -189,8 +189,10 @@ public class ApiFoodServiceImplV1 implements ApiFoodService {
 			for (ApiFoodDTO vo : foods) {
 				if (vo.getGUGUN_NM().contains(search)) {
 					resultList.add(vo);
+					continue;
 				} else if (vo.getITEMCNTNTS().contains(search)) {
 					resultList.add(vo);
+					continue;
 				} else if (vo.getMAIN_TITLE().contains(search)) {
 					resultList.add(vo);
 				}

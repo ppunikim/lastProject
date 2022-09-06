@@ -26,14 +26,14 @@
 					<col width="400px">
 					<col width="140px">
 				</colgroup>
-				<c:forEach items="${fullPlace}" var='foods' varStatus="INDEX">
+				<c:forEach items="${apiPlace}" var='place' varStatus="INDEX">
 					<tr >
-						<td>${foods.MAIN_TITLE}</td>
-						<td>${foods.GUGUN_NM}</td>
-						<td>${foods.TRFC_INFO}</td>
-						<td>${foods.USAGE_DAY_WEEK_AND_TIME}</td>
-						<td>${foods.ADDR1}</td>
-						<td><img src="${foods.MAIN_IMG_THUMB}" /></td>
+						<td>${place.MAIN_TITLE}</td>
+						<td>${place.GUGUN_NM}</td>
+						<td>${place.TRFC_INFO}</td>
+						<td>${place.USAGE_DAY_WEEK_AND_TIME}</td>
+						<td>${place.ADDR1}</td>
+						<td><img src="${place.MAIN_IMG_THUMB}" /></td>
 					</tr>
 				</c:forEach>
 			
