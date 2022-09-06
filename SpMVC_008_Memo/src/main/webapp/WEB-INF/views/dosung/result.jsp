@@ -62,7 +62,7 @@ div.d-result-box-img img {
 </head>
 <body>
 	<div class="d-result-title">
-		<h2>${title}맛집 결과</h2>
+		<h2>${title} 맛집 결과</h2>
 		<div class="d-btn">
 			<a href="${rootPath}/dosung/${title}/gotofoods">&#43; 더보기</a>
 		</div>
@@ -81,7 +81,7 @@ div.d-result-box-img img {
 		</c:forEach>
 	</div>
 	<div class="d-result-title">
-		<h2>${title}의관광 명소는..?</h2>
+		<h2>${title}의 관광 명소는..?</h2>
 		<div class="d-btn">
 			<a href="${rootPath}/dosung/${title}/gotoplaces">&#43; 더보기</a>
 		</div>

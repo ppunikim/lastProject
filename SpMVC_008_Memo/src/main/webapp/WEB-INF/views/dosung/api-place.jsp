@@ -27,7 +27,7 @@
 					<col width="140px">
 				</colgroup>
 				<c:forEach items="${apiPlace}" var='place' varStatus="INDEX">
-					<tr >
+					<tr data-seqplace="${place.UC_SEQ}">
 						<td>${place.MAIN_TITLE}</td>
 						<td>${place.GUGUN_NM}</td>
 						<td>${place.TRFC_INFO}</td>

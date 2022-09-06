@@ -5,12 +5,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const target = e.target;
     const tr = target?.closest("TR");
     const seq = tr?.dataset.seq;
+    const seqplace = tr?.dataset.seqplace;
     const myseq = tr?.dataset.myseq;
 
     if (seq) {
       document.location.href = `${rootPath}/api/${seq}/api-detail`;
-    }
-    if (myseq) {
+    } else if (seqplace) {
+      document.location.href = `${rootPath}/api/${seqplace}/api-place-detail`;
+    } else if (myseq) {
       document.location.href = `${rootPath}/api/${myseq}/my-update`;
     }
   });

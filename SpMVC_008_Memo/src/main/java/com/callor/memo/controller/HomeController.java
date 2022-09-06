@@ -88,7 +88,10 @@ public class HomeController {
 			model.addAttribute("apiFood", apiFoodLists);
 //			model.addAttribute("food", myLists);
 			return "api/api-food";
+		} else if(cat == null) {
+			return "redirect:/api/food";
 		}
+ 		
 		return "redirect:/api/api-home";
 	}
 
@@ -136,6 +139,17 @@ public class HomeController {
 		}
 		return "api/api-food-detail";
 	}
+	@RequestMapping(value = "/api/{UC_SEQ}/api-place-detail", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	public String api_place_look(Model model, @PathVariable("UC_SEQ") Long seq, HttpSession session) {
+
+		ArrayList<ApiPlaceDTO> allList = (ArrayList<ApiPlaceDTO>) session.getAttribute("fullPlace");
+		for (ApiPlaceDTO apiDTO : allList) {
+			if (apiDTO.getUC_SEQ().equals(seq)) {
+				model.addAttribute("DETAIL", apiDTO);
+			}
+		}
+		return "api/api-place-detail";
+	}
 
 	// CRUD 구현하기
 
@@ -149,6 +163,7 @@ public class HomeController {
 	@RequestMapping(value = "/api/my-food-add", method = RequestMethod.POST)
 	public String add(@ModelAttribute("foodVO") UserFoodVO foodVO) {
 		foodService.insert(foodVO);
+		String gugun = foodVO.getGUGUN_NM();
 		return "redirect:/api/food";
 	}
 

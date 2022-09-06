@@ -9,33 +9,22 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>부산명소 자세히 보기</title>
-<style>
-
-a {
-	text-decoration: none;
-	margin-top: 20px;
-	width: 500px;
-	height: 40px;
-}
-.hs_color {
-	text-decoration: underline;
-	color: blue;
-}
-</style>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <%@include file="/WEB-INF/views/dosung/head.jsp"%>
 </head>
 <body>
-<%@include file="/WEB-INF/views/dosung/header.jsp"%>
+	<%@include file="/WEB-INF/views/dosung/header.jsp"%>
 	<div class="hs-container">
-		<div class="w3-ul w3-card-4 w3-margin w3-padding-large">
+		<div class="w3-ul w3-card-4 w3-margin w3-padding-large hs_div">
 			<label class="w3-text-pink w3-margin">명소 이름</label>
 			<div class="w3-large w3-border-bottom w3-padding">${DETAIL.MAIN_TITLE}</div>
 			<label class="w3-text-pink w3-margin">위치 자세히</label>
 			<div class="w3-large w3-border-bottom w3-padding">${DETAIL.ADDR1}</div>
 			<c:if test="${not empty DETAIL.HOMEPAGE_URL}">
 				<label class="w3-text-pink w3-margin">홈페이지 링크</label>
-				<div class="w3-large w3-border-bottom w3-padding"><a href="${DETAIL.HOMEPAGE_URL}" class="hs_color">${DETAIL.HOMEPAGE_URL}</a></div>
+				<div class="w3-large w3-border-bottom w3-padding">
+					<a   target='_blank' href="${DETAIL.HOMEPAGE_URL}" class="hs_color">${DETAIL.HOMEPAGE_URL}</a>
+				</div>
 			</c:if>
 			<label class="w3-text-pink w3-margin">교통정보</label>
 			<div class="w3-large w3-border-bottom w3-padding">${DETAIL.TRFC_INFO}</div>
@@ -51,11 +40,10 @@ a {
 			<div class="w3-large w3-border-bottom w3-padding">${DETAIL.USAGE_AMOUNT}</div>
 			<label class="w3-text-pink w3-margin">운영 및 시간</label>
 			<div class="w3-large w3-border-bottom w3-padding">${DETAIL.USAGE_DAY_WEEK_AND_TIME}</div>
-			<label class="w3-text-pink w3-margin">상세내용</label>
-			<div class="w3-large w3-border-bottom w3-padding">${DETAIL.ITEMCNTNTS}</div>
+			
 			<label class="w3-text-pink w3-margin">편의시설</label>
 			<div class="w3-large w3-border-bottom w3-padding">${DETAIL.MIDDLE_SIZE_RM1}</div>
-			<div>
+			<div class="hs-img-div">
 				<img src="${DETAIL.MAIN_IMG_THUMB}" class="w3-padding">
 			</div>
 		</div>

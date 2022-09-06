@@ -45,8 +45,4 @@
 			</sec:authorize>
 		</div>
 	</div>
-	
-	<div> 
-	</div>
-
 </header>

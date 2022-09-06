@@ -20,7 +20,7 @@ import lombok.ToString;
 public class ApiPlaceDTO {
 	
 	@JsonProperty("UC_SEQ")
-	private String UC_SEQ;
+	private Long UC_SEQ;
 	
 	@JsonProperty("MAIN_TITLE")
 	private String MAIN_TITLE;

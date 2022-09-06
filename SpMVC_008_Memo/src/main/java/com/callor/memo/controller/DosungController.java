@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.callor.memo.config.QualifierConfig;
 import com.callor.memo.model.ApiFoodDTO;
 import com.callor.memo.model.ApiPlaceDTO;
+import com.callor.memo.model.UserFoodVO;
 import com.callor.memo.service.ApiFoodService;
 import com.callor.memo.service.ApiPlaceService;
 import com.callor.memo.service.FoodService;
@@ -66,7 +67,10 @@ String queryString = apiFoodService.queryString();
 	public String gotofoods(@PathVariable("title") String title, HttpSession session, Model model) {
 		ArrayList<ApiFoodDTO> allList = (ArrayList<ApiFoodDTO>)session.getAttribute("fullApi"); 
 		List<ApiFoodDTO> resultList = apiFoodService.findByCat(allList,title);
-		model.addAttribute("apiFood",resultList);
+		List<UserFoodVO> myfoods = foodService.findByGugun(title);
+		
+		resultList.addAll(0,myfoods);
+		model.addAttribute("apiFood", resultList);
 		
 //		model.addAttribute("RANDOM", apiFoodService.random(allList));
 		return "api/api-food";
@@ -76,7 +80,7 @@ String queryString = apiFoodService.queryString();
 	public String gotoplaces(@PathVariable("title") String title, HttpSession session, Model model) {
 		ArrayList<ApiPlaceDTO> allList = (ArrayList<ApiPlaceDTO>)session.getAttribute("fullPlace"); 
 		List<ApiPlaceDTO> resultList = apiPlaceService.searchPlaces(allList, title);
-		model.addAttribute("fullPlace",resultList);
+		model.addAttribute("apiPlace",resultList);
 		
 		return "dosung/api-place";
 	}
