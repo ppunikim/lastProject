@@ -22,22 +22,23 @@
 	<%@ include file="/WEB-INF/views/dosung/header.jsp"%>
 	<nav>
 		<div class="hs_hs">
-			<div style="width:15%">음식점 이름</div>
-			<div style="width:10%">구 위치</div>
-			<div style="width:15%">음식점 위치</div>
-			<div style="width:15%">전화번호</div>
-			<div style="width:20%">운영 시간</div>
-			<div style="width:30%">대표 사진</div>
+			<div style="width:300px">음식점 이름</div>
+			<div style="width:180px">구 위치</div>
+			<div style="width:400px">음식점 위치</div>
+			<div style="width:180px">전화번호</div>
+			<div style="width:400px">운영 시간</div>
+			<div style="width:140px">대표 사진</div>
 		</div>
 			<table class="hs_detail">
 				<colgroup>
 					<col width="300px">
-					<col width="240px">
-					<col width="300px">
-					<col width="300px">
+					<col width="180px">
 					<col width="400px">
-					<col width="600px">
+					<col width="180px">
+					<col width="400px">
+					<col width="140px">
 				</colgroup>
+		
 			<%-- 	<c:forEach items="${food}" var='foods' varStatus="INDEX">
 					<tr data-myseq="${foods.UC_SEQ}">
 						<td>${foods.MAIN_TITLE}</td>
