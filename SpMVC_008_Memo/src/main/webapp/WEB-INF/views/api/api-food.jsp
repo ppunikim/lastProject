@@ -11,6 +11,20 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>부산광역시 맛집리스트</title>
+<style>
+	a.hs_btb{
+		text-decoration: none;
+		border: 1px solid transparent;
+		background-color: #706666;
+		border-radius: 10px;
+		color: #fff;
+		padding: 6px 10px;
+		margin: 0 0 25px 25px;
+	}
+	.hs_btnbox {
+		line-height: 50px;
+	}
+</style>
 </head>
 <%@ include file="/WEB-INF/views/dosung/head.jsp"%>
 <body>
@@ -20,6 +34,9 @@
  	3. 랜덤 이미지 클릭했을 때 음식 상세 페이지로 이동하기
  -->
 	<%@ include file="/WEB-INF/views/dosung/header.jsp"%>
+	<div class="hs_btnbox">
+		<a href="${rootPath}/api/my-food-add" class="hs_btb">추가</a>
+	</div>
 	<nav>
 		<div class="hs_hs">
 			<div style="width:300px">음식점 이름</div>
@@ -64,7 +81,6 @@
 	</nav>
 	<div class="hs_div">
 		<a href="${rootPath}" class="hs_home">홈으로</a>
-		<a href="${rootPath}/api/my-food-add" class="hs_home">추가</a>
 	</div>
 	<section class="modal" id="modal_box"></section>
 </body>

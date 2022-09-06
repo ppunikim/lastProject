@@ -224,7 +224,7 @@ textarea {
 			</div>
 		</div>
 			<div class="btns">
-				<a href="${rootPath}/diary/d-list" class="btn a_btn">리스트로</a> 
+				<a href="${rootPath}/write/d-list" class="btn a_btn">리스트로</a> 
 				<input
 					class="btn btn-light" type="reset" value="다시쓰기"> 
 					<input

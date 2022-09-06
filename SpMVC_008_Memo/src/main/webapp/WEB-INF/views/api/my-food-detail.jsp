@@ -11,20 +11,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>맛집 추가하기</title>
 <style>
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
-
-html {
-	width: 100vw;
-	height: 100vh;
-}
 
 body {
-	width: 80%;
-	height: 100%;
+
 	display: flex;
 	flex-direction: column;
 }
@@ -35,13 +24,30 @@ a {
 	width: 170px;
 	height: 40px;
 }
-
-.hs_div_middle {
-	margin: 10px 0;
-	width: 600px;
-}
 input {
 	width: 500px;
+}
+.hs_div label {
+	display: inline !important;
+}
+div.hs_div button {
+	width: 500px;
+	background-color:#fff7aee0;
+}
+div.hs_divhead {
+	margin: 10px auto;	
+}
+div.hs_div h2 {
+	text-align: center;
+	background-color:#ffef5aeb;
+	width :200px;
+	border-radius: 30px;
+	margin: 10px auto;
+	
+}
+div.hs_middle {
+	margin: 0 auto;
+	padding: 5px;
 }
 </style>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -50,47 +56,53 @@ input {
 <body>
 <%@include file="/WEB-INF/views/dosung/header.jsp"%>
 	<form:form method="POST" modelAttribute="FOOD">
-		<div style="display: flex">
-			<div class="w3-ul w3-card-4 w3-margin w3-padding-large hs_div">
+		<div style="display: flex" class="hs_divhead">
+			<div class="hs_div ">
+				<c:choose>
+					<c:when test="${not empty  UC_SEQ}">
+						<h2>맛집 수정하기</h2>
+						<a href="${rootPath}/api/${VO.UC_SEQ}/my-delete"  class=" w3-button w3-pale-yellow">삭제</a>
+					</c:when>
+					<c:otherwise>
+						<h2>맛집 추가하기</h2>
+					</c:otherwise>
+				</c:choose>
 				<div>
 					<input name="UC_SEQ" type="hidden" value="${VO.UC_SEQ}"/>
 				</div>
-				<label class="w3-text-pink w3-margin">음식점이름</label>
+				<div class="hs_middle">
+				<label>음식점이름</label>
 				<div class="hs_div_middle">
 					<input name="MAIN_TITLE"
-						class="w3-large w3-border-bottom w3-padding"
 						value="${VO.MAIN_TITLE}" />
 				</div>
-				<label class="w3-text-pink w3-margin">구 위치</label>
+				<label>구 위치</label>
 				<div class="hs_div_middle">
-					<input name="GUGUN_NM" class="w3-large w3-border-bottom w3-padding"
+					<input name="GUGUN_NM"
 						value="${VO.GUGUN_NM}" />
 				</div>
-				<label class="w3-text-pink w3-margin">음식점위치</label>
+				<label>음식점위치</label>
 				<div class="hs_div_middle">
-					<input name="ADDR1" class="w3-large w3-border-bottom w3-padding"
+					<input name="ADDR1"
 						value="${VO.ADDR1}" />
 				</div>
-				<label class="w3-text-pink w3-margin">전화번호</label>
+				<label>전화번호</label>
 				<div class="hs_div_middle">
 					<input name="CNTCT_TEL"
-						class="w3-large w3-border-bottom w3-padding"
 						value="${VO.CNTCT_TEL}" />
 				</div>
-				<label class="w3-text-pink w3-margin">운영시간</label>
+				<label>운영시간</label>
 				<div class="hs_div_middle">
 					<input name="USAGE_DAY_WEEK_AND_TIME"
-						class="w3-large w3-border-bottom w3-padding"
 						value="${VO.USAGE_DAY_WEEK_AND_TIME}" />
 				</div>
-				<label class="w3-text-pink w3-margin">설명</label>
+				<label>설명</label>
 				<div class="hs_div_middle">
 					<input name="ITEMCNTNTS"
-						class="w3-large w3-border-bottom w3-padding"
 						value="${VO.ITEMCNTNTS}" />
 				</div>
 				<div>
-					<img src="${VO.MAIN_IMG_THUMB}" class="w3-padding">
+					<img src="${VO.MAIN_IMG_THUMB}">
 				</div>
 				<c:choose>
 					<c:when test="${not empty  UC_SEQ}">
@@ -98,9 +110,10 @@ input {
 						<a href="${rootPath}/api/${VO.UC_SEQ}/my-delete"  class=" w3-button w3-pale-yellow">삭제</a>
 					</c:when>
 					<c:otherwise>
-						<button class=" w3-button w3-pale-red">추가</button>
+						<button class=" w3-button">추가</button> 
 					</c:otherwise>
 				</c:choose>
+				</div>
 			</div>
 		</div>
 	</form:form>

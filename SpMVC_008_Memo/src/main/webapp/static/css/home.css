@@ -28,6 +28,12 @@ body {
 form.hs-form {
 	margin: 200px auto;
 	padding: 40px 30px;
+	background-color: #fff;
+}
+
+form.hs-form * {
+	background-color: #fff;
+	
 }
 form.hs-form  input {
 	margin-bottom : 10px;
