@@ -43,9 +43,8 @@ public class DosungController {
 
 	@RequestMapping(value= {"/",""}, method=RequestMethod.GET)
 	public String home(HttpSession session) {
-String queryString = apiFoodService.queryString();
 		
-		List<ApiFoodDTO> foods = apiFoodService.getFoodItems(queryString);
+		List<ApiFoodDTO> foods = apiFoodService.getFoodItems();
 		session.setAttribute("fullApi", foods);
 		
 		return "dosung/home";
