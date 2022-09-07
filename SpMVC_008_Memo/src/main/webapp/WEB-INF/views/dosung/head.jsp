@@ -14,6 +14,9 @@
 <link rel="stylesheet" href="${rootPath}/static/css/dosung/reset.css" />
 <link rel="stylesheet" href="${rootPath}/static/css/dosung/header.css" />
 <link rel="stylesheet" href="${rootPath}/static/css/dosung/main.css" />
+<link rel="stylesheet" href="${rootPath}/static/css/dosung/home.css" />
+<link rel="stylesheet" href="${rootPath}/static/css/dosung/result.css" />
+
 
 
 <link rel="stylesheet" href="${rootPath}/static/css/api.css" />

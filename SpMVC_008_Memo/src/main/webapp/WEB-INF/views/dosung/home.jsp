@@ -9,51 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>또가자</title>
-<style>
-div.d-main {
-	width: 100%;
-	position: relative;
-	display: flex;
-	justify-content: space-evenly;
-	padding-top: 70px;
-}
 
-div.d-map {
-	
-}
-
-div.d-content {
-	width: 640px;
-	overflow: hidden;
-	margin: -20px 0 0 -30px;
-}
-
-div.d-map img {
-	width: 510px;
-	border: none;
-}
-
-area:hover {
-	cursor: pointer;
-}
-.hshshs a {
-	text-decoration: none;
-	color: inherit;
-
-}
-.hshshs {
-	position: relative;
-}
-.hshsa {
-	width: 200px;
-	position: absolute;
-    text-decoration: none;
-    color: inherit;
-    left: 230px;
-    top: 60px;
-    font-size: 16px;
-}
-</style>
 </head>
 <%@ include file="/WEB-INF/views/dosung/head.jsp"%>
 <body>

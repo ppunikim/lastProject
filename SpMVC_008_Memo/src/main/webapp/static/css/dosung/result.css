@@ -1,0 +1,48 @@
+div.d-result-main {
+	display: flex;
+	margin: 8px;
+}
+
+div.d-result-title {
+	display: flex;
+	justify-content: space-between;
+	align-content: center;
+	align-items: center;
+}
+
+div.d-result-title h2 {
+	font-size: 24px;
+	font-weight: 500;
+}
+
+div.d-btn {
+	padding: 5px 12px;
+	margin: 5px;
+	width: 115px;
+	text-align: center;
+}
+
+div.d-btn a {
+	color: inherit;
+	text-decoration: none;
+}
+
+div.d-result-box-title {
+	font-weight: 700;
+	text-align: center;
+}
+
+div.d-result-box-img {
+	overflow: hidden;
+	border-radius: 50% 50%;
+	margin: 15px;
+}
+
+div.d-result-box-img img {
+	width: 180px;
+	height: 180px;
+}
+
+.d-btn a {
+	
+}
