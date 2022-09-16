@@ -8,24 +8,22 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="${rootPath}/static/css/w3css.css">
 <title>글쓰기 모음</title>
 <style>
-section { 
-    margin: 70px auto;
-}
-section a {
-	border: 1px solid black;
+section#hs_w_home_sec a {
+    border: 1px solid black;
     border-radius: 50px;
-    margin: 30px;
-	padding: 15px;
-	font-size: 18px;
-	text-decoration: none;
-	color: black;
+    margin: 10px;
+    padding: 10px;
+    font-size: 12px;
+    text-decoration: none;
+    color: black;
 }
 div.hs-w-div nav{
     background-color: #c5c5c5d4;
 	justify-content: space-around;
-    margin-top: 117px;
+    margin-top: 113px;
     display: flex;
 	padding: 15px;
 }
@@ -34,22 +32,27 @@ div.hs-w-div nav a {
 	text-decoration: none;
 	color:inherit;
 }
+div.hs_result {
+	width: 800px;
+	margin: 5px auto;
+}
 </style>
 <script>
 	const rootPath = '${rootPath}'
 </script>
-<script src="${rootPath}/static/js/write_ajax.js?ver=2"></script> 
+<script src="${rootPath}/static/js/write_ajax.js?ver=7"></script>
+<script src="${rootPath}/static/js/memo_detail.js?ver=14"></script>
 </head>
 <body>
 <%@include file="/WEB-INF/views/header.jsp" %>
 <div class="hs-w-div">
 	<nav>
-		<div onclick="haetsalPower(event)">메모장</div>
-		<a href="${rootPath}/write/d-list">일기장</a>
-		<a href="${rootPath}/write/b-list">독후감</a>
+		<div onClick="memo(event)">메모장</div>
+		<div onClick="diary(event)">일기장</div>
+		<div onClick="book(event)">독후감</div>
 	</nav>
 </div>
-<section>
+<section id="hs_w_home_sec">
 	<div class="hs_result"></div>
 </section>
 </body>

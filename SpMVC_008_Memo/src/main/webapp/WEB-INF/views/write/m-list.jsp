@@ -12,13 +12,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>JSP 파일</title>
-<script>
-	const rootPath = "${rootPath}"
-</script>
-<link rel="stylesheet" href="${rootPath}/static/css/w3css.css">
-<link rel="stylesheet" href="${rootPath}/static/css/memo_list.css?ver=1">
-<script src="${rootPath}/static/js/memo_detail.js?ver=14"></script>
 </head>
+<script>
+	const rootPath = '${rootPath}'
+</script>
+<script src="${rootPath}/static/js/memo_detail.js?ver=14"></script>
 <body>
 	<header class="main">
 		<div class="main_div">
@@ -29,9 +27,10 @@
 						class="w3-input w3-border input_memo" placeholder="메모를 입력하세요."
 						autofocus="autofocus" required="required" autocomplete="off">${M_MEMO.m_memo}</textarea>
 				</div>
-
 				<div id="hs_save">
-					<a href="${rootPath}/memo/${M_MEMO.m_seq}/delete" class="w3-button w3-round-xxlarge w3-padding-large">삭제</a>
+					<c:if test="${not empty M_MEMO.m_seq}">
+						<a href="${rootPath}/memo/${M_MEMO.m_seq}/delete" class="w3-button w3-round-xxlarge w3-padding-large">삭제</a>
+					</c:if>
 					<a href="${rootPath}"
 						class="w3-button w3-round-xxlarge w3-padding-large">홈으로</a> <input
 						type="reset" class="w3-button w3-round-xxlarge w3-padding-large">

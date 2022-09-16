@@ -15,16 +15,15 @@
 <title>하루를 간직하자</title>
 </head>
 <body>
-<%@ include file="/WEB-INF/views/header.jsp"%>
+	<%@ include file="/WEB-INF/views/header.jsp"%>
 	<sec:authorize access="isAnonymous()">
-		<section>
+		<section id="hs_home_sec">
 			<h1>Keep_cherish the day</h1>
 			<h3>please sign in :></h3>
 		</section>
 	</sec:authorize>
 	<sec:authorize access="isAuthenticated()">
-
-		<section>
+		<section id="hs_home_sec">
 			<h1>
 				"
 				<sec:authentication property="principal.username" />
@@ -50,15 +49,15 @@
 		like mounds of mud along waterways. At the top of the mound, in a
 		shallow hole, the female lays one egg. The parents take turns sitting
 		on the egg to keep it warm. After about 30 days, the egg hatches.
-		Flamingos are famous for their bright pink feathers, stilt-like
-		legs, and S-shaped neck. When a flamingo spots potential
-		dinner—favorite foods include shrimp, snails, and plantlike water
-		organisms called algae—it plunges its head into the water, twists it
-		upside down, and scoops the fish using its upper beak like a shovel.
-		They are able to "run" on water, thanks to their webbed feet, to gain
-		speed before lifting up into the sky. Flamingos build nests that look
-		like mounds of mud along waterways. At the top of the mound, in a
-		shallow hole, the female lays one egg. The parents take turns sitting
-		on the egg to keep it warm. After about 30 days, the egg hatches.</p>
+		Flamingos are famous for their bright pink feathers, stilt-like legs,
+		and S-shaped neck. When a flamingo spots potential dinner—favorite
+		foods include shrimp, snails, and plantlike water organisms called
+		algae—it plunges its head into the water, twists it upside down, and
+		scoops the fish using its upper beak like a shovel. They are able to
+		"run" on water, thanks to their webbed feet, to gain speed before
+		lifting up into the sky. Flamingos build nests that look like mounds
+		of mud along waterways. At the top of the mound, in a shallow hole,
+		the female lays one egg. The parents take turns sitting on the egg to
+		keep it warm. After about 30 days, the egg hatches.</p>
 </body>
 </html>

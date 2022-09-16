@@ -7,8 +7,8 @@
 <c:set value="${pageContext.request.contextPath}" var="rootPath" />
 <link rel="stylesheet" href="${rootPath}/static/css/home.css?ver=4" />
 <header class="hs_flex hs_sa hs_fix">
-	<a href="${rootPath}" style="z-index:100">
-		<img src="${rootPath}/static/images/sign.png" width="50vw">
+	<a href="${rootPath}" style="z-index: 100"> <img
+		src="${rootPath}/static/images/sign.png" width="50vw">
 	</a>
 	<div class="hs_fix hs_border">
 		<div class="hs_flex">
@@ -24,9 +24,9 @@
 					<sec:authorize access="isAuthenticated()">
 						<a href="${rootPath}/write/home">글쓰기</a>
 						<br>
-						<a href="${rootPath}/api/home">또가자</a>
-						<br>
 						<a href="${rootPath}/study/home">스터디</a>
+						<br>
+						<a href="${rootPath}/api/home">또가자</a>
 						<br>
 						<form:form action="${rootPath}/user/login">
 							<button>logout</button>
@@ -37,3 +37,4 @@
 		</div>
 	</div>
 </header>
+

@@ -71,7 +71,7 @@ public class WriteController {
 	@RequestMapping(value="/d-add", method = RequestMethod.POST)
 	public String insert(@ModelAttribute("diaryVO") DiaryVO diaryVO) {
 		diaryService.insert(diaryVO);
-		return "redirect:/write/d-list";
+		return "redirect:/write/home";
 	}
 	
 	
@@ -93,7 +93,7 @@ public class WriteController {
 	@RequestMapping(value="/{d_day}/delete", method=RequestMethod.GET)
 	public String delete(@PathVariable("d_day") String d_day) {
 		diaryService.delete(d_day);
-		return "redirect:/write/d-list";
+		return "redirect:/write/home";
 	}
 	
 	
@@ -131,7 +131,7 @@ public class WriteController {
 		memoVO.setM_username(principal.getName());
 		log.debug("여기 insert {} ",memoVO);
 		memoService.insert(memoVO);
-		return "redirect:/write/m-list";
+		return "redirect:/write/home";
 	}
 	
 	@RequestMapping(value="/{seq}/m-detail", method =RequestMethod.GET)
@@ -152,7 +152,7 @@ public class WriteController {
 		log.debug("업뎃 {}", memoVO);
 		memoService.update(memoVO);
 		//return String.format("redirect:/memo/%s/m-detail",m_seq);
-		return "redirect:/write/m-list";
+		return "redirect:/write/home0";
 	}
 	
 	@RequestMapping(value="/{seq}/delete", method = RequestMethod.GET)
@@ -160,7 +160,7 @@ public class WriteController {
 			@ModelAttribute("memoVO") MemoVO memoVO,Principal principal) {
 		memoVO.setM_username(principal.getName());	
 		memoService.delete(m_seq);
-		return "redirect:/write/m-list";
+		return "redirect:/write/home";
 	}
 
 }

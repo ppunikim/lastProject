@@ -110,7 +110,7 @@ img {
   z-index: 900;
 }
 
-section {
+section#hs_home_sec {
   flex: 1;
   font-size: larger;
   text-align: center;
