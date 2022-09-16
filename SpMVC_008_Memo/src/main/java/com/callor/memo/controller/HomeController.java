@@ -45,7 +45,6 @@ public class HomeController {
 		return "home";
 	}
 
-	// 지도 API
 	@RequestMapping(value = "/api/home", method = RequestMethod.GET)
 	public String api_home(HttpSession session) {
 

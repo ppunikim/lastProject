@@ -10,48 +10,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>글쓰기 모음</title>
 <style>
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+section { 
+    margin: 70px auto;
 }
-
-html {
-	width: 100vw;
-	height: 100vh;
-}
-
-body {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-}
-header {
-	display: flex;
-	justify-content: space-around;
-	background-color: #eee;
-}
-header a {
+section a {
+	border: 1px solid black;
+    border-radius: 50px;
+    margin: 30px;
 	padding: 15px;
 	font-size: 18px;
 	text-decoration: none;
 	color: black;
 }
-nav {
-	border: 3px solid black;
-	border-radius: 10px;
+div.hs-w-div nav{
+    background-color: #c5c5c5d4;
+	justify-content: space-around;
+    margin-top: 117px;
+    display: flex;
+	padding: 15px;
+}
+div.hs-w-div nav a {
+    background-color: inherit;
+	text-decoration: none;
+	color:inherit;
 }
 </style>
 </head>
 <body>
-<header>
-	<a href="${rootPath}/write/m-list">메모장</a>
-	<a href="${rootPath}/write/d-list">일기장</a>
-</header>
-<nav>
+<%@include file="/WEB-INF/views/header.jsp" %>
+<div class="hs-w-div">
+	<nav>
+		<a href="${rootPath}/write/m-list">메모장</a>
+		<a href="${rootPath}/write/d-list">일기장</a>
+		<a href="${rootPath}/write/b-list">독후감</a>
+	</nav>
+</div>
+<section>
 	<div></div>
-</nav>
-<!-- 가능하다면 네비 안에 메모나 리스트 나타나도록 하기 -->
+</section>
 </body>
 </html>

@@ -30,7 +30,6 @@ public class UserController {
 	@RequestMapping(value="/join", method =RequestMethod.POST)
 	public String join(UserVO userVO) {
 		userService.insert(userVO);
-		log.debug("회원가입 정보 {}", userVO);
 		return "redirect:/";
 	}
 	
