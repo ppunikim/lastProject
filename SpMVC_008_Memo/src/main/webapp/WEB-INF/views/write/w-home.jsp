@@ -35,18 +35,22 @@ div.hs-w-div nav a {
 	color:inherit;
 }
 </style>
+<script>
+	const rootPath = '${rootPath}'
+</script>
+<script src="${rootPath}/static/js/write_ajax.js?ver=2"></script> 
 </head>
 <body>
 <%@include file="/WEB-INF/views/header.jsp" %>
 <div class="hs-w-div">
 	<nav>
-		<a href="${rootPath}/write/m-list">메모장</a>
+		<div onclick="haetsalPower(event)">메모장</div>
 		<a href="${rootPath}/write/d-list">일기장</a>
 		<a href="${rootPath}/write/b-list">독후감</a>
 	</nav>
 </div>
 <section>
-	<div></div>
+	<div class="hs_result"></div>
 </section>
 </body>
 </html>

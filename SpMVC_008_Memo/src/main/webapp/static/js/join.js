@@ -10,9 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const error_msg = (div, message) => {
     div.innerText = message;
   };
-  const ok_msg = (div, message) => {
-    div.innerText = message;
-  };
   const username_div = error_divs[div_index.username];
 
   username?.addEventListener("blur", (e) => {
