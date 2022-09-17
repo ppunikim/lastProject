@@ -16,11 +16,10 @@
 </head>
 <body>
 	<section>
-		<div>
+		<article>
 			<div class="hs_flex hs_content">
 				<h3>제목</h3>
-				<a class="add_btn" href="${rootPath}/write/d-add">오늘은 일기쓰는 날</a> <a
-					href="${rootPath}" class="home">홈으로</a>
+				<a class="add_btn" href="${rootPath}/write/d-add">오늘은 일기쓰는 날</a> 
 			</div>
 			<c:if test="${empty DIARYLIST}">
 				<tr>
@@ -49,8 +48,10 @@
 				<div class="hs_left"></div>
 				<img src="${rootPath}/static/images/good.png">
 			</div>
-		</div>
+		</article>
 	</section>
-
+	<div style="border-top: 2px solid black">
+			<p>추가할 사항 : detail 들어가서 제대로 데이터 전송 저장 되도록 만들기</p>
+		</div>
 </body>
 </html>

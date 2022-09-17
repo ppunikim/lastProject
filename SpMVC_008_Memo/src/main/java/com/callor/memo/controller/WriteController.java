@@ -163,4 +163,18 @@ public class WriteController {
 		return "redirect:/write/home";
 	}
 
+	
+	
+	//독서록 관련
+	@RequestMapping(value="/b-list",method = RequestMethod.GET)
+	public String book() {
+		return "write/b-list";
+	}
+	
+	
+	
+	
+	
+	
+	
 }

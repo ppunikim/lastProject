@@ -11,21 +11,17 @@
 <link rel="stylesheet" href="${rootPath}/static/css/w3css.css">
 <title>글쓰기 모음</title>
 <style>
-section#hs_w_home_sec a {
-    border: 1px solid black;
-    border-radius: 50px;
-    margin: 10px;
-    padding: 10px;
-    font-size: 12px;
-    text-decoration: none;
-    color: black;
+section#hs_w_home_sec  a {
+    margin: 9px;
+    padding: 7px;
+    font-size: 14px;
 }
 div.hs-w-div nav{
     background-color: #c5c5c5d4;
 	justify-content: space-around;
     margin-top: 113px;
     display: flex;
-	padding: 15px;
+	padding: 10px;
 }
 div.hs-w-div nav a {
     background-color: inherit;
@@ -36,20 +32,25 @@ div.hs_result {
 	width: 800px;
 	margin: 5px auto;
 }
+div.hs_nav_div {
+	background-color: inherit;
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 8px;
+}
 </style>
 <script>
 	const rootPath = '${rootPath}'
 </script>
 <script src="${rootPath}/static/js/write_ajax.js?ver=7"></script>
-<script src="${rootPath}/static/js/memo_detail.js?ver=14"></script>
 </head>
 <body>
 <%@include file="/WEB-INF/views/header.jsp" %>
 <div class="hs-w-div">
 	<nav>
-		<div onClick="memo(event)">메모장</div>
-		<div onClick="diary(event)">일기장</div>
-		<div onClick="book(event)">독후감</div>
+		<div onClick="memo(event)" class="hs_nav_div">메모장</div>
+		<div onClick="diary(event)" class="hs_nav_div">일기장</div>
+		<div onClick="book(event)" class="hs_nav_div">독후감</div>
 	</nav>
 </div>
 <section id="hs_w_home_sec">
