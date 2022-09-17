@@ -7,7 +7,7 @@
 <title>독서록 리스트</title>
 </head>
 <body>
-<h1>독서록이다 이놈아
+<h1>독서록
 </h1>
 </body>
 </html>
