@@ -173,8 +173,11 @@ public class WriteController {
 	
 	
 	
-	
-	
+	@RequestMapping(value="/api_book_news", method=RequestMethod.GET)
+	public String bookNews() {
+		
+		return "write/api_BN";
+	}
 	
 	
 }
