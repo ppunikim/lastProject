@@ -23,7 +23,6 @@ import com.callor.memo.service.MemoService;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @RequestMapping(value="/write")
 @Controller
 public class WriteController {
@@ -59,7 +58,6 @@ public class WriteController {
 	public String d_home(Model model) {
 		List<DiaryVO> dList = diaryService.selectAll();
 		model.addAttribute("DIARYLIST",dList);
-		log.debug(" 리스트확인" + dList.toString());
 		return "write/d-list";
 	}
 
@@ -129,7 +127,6 @@ public class WriteController {
 	public String insert(@ModelAttribute("memoVO") MemoVO memoVO
 						,MultipartFile file, Principal principal) {
 		memoVO.setM_username(principal.getName());
-		log.debug("여기 insert {} ",memoVO);
 		memoService.insert(memoVO);
 		return "redirect:/write/home";
 	}
@@ -149,7 +146,6 @@ public class WriteController {
 			@ModelAttribute("memoVO") MemoVO memoVO,Principal principal) {
 		memoVO.setM_username(principal.getName());	
 		memoVO.setM_seq(m_seq);
-		log.debug("업뎃 {}", memoVO);
 		memoService.update(memoVO);
 		//return String.format("redirect:/memo/%s/m-detail",m_seq);
 		return "redirect:/write/home0";
