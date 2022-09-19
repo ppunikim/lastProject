@@ -5,9 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,20 +15,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.callor.memo.config.QualifierConfig;
 import com.callor.memo.model.DiaryVO;
 import com.callor.memo.model.MemoVO;
+import com.callor.memo.model.NewsDTO;
 import com.callor.memo.service.DiaryService;
 import com.callor.memo.service.MemoService;
-
-import lombok.extern.slf4j.Slf4j;
+import com.callor.memo.service.NewsService;
+import com.callor.memo.service.impl.NaverServiceImplV1;
 
 @RequestMapping(value="/write")
 @Controller
 public class WriteController {
 	
 	private final DiaryService diaryService;
-	public WriteController(DiaryService diaryService) {
+	private final NewsService newsService;
+	private final NaverServiceImplV1 naverService;
+	
+	public WriteController(DiaryService diaryService,
+			@Qualifier(QualifierConfig.SERVICE.NAVER_V1) NaverServiceImplV1 naverService,
+			@Qualifier(QualifierConfig.SERVICE.NEWS_V1) NewsService newsService) {
 		this.diaryService = diaryService;
+		this.newsService = newsService;
+		this.naverService = naverService;
 	}
 	
 	@Autowired
@@ -147,7 +155,6 @@ public class WriteController {
 		memoVO.setM_username(principal.getName());	
 		memoVO.setM_seq(m_seq);
 		memoService.update(memoVO);
-		//return String.format("redirect:/memo/%s/m-detail",m_seq);
 		return "redirect:/write/home0";
 	}
 	
@@ -169,8 +176,12 @@ public class WriteController {
 	
 	
 	
+	//독서록 안 api
 	@RequestMapping(value="/api_book_news", method=RequestMethod.GET)
-	public String bookNews() {
+	public String bookNews(Model model, String search, String cat) {
+		String queryString = naverService.queryString(cat, search);
+		List<NewsDTO> newsList = naverService.getNaver(queryString); 
+		model.addAttribute("NEWS",newsList);
 		
 		return "write/api_BN";
 	}

@@ -15,7 +15,7 @@ div.hs_b_div {
 	<section>
 		<div class="hs_b_div">
 			<h3>내가 읽은 책 독후감 작성</h3>
-			<a href="${rootPath}/memo/write/api_book_news">+ 도서,뉴스정보 더보기</a>
+			<a href="${rootPath}/sunny/write/api_book_news">+ 도서,뉴스정보 더보기</a>
 		</div>
 	</section>
 </body>
