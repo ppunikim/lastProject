@@ -179,8 +179,8 @@ public class WriteController {
 	//독서록 안 api
 	@RequestMapping(value="/api_book_news", method=RequestMethod.GET)
 	public String bookNews(Model model, String search, String cat) {
-		String queryString = naverService.queryString(cat, search);
-		List<NewsDTO> newsList = naverService.getNaver(queryString); 
+		String queryString = naverService.queryString("NEWS", "태풍");
+		List<Object> newsList = naverService.getNaver(queryString); 
 		model.addAttribute("NEWS",newsList);
 		
 		return "write/api_BN";

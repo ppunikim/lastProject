@@ -10,7 +10,6 @@ public class NewsServiceImplV1 implements NewsService {
 
 	@Override
 	public String queryString() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

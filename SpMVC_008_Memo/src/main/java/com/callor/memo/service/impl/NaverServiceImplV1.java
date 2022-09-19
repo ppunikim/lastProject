@@ -37,7 +37,7 @@ public class NaverServiceImplV1 implements NaverService{
 
 	protected String cat = "BOOK";
 	
-	public String queryString(String cat, String search) {
+	public String queryString(String cat, String title) {
 		
 		this.cat = cat;
 
@@ -50,7 +50,7 @@ public class NaverServiceImplV1 implements NaverService{
 
 		String encodeSearch = null;
 		try {
-			encodeSearch = URLEncoder.encode(search, "UTF-8");
+			encodeSearch = URLEncoder.encode(title, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			log.debug("URL Encoding 오류발생");
 			return null;
