@@ -21,19 +21,23 @@ import com.callor.memo.model.MemoVO;
 import com.callor.memo.model.NewsDTO;
 import com.callor.memo.service.DiaryService;
 import com.callor.memo.service.MemoService;
+import com.callor.memo.service.NaverService;
 import com.callor.memo.service.NewsService;
 import com.callor.memo.service.impl.NaverServiceImplV1;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RequestMapping(value="/write")
 @Controller
 public class WriteController {
 	
 	private final DiaryService diaryService;
 	private final NewsService newsService;
-	private final NaverServiceImplV1 naverService;
+	private final NaverService naverService;
 	
 	public WriteController(DiaryService diaryService,
-			@Qualifier(QualifierConfig.SERVICE.NAVER_V1) NaverServiceImplV1 naverService,
+			@Qualifier(QualifierConfig.SERVICE.NAVER_V2) NaverServiceImplV1 naverService,
 			@Qualifier(QualifierConfig.SERVICE.NEWS_V1) NewsService newsService) {
 		this.diaryService = diaryService;
 		this.newsService = newsService;
@@ -175,11 +179,21 @@ public class WriteController {
 	}
 	
 	
+	@RequestMapping(value="/search",method = RequestMethod.POST)
+	public List<NewsDTO> search(String title, String cat) {
+		log.debug("검색어 종류 : " + title);
+		String queryString = naverService.queryString("NEWS", title);
+//		String resString = naverService.getJasonString(queryString);
+		return naverService.getNaver(queryString);
+	}// 검색어 입력하면 api 데이터 나오도록 하기
+	
+	
+	
 	
 	//독서록 안 api
 	@RequestMapping(value="/api_book_news", method=RequestMethod.GET)
-	public String bookNews(Model model, String search, String cat) {
-		String queryString = naverService.queryString("NEWS", "태풍");
+	public String bookNews(Model model, String title, String cat) {
+		String queryString = naverService.queryString(cat, title);
 		List<Object> newsList = naverService.getNaver(queryString); 
 		model.addAttribute("NEWS",newsList);
 		

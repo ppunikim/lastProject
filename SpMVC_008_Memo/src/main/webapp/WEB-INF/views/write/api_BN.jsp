@@ -14,9 +14,6 @@
 	<tr>
 		<th>뉴스제목</th>
 	</tr>
-	<tr>
-		<td>${newss.title}</td>
-	</tr>
 </c:forEach>
 
 <h5>정보가 나오면 그곳에 좋아요 누를 수 있는 기능 만들기</h5>

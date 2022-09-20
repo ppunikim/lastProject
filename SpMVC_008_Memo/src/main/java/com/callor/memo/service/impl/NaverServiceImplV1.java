@@ -39,15 +39,12 @@ public class NaverServiceImplV1 implements NaverService{
 	
 	public String queryString(String cat, String title) {
 		
-		this.cat = cat;
-
+		cat = "BOOK";
+		//this.cat = cat;
 		String queryString = NaverConfig.NAVER_BOOK_URL;
 		if(cat.equals("NEWS")) {
 			queryString = NaverConfig.NAVER_NEWS_URL;
-		} else if(cat.equals("MOVIE")) {
-			queryString = NaverConfig.NAVER_MOVIE_URL;
 		}
-
 		String encodeSearch = null;
 		try {
 			encodeSearch = URLEncoder.encode(title, "UTF-8");
