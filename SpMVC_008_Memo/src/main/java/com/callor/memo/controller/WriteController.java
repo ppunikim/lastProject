@@ -154,26 +154,24 @@ public class WriteController {
 		return "write/b-list";
 	}
 
+
+//	도서, 뉴스 정보 더보기 눌렀을 때
+	@RequestMapping(value = "/api_book_news", method = RequestMethod.GET)
+	public String bookNews() {
+		return "write/api_BN";
+	} 
+
 	// 검색어를 입력했을 때
-	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public String book(Model model, String queryString) {
-		List<Object> navers = naverService.getNaver(queryString);
-		model.addAttribute("NEWS", navers);
-		return "write/home";
-	}
-	@ResponseBody
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
-	public Object search(String search, String cat) {
+	public Object search(String search, String cat, Model model) {
 		String queryString = naverService.queryString(cat, search);
 		List<Object> naverList = naverService.getNaver(queryString);
-		return naverList;
+		model.addAttribute("NAVER", naverList);
+
+		return "write/api_BN";
 	}// 검색어 입력하면 api 데이터 나오도록 하기
 
-	// 도서, 뉴스 정보 더보기 눌렀을 때
-	@RequestMapping(value = "/api_book_news", method = RequestMethod.GET, produces = NaverConfig.APP_JSON)
-	public String bookNews() {
 	
-		return "write/api_BN";
-	}
-
+	// @Responsebody 는 return 에 있는 String 값으로 이동해라 라는 말이다.
+	
 }

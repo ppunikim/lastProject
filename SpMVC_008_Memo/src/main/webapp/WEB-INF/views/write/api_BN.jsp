@@ -7,14 +7,48 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>도서정보,뉴스정보 api</title>
+<title>Insert title here</title>
 </head>
+<style>
+section.hs_bn_sec  {
+    padding: 12px;
+    margin-top: 120px;
+}
+article.hs_bn_art select {
+	width: 70px;
+    height: 28px;
+}
+article.hs_bn_art input{
+	width: 380px;
+	height: 23px;
+}
+article.hs_bn_art button {
+	height: 30px;
+    width: 46px;
+}
+</style>
 <body>
-	<h1>뉴스도서 api</h1>
-	<header> 
-
-	</header>
-
-	<h5>정보가 나오면 그곳에 좋아요 누를 수 있는 기능 만들기</h5>
+<%@include file="/WEB-INF/views/header.jsp" %>
+	<section class="hs_bn_sec">
+		<article class="hs_bn_art">
+			<form:form action="${rootPath}/write/search" method="POST">
+				<select name="cat">
+					<option value="NEWS">뉴스</option>
+					<option value="BOOK">책</option>
+				</select>
+				<input name="search" placeholder="검색어 입력 후 Enter" />
+				<button>전송</button>
+			</form:form>
+		</article>
+		<article>
+			<c:forEach items="${NAVER}" var="navers">
+				<p>${navers.title}</p>
+			</c:forEach>
+		</article>
+		<div style="font-weight: bolder">
+			1. 정보가 나오면 그곳에 좋아요 누를 수 있는 기능 만들기<br> 2. 좋아요 한 내용은 다시 보관함에서 볼 수
+			있도록 하기
+		</div>
+	</section>
 </body>
 </html>

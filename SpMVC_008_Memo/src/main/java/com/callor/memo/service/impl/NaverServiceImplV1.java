@@ -57,7 +57,7 @@ public class NaverServiceImplV1 implements NaverService{
 		queryString += String.format("?query=%s", encodeSearch);
 		log.debug("Query: " + queryString);
 
-		queryString += String.format("&display=%d", 20);
+		queryString += String.format("&display=%d", 7);
 
 		return queryString;
 	}// end queryString(네이버 api 사용할 준비)
