@@ -42,7 +42,6 @@ public class NaverServiceImplV1 implements NaverService{
 	public String queryString(String cat, String search) {
 		
 		this.cat = cat;
-		log.debug("카테고리 서비스 {}",cat);
 		String queryString = NaverConfig.NAVER_BOOK_URL;
 		if(cat.equals("NEWS")) {
 			queryString = NaverConfig.NAVER_NEWS_URL;
