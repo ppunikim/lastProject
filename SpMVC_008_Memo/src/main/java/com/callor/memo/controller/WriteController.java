@@ -165,12 +165,23 @@ public class WriteController {
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public Object search(String search, String cat, Model model) {
 		String queryString = naverService.queryString(cat, search);
-		List<Object> naverList = naverService.getNaver(queryString);
-		model.addAttribute("NAVER", naverList);
+			List<Object> naverList = naverService.getNaver(queryString);
+			model.addAttribute("NAVER", naverList);
 
 		return "write/api_BN";
 	}// 검색어 입력하면 api 데이터 나오도록 하기
 
+	
+	//검색에 detail 보기(비동기 방식)
+	@RequestMapping(value="/{title}/api_detail", method=RequestMethod.GET)
+	public String naver_api_detail(String title, Model model, String queryString) {
+		//리스트를 가져오는게 아니라 title 별로 search 할 수 있는 service 를 만들어야 한다
+		List<Object> findList = naverService.FindByTitle(title);
+		List<Object> naverList = naverService.getNaver(queryString);
+		model.addAttribute("NAVER", naverList);
+		return "write/api_detail";
+	}
+	
 	
 	// @Responsebody 는 return 에 있는 String 값으로 이동해라 라는 말이다.
 	

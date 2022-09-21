@@ -57,7 +57,6 @@ div.hs_nav_div {
 			<div onClick="book(event)" class="hs_nav_div">독후감</div>
 		</nav>
 	</div>
-
 	<section id="hs_w_home_sec">
 		<div class="hs_result"></div>
 	</section>

@@ -34,7 +34,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service(QualifierConfig.SERVICE.NAVER_V1)
 public class NaverServiceImplV1 implements NaverService{
-
 	
 	protected String cat = "BOOK";
 
@@ -55,7 +54,6 @@ public class NaverServiceImplV1 implements NaverService{
 		}
 		// 이 말은 ~~~book.json?query="내가 가져오고자 하는 말" 이라고 출력에 찍히는 것이다.
 		queryString += String.format("?query=%s", encodeSearch);
-		log.debug("Query: " + queryString);
 
 		queryString += String.format("&display=%d", 7);
 
@@ -149,4 +147,11 @@ public class NaverServiceImplV1 implements NaverService{
 		}
 		return null;
 	}// end getNaverBook
+
+
+	@Override
+	public List<Object> FindByTitle(String title) {
+		
+		return null;
+	}
 }
