@@ -35,19 +35,21 @@ import lombok.extern.slf4j.Slf4j;
 @Service(QualifierConfig.SERVICE.NAVER_V1)
 public class NaverServiceImplV1 implements NaverService{
 
-	protected String cat = "BOOK";
 	
-	public String queryString(String cat, String title) {
+	protected String cat = "BOOK";
+
+	//naver 에 요청할 queryString 생성 method
+	public String queryString(String cat, String search) {
 		
-		cat = "BOOK";
-		//this.cat = cat;
+		this.cat = cat;
+		log.debug("카테고리 서비스 {}",cat);
 		String queryString = NaverConfig.NAVER_BOOK_URL;
 		if(cat.equals("NEWS")) {
 			queryString = NaverConfig.NAVER_NEWS_URL;
 		}
 		String encodeSearch = null;
 		try {
-			encodeSearch = URLEncoder.encode(title, "UTF-8");
+			encodeSearch = URLEncoder.encode(search, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			log.debug("URL Encoding 오류발생");
 			return null;
@@ -59,7 +61,7 @@ public class NaverServiceImplV1 implements NaverService{
 		queryString += String.format("&display=%d", 20);
 
 		return queryString;
-	}// end queryString method
+	}// end queryString(네이버 api 사용할 준비)
 
 	
 	public String getJasonString(String queryString) {
@@ -112,10 +114,10 @@ public class NaverServiceImplV1 implements NaverService{
 	}// end getJasonString
 
 	public List<Object> getNaver(String queryString) {
-		
+	//return type 이 List 이다. 이것은 네이버로 불러온 값을 담는 것이다.	
 		URI restURI = null; // 역할은 같지만, url보다 향상된 버젼이다.
 		try {
-			restURI = new URI(queryString);
+			restURI = new URI(queryString); //아까만든 queryString 을 URI 형색으로 만듦.
 		} catch (URISyntaxException e) {
 			log.debug("URI 문법오류");
 			return null;

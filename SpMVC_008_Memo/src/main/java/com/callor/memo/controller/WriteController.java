@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.callor.memo.config.NaverConfig;
 import com.callor.memo.config.QualifierConfig;
 import com.callor.memo.model.DiaryVO;
 import com.callor.memo.model.MemoVO;
@@ -37,7 +39,7 @@ public class WriteController {
 	private final NaverService naverService;
 	
 	public WriteController(DiaryService diaryService,
-			@Qualifier(QualifierConfig.SERVICE.NAVER_V2) NaverServiceImplV1 naverService,
+			@Qualifier(QualifierConfig.SERVICE.NAVER_V1) NaverServiceImplV1 naverService,
 			@Qualifier(QualifierConfig.SERVICE.NEWS_V1) NewsService newsService) {
 		this.diaryService = diaryService;
 		this.newsService = newsService;
@@ -172,28 +174,30 @@ public class WriteController {
 
 	
 	
-	//독서록 관련
+	//독후감 클릭했을 때
 	@RequestMapping(value="/b-list",method = RequestMethod.GET)
 	public String book() {
 		return "write/b-list";
 	}
 	
-	
+	//검색어를 입력했을 때
+	@ResponseBody
 	@RequestMapping(value="/search",method = RequestMethod.POST)
-	public List<NewsDTO> search(String title, String cat) {
-		log.debug("검색어 종류 : " + title);
-		String queryString = naverService.queryString("NEWS", title);
-//		String resString = naverService.getJasonString(queryString);
-		return naverService.getNaver(queryString);
+	public Object search(String search, String cat) {
+		log.debug("카테고리 컨트롤러 {}",cat);
+		log.debug("검색어 종류 : " + search);
+		String queryString = naverService.queryString(cat, search);
+		List<Object> naverList = naverService.getNaver(queryString);
+		return naverList;
 	}// 검색어 입력하면 api 데이터 나오도록 하기
 	
 	
 	
 	
-	//독서록 안 api
+	//도서, 뉴스 정보 더보기 눌렀을 때
 	@RequestMapping(value="/api_book_news", method=RequestMethod.GET)
-	public String bookNews(Model model, String title, String cat) {
-		String queryString = naverService.queryString(cat, title);
+	public String bookNews(Model model, String search, String cat) {
+		String queryString = naverService.queryString(cat, search);
 		List<Object> newsList = naverService.getNaver(queryString); 
 		model.addAttribute("NEWS",newsList);
 		
