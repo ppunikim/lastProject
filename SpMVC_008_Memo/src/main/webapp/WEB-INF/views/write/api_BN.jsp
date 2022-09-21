@@ -7,39 +7,50 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>네이버 api 검색 결과값</title>
 </head>
 <style>
-section.hs_bn_sec  {
-    padding: 12px;
-    margin-top: 120px;
+section.hs_bn_sec {
+	padding: 12px;
 }
-article.hs_bn_art select {
+nav.hs_bn_nav {
+	margin-top: 116px;
+    background-color: #c5c5c5d4;
+    justify-content: space-around;
+    display: flex;
+    padding: 15px;
+}
+form.hs_bn_form {
+	background-color: #c5c5c5d4;
+}
+nav.hs_bn_nav select {
 	width: 70px;
-    height: 28px;
+	height: 28px;
 }
-article.hs_bn_art input{
+
+nav.hs_bn_nav input {
 	width: 380px;
 	height: 23px;
 }
-article.hs_bn_art button {
+
+nav.hs_bn_nav button {
 	height: 30px;
-    width: 46px;
+	width: 46px;
 }
 </style>
 <body>
-<%@include file="/WEB-INF/views/header.jsp" %>
+	<%@include file="/WEB-INF/views/header.jsp"%>
+	<nav class="hs_bn_nav">
+		<form:form action="${rootPath}/write/search" method="POST" class="hs_bn_form">
+			<select name="cat">
+				<option value="NEWS">뉴스</option>
+				<option value="BOOK">책</option>
+			</select>
+			<input name="search" placeholder="검색어 입력 후 Enter" />
+			<button>전송</button>
+		</form:form>
+	</nav>
 	<section class="hs_bn_sec">
-		<article class="hs_bn_art">
-			<form:form action="${rootPath}/write/search" method="POST">
-				<select name="cat">
-					<option value="NEWS">뉴스</option>
-					<option value="BOOK">책</option>
-				</select>
-				<input name="search" placeholder="검색어 입력 후 Enter" />
-				<button>전송</button>
-			</form:form>
-		</article>
 		<article>
 			<c:forEach items="${NAVER}" var="navers">
 				<p>${navers.title}</p>

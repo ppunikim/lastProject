@@ -23,7 +23,6 @@
 
 		<sec:intercept-url pattern="/admin/**" access="isAuthenticated() AND hasRole('ROLE_ADMIN')" />
 		<sec:intercept-url pattern="/api/map" access="permitAll" />
-		<sec:intercept-url pattern="/memo/**" access="permitAll" />
 		<sec:intercept-url pattern="/api/my-food-add" access="isAuthenticated()" />
 		<sec:intercept-url pattern="/diary/d_add" access="isAuthenticated()" />
 		<sec:intercept-url pattern="/user/mypage" access="isAuthenticated()" />
