@@ -33,16 +33,16 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service(QualifierConfig.SERVICE.NAVER_V1)
-public class NaverServiceImplV1 implements NaverService{
-	
+public class NaverServiceImplV1 implements NaverService {
+
 	protected String cat = "BOOK";
 
-	//naver 에 요청할 queryString 생성 method
+	// naver 에 요청할 queryString 생성 method
 	public String queryString(String cat, String search) {
-		
+
 		this.cat = cat;
 		String queryString = NaverConfig.NAVER_BOOK_URL;
-		if(cat.equals("NEWS")) {
+		if (cat.equals("NEWS")) {
 			queryString = NaverConfig.NAVER_NEWS_URL;
 		}
 		String encodeSearch = null;
@@ -60,7 +60,6 @@ public class NaverServiceImplV1 implements NaverService{
 		return queryString;
 	}// end queryString(네이버 api 사용할 준비)
 
-	
 	public String getJasonString(String queryString) {
 		// java.net.url 을 import
 		URL url = null;
@@ -111,10 +110,10 @@ public class NaverServiceImplV1 implements NaverService{
 	}// end getJasonString
 
 	public List<Object> getNaver(String queryString) {
-	//return type 이 List 이다. 이것은 네이버로 불러온 값을 담는 것이다.	
+		// return type 이 List 이다. 이것은 네이버로 불러온 값을 담는 것이다.
 		URI restURI = null; // 역할은 같지만, url보다 향상된 버젼이다.
 		try {
-			restURI = new URI(queryString); //아까만든 queryString 을 URI 형색으로 만듦.
+			restURI = new URI(queryString); // 아까만든 queryString 을 URI 형색으로 만듦.
 		} catch (URISyntaxException e) {
 			log.debug("URI 문법오류");
 			return null;
@@ -148,10 +147,52 @@ public class NaverServiceImplV1 implements NaverService{
 		return null;
 	}// end getNaverBook
 
+	public List<Object> todayNews(){
+
+		//네이버 api 정보 불러오기
+		String search = null;
+		String queryString = NaverConfig.NAVER_NEWS_URL;
+		String encodeSearch = null;
+		try {
+			encodeSearch = URLEncoder.encode(search, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			log.debug("URL Encoding 오류발생");
+			return null;
+		}
+		queryString += String.format("?query=%s", encodeSearch);
+		queryString += String.format("&display=%d", 7);
+		//여기까지 api 정보 불러오는 코드이다.
+		
+		//불러온 사용자 정보를 URI 로 만든 것이다.
+		URI restURI = null;
+		try {
+			restURI = new URI(queryString);
+		} catch (URISyntaxException e) {
+			log.debug("URI 문법오류");
+			return null;
+		}
+		HttpHeaders headers = new HttpHeaders();
+		headers.set(NaverConfig.HEADER.ID, NaverConfig.NAVER_CLIENT_ID);
+		headers.set(NaverConfig.HEADER.SEC, NaverConfig.NAVER_CLIENT_SEC); 
+		//사용자 정보를 추가해서
+		
+		// JSON데이터 타입으로 받겠다.
+		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+
+		RestTemplate restTemp = new RestTemplate();
+		HttpEntity<String> entity = new HttpEntity<String>("parameter", headers);
+		// 보내는 용도
+		ResponseEntity<NaverParent<NewsDTO>> resData = null;
+		// 받는 용도
+		resData = restTemp.exchange(restURI, HttpMethod.GET, entity,
+		new ParameterizedTypeReference<NaverParent<NewsDTO>>() {
+		});
+		return resData.getBody().items;
+	}// 소량의 뉴스 리스트를 화면에 출력하도록 하는 service
 
 	@Override
 	public List<Object> FindByTitle(String title) {
-		
+
 		return null;
 	}
 }

@@ -1,20 +1,32 @@
 package com.callor.memo.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.callor.memo.service.NaverService;
 
 @RequestMapping(value="/study")
 @Controller
 public class StudyController {
 	
+	private final NaverService naverService;
+	public StudyController(NaverService naverService) {
+		this.naverService = naverService;
+	}
+
 	@RequestMapping(value="/home", method=RequestMethod.GET)
 	public String home() {
 		return "study/s-home";
 	}
 	
 	@RequestMapping(value="/one", method=RequestMethod.GET)
-	public String one() {
+	public String one(Model model) {
+		List<Object> newsList = naverService.todayNews();
+		model.addAttribute("NEWS", newsList);
 		return "study/s1";
 	}
 	@RequestMapping(value="/two", method=RequestMethod.GET)
