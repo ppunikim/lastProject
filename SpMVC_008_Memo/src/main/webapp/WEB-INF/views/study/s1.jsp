@@ -32,10 +32,5 @@ body {
 </head>
 <body>
 <h4>sp_mvc_003_school</h4>
-<c:forEach items="NEWS" var="news">
-<p>${news.title}</p>
-<!-- search 를 null 값 줘서 nullpointer 오류 났다.
- 이것을 해결하기 위해 다른 api 보면서 한번 생각해보자. -->
-</c:forEach>
 </body>
 </html>

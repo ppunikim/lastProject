@@ -17,9 +17,15 @@ div.hs_b_div {
 <body>
 	<section>
 		<div class="hs_b_div">
-			<h3>독후감 작성</h3>
+			<h3><a href="${rootPath}/write/b-insert">독후감 작성</a></h3>
 			<a href="${rootPath}/write/api_book_news">+뉴스, 책 정보 더보기</a>
 		</div>
+		<article>
+			<c:forEach items="${BOOK}" var="book">
+				<p>${book.b_isbn}</p>
+				<p>${book.b_title}</p>
+			</c:forEach>
+		</article>
 	</section>
 </body>
 </html>

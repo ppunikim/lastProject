@@ -55,8 +55,13 @@ section article div.hs_bn_divs {
 section article a.hs_bn_a {
 	margin-left: 11px;
 	text-decoration: none;
-	color:inherit;
+	color: inherit;
 }
+
+table.hs_bn_table {
+	overflow: hidden;
+}
+
 </style>
 <body>
 	<%@include file="/WEB-INF/views/header.jsp"%>
@@ -78,19 +83,49 @@ section article a.hs_bn_a {
 					<c:if test="${not empty naver.pubDate}">
 						<div>${naver.pubDate}</div>
 					</c:if>
-					<a class="hs_bn_a" href="${rootPath}/write/${title}/api_detail"  onClick="api_detail(event)">${naver.title}</a>
+					<a class="hs_bn_a" href="${rootPath}/write/${title}/api_detail"
+						onClick="api_detail(event)">${naver.title}</a>
 				</div>
 			</c:forEach>
 		</article>
-		<div style="font-weight: bolder">
+		<div style="display: none">
 			1. 정보가 나오면 그곳에 좋아요 누를 수 있는 기능 만들기<br> 2. 좋아요 한 내용은 다시 보관함에서 볼 수
 			있도록 하기
 		</div>
 	</section>
-	<section>
+	<section style="display: none">
 		<div class="book_news_detail"></div>
 		<div>이곳에 비동기 방식으로 detail 옆으로 보게 만들기</div>
 	</section>
-
+	<section>
+		<table class="hs_bn_table">
+			<colgroup>
+				<col width="150px">
+				<col width="200px">
+				<col width="100px">
+				<col width="500px">
+			</colgroup>
+			<thead>
+				<c:if test="${not empty NEWS}">
+					<tr>
+						<th>날짜</th>
+						<th>제목</th>
+						<th>링크</th>
+						<th>내용</th>
+					</tr>
+				</c:if>
+			</thead>
+			<tbody>
+				<c:forEach items="${NEWS}" var="news">
+					<tr>
+						<td>${news.pubDate}</td>
+						<td>${news.title}</td>
+						<td><a href="${news.link}" target="_blank">${news.originallink}</a></td>
+						<td>${news.description}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</section>
 </body>
 </html>

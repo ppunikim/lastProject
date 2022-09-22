@@ -2,11 +2,13 @@ package com.callor.memo.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.callor.memo.config.QualifierConfig;
 import com.callor.memo.service.NaverService;
 
 @RequestMapping(value="/study")
@@ -14,7 +16,7 @@ import com.callor.memo.service.NaverService;
 public class StudyController {
 	
 	private final NaverService naverService;
-	public StudyController(NaverService naverService) {
+	public StudyController(@Qualifier(QualifierConfig.SERVICE.NAVER_V1) NaverService naverService) {
 		this.naverService = naverService;
 	}
 
@@ -24,9 +26,7 @@ public class StudyController {
 	}
 	
 	@RequestMapping(value="/one", method=RequestMethod.GET)
-	public String one(Model model) {
-		List<Object> newsList = naverService.todayNews();
-		model.addAttribute("NEWS", newsList);
+	public String one() {
 		return "study/s1";
 	}
 	@RequestMapping(value="/two", method=RequestMethod.GET)

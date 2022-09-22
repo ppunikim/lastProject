@@ -18,8 +18,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.callor.memo.config.NaverConfig;
 import com.callor.memo.config.QualifierConfig;
+import com.callor.memo.model.BookVO;
 import com.callor.memo.model.DiaryVO;
 import com.callor.memo.model.MemoVO;
+import com.callor.memo.service.BookService;
 import com.callor.memo.service.DiaryService;
 import com.callor.memo.service.MemoService;
 import com.callor.memo.service.NaverService;
@@ -34,11 +36,14 @@ public class WriteController {
 
 	private final DiaryService diaryService;
 	private final NaverService naverService;
+	private final BookService bookService;
 
 	public WriteController(DiaryService diaryService,
-			@Qualifier(QualifierConfig.SERVICE.NAVER_V1) NaverServiceImplV1 naverService) {
+			@Qualifier(QualifierConfig.SERVICE.NAVER_V1) NaverServiceImplV1 naverService
+			,BookService bookService) {
 		this.diaryService = diaryService;
 		this.naverService = naverService;
+		this.bookService = bookService;
 	}
 
 	@Autowired
@@ -148,16 +153,12 @@ public class WriteController {
 		return "redirect:/write/home";
 	}
 
-	// 독후감 클릭했을 때
-	@RequestMapping(value = "/b-list", method = RequestMethod.GET)
-	public String book() {
-		return "write/b-list";
-	}
 
-
-//	도서, 뉴스 정보 더보기 눌렀을 때
+	//	도서, 뉴스 정보 더보기 눌렀을 때
 	@RequestMapping(value = "/api_book_news", method = RequestMethod.GET)
-	public String bookNews() {
+	public String bookNews(Model model) {
+		List<Object> newsLists = naverService.todayNews();
+		model.addAttribute("NEWS", newsLists);
 		return "write/api_BN";
 	} 
 
@@ -184,5 +185,29 @@ public class WriteController {
 	
 	
 	// @Responsebody 는 return 에 있는 String 값으로 이동해라 라는 말이다.
+	
+	
+	// 독후감 클릭했을 때
+	@RequestMapping(value = "/b-list", method = RequestMethod.GET)
+	public String book(Model model) {
+		List<BookVO> bookList = bookService.selectAll();
+		model.addAttribute("BOOK", bookList);
+		return "write/b-list";
+	}
+	
+	@RequestMapping(value="/b-insert", method = RequestMethod.GET)
+	public String bookInsert() {
+		return null;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

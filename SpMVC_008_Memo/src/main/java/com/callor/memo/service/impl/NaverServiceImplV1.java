@@ -79,7 +79,7 @@ public class NaverServiceImplV1 implements NaverService {
 
 			InputStreamReader is = null;
 			BufferedReader buffer = null;
-
+			
 			// naver가 200코드를 보내면
 			if (resCode == 200) {
 				// 데이터를 받아올 통로를 연결하기
@@ -149,8 +149,8 @@ public class NaverServiceImplV1 implements NaverService {
 
 	public List<Object> todayNews(){
 
+		String search = "z";
 		//네이버 api 정보 불러오기
-		String search = null;
 		String queryString = NaverConfig.NAVER_NEWS_URL;
 		String encodeSearch = null;
 		try {
@@ -160,7 +160,7 @@ public class NaverServiceImplV1 implements NaverService {
 			return null;
 		}
 		queryString += String.format("?query=%s", encodeSearch);
-		queryString += String.format("&display=%d", 7);
+		queryString += String.format("&display=%d", 3);
 		//여기까지 api 정보 불러오는 코드이다.
 		
 		//불러온 사용자 정보를 URI 로 만든 것이다.

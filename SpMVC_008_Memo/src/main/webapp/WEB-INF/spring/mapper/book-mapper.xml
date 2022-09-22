@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.callor.memo.persistance.BookDao">
+
+	<select id="findById" resultType="BookVO">
+		SELECT * FROM tbl_book
+		WHERE b_isbn = #{b_isbn}	
+	</select>
+
+	<select id="selectAll" resultType="BookVO">
+		SELECT * FROM tbl_book
+	</select>
+	
+	<insert id="insert" parameterType="BookVO">
+		INSERT INTO tbl_book
+		(
+			b_isbn,
+			b_title,
+			b_img,
+			b_author,
+			b_price,
+			b_publisher,
+			b_content,
+			b_evol
+
+		) VALUES (
+			#{b_isbn},
+			#{b_title},
+			#{b_img},
+			#{b_author},
+			#{b_price},
+			#{b_publisher},
+			#{b_content},
+			#{b_evol}
+		)
+	</insert>
+	
+ 
+	<update id="update" parameterType="BookVO">
+		UPDATE tbl_book SET
+			b_title = #{b_title},
+			b_img =	#{b_img},
+			b_author =	#{b_author},
+			b_price =	#{b_price},
+			b_publisher = #{b_publisher},
+			b_content = #{b_content},
+			b_evol = #{b_evol}
+		WHERE  b_isbn = #{b_isbn}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM tbl_book WHERE b_isbn = #{b_isbn}
+	</delete>
+
+	<select id="create_book_table">
+		CREATE TABLE IF NOT EXISTS tbl_book (
+			b_isbn		VARCHAR(25)		Primary key,
+			b_title		VARCHAR(10)		not null,	
+			b_img		VARCHAR(10),		
+			b_author	VARCHAR(10),		
+			b_price		VARCHAR(500),		
+			b_publisher	VARCHAR(500),		
+			b_content	VARCHAR(500),		
+			b_evol		VARCHAR(500)	
+)
+	</select>
+</mapper>
