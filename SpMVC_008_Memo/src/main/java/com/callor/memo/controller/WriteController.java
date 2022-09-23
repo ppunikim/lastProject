@@ -199,6 +199,11 @@ public class WriteController {
 	public String bookInsert() {
 		return null;
 	}
+	@RequestMapping(value="/b-insert", method = RequestMethod.POST)
+	public String bookInsert(BookVO bookVO) {
+		bookService.insert(bookVO);
+		return "redirect:/write/home";
+	}
 	
 	
 	

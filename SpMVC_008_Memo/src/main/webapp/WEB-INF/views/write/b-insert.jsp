@@ -11,8 +11,8 @@
 </head>
 <body>
 	<form:form method="POST">
-		<input placeholder="책의 isbn 을 작성하세요." value="b_isbn" />
-		<input placeholder="책의 제목을 입력하세요." value="b_title" />
+		<input placeholder="책의 isbn 을 작성하세요." value="${b_isbn}" name="b_isbn" />
+		<input placeholder="책의 제목을 입력하세요." value="${b_title}" name="b_title"/>
 		<button>전송</button>
 	</form:form>
 </body>
