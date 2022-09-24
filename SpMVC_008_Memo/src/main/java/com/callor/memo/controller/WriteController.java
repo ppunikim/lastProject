@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -205,8 +206,13 @@ public class WriteController {
 		return "redirect:/write/home";
 	}
 	
-	
-	
+	@RequestMapping(value = "/{isbn}/b-detail", method = RequestMethod.GET)
+	public String bookDetail(Model model, @PathVariable("isbn")String b_isbn) {
+		BookVO bookVO = bookService.findById(b_isbn);
+		model.addAttribute("book", bookVO);
+		return "/write/b-insert";
+	}
+	//PathVariable 은 value 값에 VO 에서 만든 값이 아닌 다른 값을 넣고싶을 때 사용하는 것이다.
 	
 	
 	

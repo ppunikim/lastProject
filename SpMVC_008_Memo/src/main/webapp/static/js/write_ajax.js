@@ -43,3 +43,30 @@ function api_detail(event) {
       api_result.innerHTML = result;
     });
 }
+
+// 내가 쓸 독후감인, b-insert 보기
+function writeBook(event) {
+  //결과값이 들어갈 곳
+  const write_result = document.querySelector("div.hs_blist_result");
+
+  //들어가야 할 jsp
+  fetch(`${rootPath}/write/b-insert`)
+    .then((res) => res.text())
+    .then((result) => {
+      write_result.innerHTML = "";
+      write_result.style.display = "block";
+      write_result.innerHTML = result;
+    });
+}
+//내가 쓴 독후감 update 하기
+function updateBook(event) {
+  const write_result = document.querySelector("div.hs_blist_result");
+
+  fetch(`${rootPath}/write/${book.b_isbn}/b-detail`)
+    .then((res) => res.text())
+    .then((result) => {
+      write_result.innerHTML = "";
+      write_result.style.display = "block";
+      write_result.innerHTML = result;
+    });
+}

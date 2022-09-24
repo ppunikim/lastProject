@@ -12,22 +12,34 @@
 div.hs_b_div {
 	display: flex;
 }
-div.hs_b_div > a.hs_b_a {
-	font-weight: bold;
+div.hs_b_div div.hs_blist_div{
+	cursor: pointer;
+	padding: 10px;
 } 
+div.hs_blist_result {
+}
 </style>
+<script>
+	const rootPath = '${rootPath}'
+</script>
+<script src="${rootPath}/static/js/write_ajax.js?ver=13"></script>
 </head>
 <body>
+<div class="hs_b_div">
 	<section>
 		<div class="hs_b_div">
-			<a href="${rootPath}/write/b-insert" class="hs_b_a">독후감 작성</a>
+			<div class="hs_blist_div"  onClick="writeBook(event)">독후감 작성</div>
 			<a href="${rootPath}/write/api_book_news">+뉴스, 책 정보 더보기</a>
 		</div>
 		<article>
 			<c:forEach items="${BOOK}" var="book">
-				<p>${book.b_isbn} & ${book.b_title}</p>
+				<div onClick="updateBook(event)">${book.b_isbn} & ${book.b_title}</div>
 			</c:forEach>
 		</article>
 	</section>
+	<section>
+		<div class="hs_blist_result"></div>
+	</section>
+</div>
 </body>
 </html>
