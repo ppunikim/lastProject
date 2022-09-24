@@ -11,12 +11,26 @@
 <style>
 div.hs_b_div {
 	display: flex;
+	justify-content: space-between;
 }
 div.hs_b_div div.hs_blist_div{
 	cursor: pointer;
 	padding: 10px;
+	font-size: 21px;
+    margin-top: 5px;
 } 
 div.hs_blist_result {
+margin-top: 20px;
+}
+article div.hs_blist_divresult {
+	padding: 10px;
+    font-size: 17px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+article div.hs_blist_divresult:hover {
+	color: #5151d5;
+	font-weight: bold;
 }
 </style>
 <script>
@@ -33,7 +47,7 @@ div.hs_blist_result {
 		</div>
 		<article>
 			<c:forEach items="${BOOK}" var="book">
-				<div onClick="updateBook(event)">${book.b_isbn} & ${book.b_title}</div>
+				<div onClick="updateBook(event)" class="hs_blist_divresult">${book.b_isbn} & ${book.b_title}</div>
 			</c:forEach>
 		</article>
 	</section>
