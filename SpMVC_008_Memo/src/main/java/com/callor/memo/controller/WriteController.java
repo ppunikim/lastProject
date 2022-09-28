@@ -214,8 +214,21 @@ public class WriteController {
 	}
 	//PathVariable 은 value 값에 VO 에서 만든 값이 아닌 다른 값을 넣고싶을 때 사용하는 것이다.
 	
+	@RequestMapping(value="/{isbn}/update", method=RequestMethod.GET)
+	public String bookUpdate(@PathVariable("isbn")String b_isbn) {
+		return "redirect:/write/home";
+	}
+	@RequestMapping(value="/{isbn}/update", method=RequestMethod.POST)
+	public String bookUpdate(@PathVariable("isbn")String b_isbn, BookVO bookVO) {
+		bookService.update(bookVO);
+		return "redirect:/write/home";
+	}
 	
-	
+	@RequestMapping(value="{isbn}/delete", method = RequestMethod.GET)
+	public String bookDelete(@PathVariable("isbn")String b_isbn) {
+		bookService.delete(b_isbn);
+		return "redirect:/write/home";
+	}
 	
 	
 	

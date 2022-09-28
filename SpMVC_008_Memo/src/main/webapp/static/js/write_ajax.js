@@ -59,10 +59,9 @@ function writeBook(event) {
     });
 }
 //내가 쓴 독후감 update 하기
-function updateBook(event) {
+function updateBook(isbn) {
   const write_result = document.querySelector("div.hs_blist_result");
-
-  fetch(`${rootPath}/write/${book.b_isbn}/b-detail`)
+  fetch(`${rootPath}/write/${isbn}/b-detail`)
     .then((res) => res.text())
     .then((result) => {
       write_result.innerHTML = "";

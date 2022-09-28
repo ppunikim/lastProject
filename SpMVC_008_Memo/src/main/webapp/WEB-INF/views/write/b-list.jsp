@@ -36,7 +36,7 @@ article div.hs_blist_divresult:hover {
 <script>
 	const rootPath = '${rootPath}'
 </script>
-<script src="${rootPath}/static/js/write_ajax.js?ver=13"></script>
+<script src="${rootPath}/static/js/write_ajax.js?ver=15"></script>
 </head>
 <body>
 <div class="hs_b_div">
@@ -47,7 +47,7 @@ article div.hs_blist_divresult:hover {
 		</div>
 		<article>
 			<c:forEach items="${BOOK}" var="book">
-				<div onClick="updateBook(event)" class="hs_blist_divresult">${book.b_isbn} & ${book.b_title}</div>
+				<div onClick="updateBook(${book.b_isbn})" class="hs_blist_divresult">${book.b_isbn} & ${book.b_title}</div>
 			</c:forEach>
 		</article>
 	</section>
